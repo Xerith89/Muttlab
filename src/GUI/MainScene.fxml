@@ -5,10 +5,50 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 
-<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MainSceneController">
-    <children>
-        <Button layoutX="126" layoutY="90" text="Click Me!" onAction="#handleButtonAction" fx:id="button" />
-        <Label layoutX="126" layoutY="120" minHeight="16" minWidth="69" fx:id="label" />
-    </children>
-</AnchorPane>
+
+<BorderPane id="BorderPane" prefHeight="340" prefWidth="320" styleClass="root" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MainSceneController">
+    <top>
+        <VBox alignment="center"> 
+        <Text id="welcome-text" text="MuttLab" />
+        <ImageView
+              fx:id="imageView"
+                fitHeight="150.0"
+                fitWidth="200.0"
+                layoutX="61.0"
+                layoutY="83.0"
+                pickOnBounds="true"
+                preserveRatio="true">
+        <image>
+            <Image url="GUI/muttdog.png" />
+        </image>
+        </ImageView>
+        </VBox>
+    </top>   
+    <center> 
+    
+    <VBox alignment="center">
+   
+    <Button text="New Matrix" prefWidth="100.0" onAction="#handleButtonAction"/>
+  
+    <Button text="Operations" onAction="#handleButtonAction" prefWidth="100.0"/>
+        
+    <Button text="Load" onAction="#handleButtonAction" prefWidth="100.0"/>
+    
+    <Button text="Save" onAction="#handleButtonAction" prefWidth="100.0"/>
+    
+    <Button text="Script" onAction="#handleButtonAction" prefWidth="100.0"/>
+     
+    <Button text="Quit" onAction="#handleButtonAction" prefWidth="100.0"/>
+   </VBox>
+         </center>
+    <stylesheets>
+        <URL value="@Style.css" />
+    </stylesheets>
+    
+</BorderPane>

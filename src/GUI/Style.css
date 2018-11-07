@@ -1,0 +1,50 @@
+root { 
+    display: block;
+}
+
+.root {
+    -fx-background-image: url("background.jpg");
+}
+
+#welcome-text {
+   -fx-font-size: 32px;
+   -fx-font-family: "Arial";
+   -fx-text-fill: white;
+   -fx-fill: #818181;
+   -fx-padding: 5px;
+   -fx-alignment: center;
+   -fx-border-insets: 5px;
+   -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
+}
+
+.button {
+    -fx-text-fill: white;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-weight: bold;
+    -fx-padding: 5px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+    -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+}
+
+.button:hover{
+    -fx-text-fill: white;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-weight: bold;
+    -fx-padding: 5px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+    -fx-background-color: linear-gradient(#61a2b1, #AA5058);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+.button:pressed{
+    -fx-text-fill: black;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-weight: bold;
+    -fx-padding: 5px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+    -fx-background-color: linear-gradient(#a1a2b1, #dA5458);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
