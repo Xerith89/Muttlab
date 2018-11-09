@@ -7,9 +7,11 @@ package GUI;
 
 import Commands.CommandHandler;
 import java.awt.Label;
+import static java.awt.SystemColor.window;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
@@ -63,8 +65,25 @@ public class MainSceneController implements Initializable {
     
     @FXML
     private void handleSaveButton(ActionEvent event) {
-        System.out.println("You clicked me!");
+        FileChooser save = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+        save.getExtensionFilters().add(extFilter);
+        File dest = save.showSaveDialog(null);
+        if (dest != null) {
+        String[] commAndArg = new String[2] ;
+        commAndArg[0] = "save";
+        commAndArg[1] = dest.getPath();
+        comHandler.executeCommands(commAndArg);
+        }
+        
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("MuttLab");
+        alert.setHeaderText("Save File");
+        alert.setContentText("File has been saved.");
+
+        alert.showAndWait();
     }
+    
     @FXML
     private void handleScriptButton(ActionEvent event) {
        
