@@ -37,9 +37,7 @@
     <Button text="New Matrix" prefWidth="100.0" onAction="#handleNewButton"/>
   
     <Button text="Operations" onAction="#handleOpsButton" prefWidth="100.0"/>
-        
-    <Button text="Load" onAction="#handleLoadButton" prefWidth="100.0"/>
-    
+            
     <Button text="Save" onAction="#handleSaveButton" prefWidth="100.0"/>
     
     <Button text="Script" onAction="#handleScriptButton" prefWidth="100.0"/>

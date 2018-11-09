@@ -7,11 +7,9 @@ package GUI;
 
 import Commands.CommandHandler;
 import java.awt.Label;
-import static java.awt.SystemColor.window;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Files;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
@@ -23,7 +21,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 
 /**
@@ -35,10 +32,7 @@ import javafx.stage.FileChooser;
 public class MainSceneController implements Initializable {
     
     CommandHandler comHandler = new CommandHandler();
-    
-    @FXML
-    BorderPane borderPane;
-       
+           
     @FXML
     private void handleOpsButton(ActionEvent event) throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("OperationsScene.fxml"));
@@ -49,20 +43,7 @@ public class MainSceneController implements Initializable {
     private void handleNewButton(ActionEvent event) throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("NewMatrixScene.fxml"));
     }
-    
-    @FXML
-    private void handleLoadButton(ActionEvent event) {
-        final Label fileLabel = new Label();
-        FileChooser load = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
-        load.getExtensionFilters().add(extFilter);
-        File file = load.showOpenDialog(null);   
-        if (file != null)
-        {
-            fileLabel.setText(file.getPath());
-        }
-    }
-    
+        
     @FXML
     private void handleSaveButton(ActionEvent event) {
         FileChooser save = new FileChooser();
