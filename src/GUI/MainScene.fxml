@@ -12,7 +12,7 @@
 <?import javafx.scene.image.Image?>
 
 
-<BorderPane id="BorderPane" prefHeight="340" prefWidth="320" styleClass="root" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MainSceneController">
+<BorderPane id="borderPane" prefHeight="340" prefWidth="320" styleClass="root" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MainSceneController">
     <top>
         <VBox alignment="center"> 
         <Text id="welcome-text" text="MuttLab" />
@@ -34,17 +34,17 @@
     
     <VBox alignment="center">
    
-    <Button text="New Matrix" prefWidth="100.0" onAction="#handleButtonAction"/>
+    <Button text="New Matrix" prefWidth="100.0" onAction="#handleNewButton"/>
   
-    <Button text="Operations" onAction="#handleButtonAction" prefWidth="100.0"/>
+    <Button text="Operations" onAction="#handleOpsButton" prefWidth="100.0"/>
         
-    <Button text="Load" onAction="#handleButtonAction" prefWidth="100.0"/>
+    <Button text="Load" onAction="#handleLoadButton" prefWidth="100.0"/>
     
-    <Button text="Save" onAction="#handleButtonAction" prefWidth="100.0"/>
+    <Button text="Save" onAction="#handleSaveButton" prefWidth="100.0"/>
     
-    <Button text="Script" onAction="#handleButtonAction" prefWidth="100.0"/>
+    <Button text="Script" onAction="#handleScriptButton" prefWidth="100.0"/>
      
-    <Button text="Quit" onAction="#handleButtonAction" prefWidth="100.0"/>
+    <Button text="Quit" onAction="#handleQuitButton" prefWidth="100.0"/>
    </VBox>
          </center>
     <stylesheets>
