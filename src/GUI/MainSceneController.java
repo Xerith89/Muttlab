@@ -49,13 +49,13 @@ public class MainSceneController implements Initializable {
         FileChooser save = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
         save.getExtensionFilters().add(extFilter);
+        
         File dest = save.showSaveDialog(null);
         if (dest != null) {
         String[] commAndArg = new String[2] ;
         commAndArg[0] = "save";
         commAndArg[1] = dest.getPath();
         comHandler.executeCommands(commAndArg);
-        }
         
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("MuttLab");
@@ -63,32 +63,30 @@ public class MainSceneController implements Initializable {
         alert.setContentText("File has been saved.");
 
         alert.showAndWait();
+        }  
     }
     
     @FXML
     private void handleScriptButton(ActionEvent event) {
        
-        final Label fileLabel = new Label();
         FileChooser load = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
         load.getExtensionFilters().add(extFilter);
         File file = load.showOpenDialog(null);   
         if (file != null)
         {
-            fileLabel.setText(file.getPath());
-        }
-        
-        String[] commAndArg = new String[2] ;
-        commAndArg[0] = "script";
-        commAndArg[1] = fileLabel.getText();
-        comHandler.executeCommands(commAndArg);
-        
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("MuttLab");
-        alert.setHeaderText("Load Script");
-        alert.setContentText("Script has been run");
+            String[] commAndArg = new String[2] ;
+            commAndArg[0] = "script";
+            commAndArg[1] = file.getPath();
+            comHandler.executeCommands(commAndArg);
 
-        alert.showAndWait();
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("MuttLab");
+            alert.setHeaderText("Load Script");
+            alert.setContentText("Script has been run");
+
+            alert.showAndWait();
+        }
     }
     
     @FXML
