@@ -34,9 +34,9 @@
     
     <VBox alignment="center">
    
-    <Button text="New Matrix" prefWidth="100.0" onAction="#handleNewButton"/>
+    <Button text="New Matrix" fx:id="selectNew" prefWidth="100.0" onAction="#handleNewButton"/>
   
-    <Button text="Operations" onAction="#handleOpsButton" prefWidth="100.0"/>
+    <Button text="Operations" fx:id="selectOps" onAction="#handleOpsButton" prefWidth="100.0"/>
             
     <Button text="Save" onAction="#handleSaveButton" prefWidth="100.0"/>
     
