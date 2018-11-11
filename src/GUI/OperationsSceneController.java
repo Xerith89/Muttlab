@@ -75,7 +75,7 @@ public class OperationsSceneController implements Initializable {
     
      @FXML
     private void dupe(ActionEvent event) throws IOException {
-        executeCommand("dupe");
+        executeCommand("dup");
     }
     
     @FXML
@@ -95,7 +95,7 @@ public class OperationsSceneController implements Initializable {
     private void executeCommand(String comm)
     {
         String[] commAndArg = new String[1] ;
-        commAndArg[0] = "comm";
+        commAndArg[0] = comm;
         comHandler.executeCommands(commAndArg);
     }
     /**
