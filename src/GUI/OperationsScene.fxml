@@ -7,6 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
 
 
     
@@ -18,45 +19,30 @@
      </top>
     <center>
         
-        <VBox alignment="center">
+        <HBox alignment="center" >
+              <padding><Insets top="5" bottom="5" left="5"></Insets> </padding>       
+            <ListView fx:id="matrices"  maxWidth="170.0" prefHeight="270.0" />
+            
+            <GridPane alignment="center_right">
+               				
+                <Button onAction="#input" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="0">+</Button>
+								
+                <Button onAction="#input" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="0">-</Button>
+				
+                <Button onAction="#input" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="1">* N</Button>
+				
+                <Button onAction="#back" fx:id="back" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="3">Back</Button>
+				
+                <Button onAction="#input" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="2">*</Button>
+                
+                <Button onAction="#input" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="1">*.</Button>
+                
+                <Button onAction="#input" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="3">Dupe</Button>
            
-            <TextField fx:id="display" alignment="center" maxWidth="250.0" prefHeight="30.0" />
-        
-            <GridPane hgap="3" vgap="3" alignment="center">
-				
-                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="1">C</Button>
-				
-                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="0" GridPane.rowIndex="1">7</Button>
-				
-                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="1">8</Button>
-			
-                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="1">9</Button>
-				
-                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="0" GridPane.rowIndex="2">4</Button>
-				
-                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="2">5</Button>
-                    
-                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="2">6</Button>
-				
-                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="0" GridPane.rowIndex="3">1</Button>
-				
-                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="3">2</Button>
-				
-                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="3">3</Button>
-				
-                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="0" GridPane.rowIndex="4">0</Button>
-				
-                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="4">.</Button>
-				
-                <Button onAction="#input" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="3">Enter</Button>
-				
-                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="4">,</Button>
-				
-                <Button onAction="#back" fx:id="back" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="4">Back</Button>
-				
-                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="2">;</Button>
+                <Button onAction="#input" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="2">Streams</Button>
+                
             </GridPane>
-        </VBox>
+        </HBox>
     </center>
     <stylesheets>
         <URL value="@Style.css"/>

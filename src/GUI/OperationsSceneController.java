@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import Matrix.Matrix;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
 /**
@@ -27,6 +29,9 @@ public class OperationsSceneController implements Initializable {
      @FXML
     private Button back;
      
+    @FXML
+    private ListView<Matrix> matrices; 
+          
      @FXML
     private void input(ActionEvent event) throws IOException {
        
