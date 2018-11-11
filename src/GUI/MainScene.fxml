@@ -34,15 +34,15 @@
     
     <VBox alignment="center">
    
-    <Button text="New Matrix" fx:id="selectNew" prefWidth="100.0" onAction="#handleNewButton"/>
+    <Button text="New Matrix" fx:id="selectNew" prefWidth="100.0" prefHeight="80.0" onAction="#handleNewButton"/>
   
-    <Button text="Operations" fx:id="selectOps" onAction="#handleOpsButton" prefWidth="100.0"/>
+    <Button text="Operations" fx:id="selectOps" onAction="#handleOpsButton" prefWidth="100.0" prefHeight="80.0"/>
             
-    <Button text="Save" onAction="#handleSaveButton" prefWidth="100.0"/>
+    <Button text="Save" onAction="#handleSaveButton" prefWidth="100.0" prefHeight="80.0"/>
     
-    <Button text="Script" onAction="#handleScriptButton" prefWidth="100.0"/>
+    <Button text="Script" onAction="#handleScriptButton" prefWidth="100.0" prefHeight="80.0"/>
      
-    <Button text="Quit" onAction="#handleQuitButton" prefWidth="100.0"/>
+    <Button text="Quit" onAction="#handleQuitButton" prefWidth="100.0" prefHeight="80.0"/>
    </VBox>
          </center>
     <stylesheets>
