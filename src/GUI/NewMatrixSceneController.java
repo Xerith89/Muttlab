@@ -5,6 +5,8 @@
  */
 package GUI;
 
+import Commands.CommandHandler;
+import Matrix.Matrix;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,6 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -28,26 +31,49 @@ public class NewMatrixSceneController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    
+    CommandHandler comHandler = new CommandHandler();
+      
+    private String input = "";
+        
     @FXML
     private Button back;
     
     @FXML
-    private TextField display;
-    
+    TextField display;
+        
     @FXML
     private void input(ActionEvent event) throws IOException {
-       display.setText("Bla");
+       setInput (input+((Button)event.getSource()).getText());
+    }
+    
+     @FXML
+    private void space(ActionEvent event) throws IOException {
+       setInput(input+ " ");
     }
     
     @FXML
     private void clear(ActionEvent event) throws IOException {
-        display.clear();
+        setInput("");
     }
     
     @FXML
     private void newMat(ActionEvent event) throws IOException {
-        //call command handler add on the string matrix
-        //may need to do some checking here for valid format
+       
+        String[] commAndArg = new String[2] ;
+        commAndArg[0] = "[";
+        commAndArg[1] = " "+input;
+        comHandler.executeCommands(commAndArg);
+        setInput("");
+        
+        if (Matrix.getParseSucceed())
+        {
+            addSuccess("Matrix Succesfully Added.");
+        }
+        else
+        {
+            addSuccess("Error : Invalid Matrix.");
+        }
     }
     
     @FXML
@@ -62,6 +88,22 @@ public class NewMatrixSceneController implements Initializable {
     Scene scene = new Scene(root);
     stage.setScene(scene);
     stage.show();
+    }
+    
+    private void addSuccess(String result)
+    {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("MuttLab");
+        alert.setHeaderText("Add Matrix");
+        alert.setContentText(result);
+
+        alert.showAndWait();
+    }
+    
+    private void setInput(String str)
+    {
+       input =str;
+       display.setText(input);
     }
     
     @Override

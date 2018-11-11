@@ -48,7 +48,7 @@
 				
                 <Button onAction="#newMat" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="3">Enter</Button>
 				
-                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="4">,</Button>
+                <Button onAction="#space" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="4">Spc</Button>
 				
                 <Button onAction="#back" fx:id="back" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="4">Back</Button>
 				

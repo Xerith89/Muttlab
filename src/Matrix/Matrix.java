@@ -17,6 +17,7 @@ public final class Matrix
     TextHandler text = new TextHandler();
     private float[][] matrix;
     private String original;
+    private static boolean parseSucceed;
     
     public Matrix(String input) 
     {     
@@ -57,6 +58,7 @@ public final class Matrix
                 } catch (NumberFormatException e)
                 {
                     text.printInvalidInput();
+                    parseSucceed = false;
                     return;
                 }
             }
@@ -69,10 +71,12 @@ public final class Matrix
                 if (mat[row].length != mat[row-1].length)
                 {
                     text.printInvalidInput();
+                    parseSucceed = false;
                     return;
                 }
             }
         }
+        parseSucceed = true;
         matrix = mat;
         showMatrix(matrix);
         MuttLab.matrixList.add(this);
@@ -103,4 +107,8 @@ public final class Matrix
          MuttLab.matrixList.add(this);
     }
     
+    public static boolean getParseSucceed()
+    {
+        return parseSucceed;
+    }
 }
