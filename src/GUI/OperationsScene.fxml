@@ -8,6 +8,10 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane id="AnchorPane" prefHeight="340.0" prefWidth="320.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.OperationsSceneController">
+    
+    
+    
+    
     <stylesheets>
         <URL value="@Style.css"/>
     </stylesheets>
