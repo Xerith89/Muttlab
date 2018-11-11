@@ -5,6 +5,7 @@ import IOHandler.TextHandler;
 import Matrix.Matrix;
 import Commands.CommandHandler;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class is the main processing class of the MuttLab application. 
@@ -29,7 +30,7 @@ public class MuttLab {
     private static boolean proVersion;
     private final TextHandler text;
     
-    public static ArrayList<Matrix> matrixList;
+    public static List<Matrix> matrixList;
       
     /**
      * Create the editor and initialise its parser.
@@ -50,7 +51,7 @@ public class MuttLab {
     {
         return muttLab;
     }
-    
+       
     /**
      * Main exec routine. Loops until the end of the session.
      * 

@@ -5,10 +5,16 @@
  */
 package GUI;
 
+import Commands.CommandHandler;
 import Matrix.Matrix;
+import MuttLab.MuttLab;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
+import java.util.function.Consumer;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,19 +31,54 @@ import javafx.stage.Stage;
  * @author paul
  */
 public class OperationsSceneController implements Initializable {
-
-     @FXML
-    private Button back;
-     
+    
     @FXML
-    private ListView<Matrix> matrices; 
-          
-     @FXML
-    private void input(ActionEvent event) throws IOException {
-       
+    private Button back;
+    
+    CommandHandler comHandler = new CommandHandler();
+         
+    ObservableList<Matrix> matList = FXCollections.observableList(MuttLab.matrixList);
+    
+    @FXML
+    private ListView<String> matrices = new ListView();
+              
+    @FXML
+    private void add(ActionEvent event) throws IOException {
+        executeCommand("+");
+    }
+    
+    @FXML
+    private void scale()
+    {   
+    }
+    
+    @FXML
+    private void stream()
+    {   
+    }
+    
+    @FXML
+    private void multiplyPoint()
+    {   
+        executeCommand(".*");
+    }
+    
+    @FXML
+    private void subt(ActionEvent event) throws IOException {
+        executeCommand("-");
+    }
+    
+    @FXML
+    private void multiply(ActionEvent event) throws IOException {
+        executeCommand("*");
     }
     
      @FXML
+    private void dupe(ActionEvent event) throws IOException {
+        executeCommand("dupe");
+    }
+    
+    @FXML
     private void back(ActionEvent event) throws IOException {
     
     Stage stage; 
@@ -51,12 +92,21 @@ public class OperationsSceneController implements Initializable {
     stage.show();
     }
     
+    private void executeCommand(String comm)
+    {
+        String[] commAndArg = new String[1] ;
+        commAndArg[0] = "comm";
+        comHandler.executeCommands(commAndArg);
+    }
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        for (int i = 0; i < MuttLab.matrixList.size(); i++)
+        {
+           matrices.getItems().add(Arrays.deepToString(matList.get(i).getMatrix()));
+        }
     }    
     
 }

@@ -9,8 +9,6 @@
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 
-
-    
   <BorderPane id="BorderPane" prefHeight="340.0" prefWidth="320.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.OperationsSceneController">
      <top>
         <VBox alignment="center"> 
@@ -20,26 +18,26 @@
     <center>
         
         <HBox alignment="center" >
-              <padding><Insets top="5" bottom="5" left="5"></Insets> </padding>       
+            <padding><Insets top="5" bottom="5" left="5"></Insets> </padding>       
             <ListView fx:id="matrices"  maxWidth="170.0" prefHeight="270.0" />
             
             <GridPane alignment="center_right">
                				
-                <Button onAction="#input" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="0">+</Button>
+                <Button onAction="#add" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="0">+</Button>
 								
-                <Button onAction="#input" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="0">-</Button>
+                <Button onAction="#subt" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="0">-</Button>
 				
-                <Button onAction="#input" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="1">* N</Button>
+                <Button onAction="#scale" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="1">* N</Button>
 				
                 <Button onAction="#back" fx:id="back" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="3">Back</Button>
 				
-                <Button onAction="#input" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="2">*</Button>
+                <Button onAction="#multiply" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="2">*</Button>
                 
-                <Button onAction="#input" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="1">*.</Button>
+                <Button onAction="#multiplyPoint" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="1">*.</Button>
                 
-                <Button onAction="#input" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="3">Dupe</Button>
+                <Button onAction="#dupe" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="3">Dupe</Button>
            
-                <Button onAction="#input" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="2">Streams</Button>
+                <Button onAction="#stream" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="2">Streams</Button>
                 
             </GridPane>
         </HBox>
