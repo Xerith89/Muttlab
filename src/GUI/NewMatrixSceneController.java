@@ -10,14 +10,16 @@ import Matrix.Matrix;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -33,51 +35,69 @@ public class NewMatrixSceneController implements Initializable {
      */
     
     CommandHandler comHandler = new CommandHandler();
-      
-    private String input = "";
-        
+                
     @FXML
     private Button back;
     
     @FXML
     TextField display;
-        
-    //Need to bind the textfield to the string
     
     @FXML
+    Label SuccessLabel;
+    
+    @FXML
+    Label FailureLabel;
+    
+    Timer timer = new Timer(true);
+           
+    @FXML
     private void input(ActionEvent event) throws IOException {
-       setInput (input+((Button)event.getSource()).getText());
+       display.setText((display.getText()+((Button)event.getSource()).getText()));
     }
     
      @FXML
     private void space(ActionEvent event) throws IOException {
-       setInput(input+ " ");
+       display.setText((display.getText()+ " "));
     }
     
     @FXML
     private void clear(ActionEvent event) throws IOException {
-        setInput("");
+       display.setText("");
     }
     
     @FXML
-    private void newMat(ActionEvent event) throws IOException {
+    private void newMat(ActionEvent event) throws IOException, InterruptedException {
        
         String[] commAndArg = new String[2] ;
         commAndArg[0] = "[";
-        commAndArg[1] = " "+input;
+        commAndArg[1] = " "+display.getText();
         comHandler.executeCommands(commAndArg);
-        setInput("");
+        display.setText("");
         
         if (Matrix.getParseSucceed())
         {
-            addSuccess("Matrix Succesfully Added.");
+            TimerTask clearLabel = new TimerTask() {
+            @Override
+            public void run() {
+            SuccessLabel.setVisible(false);
+            }
+        };
+            SuccessLabel.setVisible(true);
+            timer.schedule(clearLabel, 1500);
         }
         else
         {
-            addSuccess("Error : Invalid Matrix.");
+            TimerTask clearLabel = new TimerTask() {
+            @Override
+            public void run() {
+            FailureLabel.setVisible(false);
+                }
+            };
+            FailureLabel.setVisible(true);
+            timer.schedule(clearLabel, 1500);
         }
     }
-    
+       
     @FXML
     private void back(ActionEvent event) throws IOException {
     
@@ -91,23 +111,7 @@ public class NewMatrixSceneController implements Initializable {
     stage.setScene(scene);
     stage.show();
     }
-    
-    private void addSuccess(String result)
-    {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("MuttLab");
-        alert.setHeaderText("Add Matrix");
-        alert.setContentText(result);
-
-        alert.showAndWait();
-    }
-    
-    private void setInput(String str)
-    {
-       input =str;
-       display.setText(input);
-    }
-    
+           
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }    

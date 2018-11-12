@@ -17,6 +17,10 @@
     <center>
         
         <VBox alignment="center">
+            
+            <Label fx:id="SuccessLabel" text= "Matrix Created Successfully" visible="false" textFill="red"></Label>
+           
+            <Label fx:id="FailureLabel" text= "Invalid Matrix" visible="false" textFill="red" ></Label>
            
             <TextField fx:id="display" alignment="center" maxWidth="250.0" prefHeight="30.0" />
         
