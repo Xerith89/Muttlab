@@ -18,7 +18,6 @@ import MuttLab.MuttLab;
  * improve the matrix list view (remove brackets)
  * error messages for operations with no matrices added
  * Enter button to input matrix
- * Change the alert boxes when adding a matrix
  * Make the list view update when doing an operation
  * Design and implement the load scene with streams
  * Put things in packages and get it to work

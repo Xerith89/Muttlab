@@ -39,14 +39,17 @@ public class NewMatrixSceneController implements Initializable {
     @FXML
     private Button back;
     
-    @FXML
-    TextField display;
+     @FXML
+    private Button newMat;
     
     @FXML
-    Label SuccessLabel;
+    private TextField display;
     
     @FXML
-    Label FailureLabel;
+    private Label SuccessLabel;
+    
+    @FXML
+    private Label FailureLabel;
     
     Timer timer = new Timer(true);
            
@@ -67,7 +70,7 @@ public class NewMatrixSceneController implements Initializable {
     
     @FXML
     private void newMat(ActionEvent event) throws IOException, InterruptedException {
-       
+             
         String[] commAndArg = new String[2] ;
         commAndArg[0] = "[";
         commAndArg[1] = " "+display.getText();
@@ -80,8 +83,8 @@ public class NewMatrixSceneController implements Initializable {
             @Override
             public void run() {
             SuccessLabel.setVisible(false);
-            }
-        };
+                }
+            };
             SuccessLabel.setVisible(true);
             timer.schedule(clearLabel, 1500);
         }
@@ -97,6 +100,7 @@ public class NewMatrixSceneController implements Initializable {
             timer.schedule(clearLabel, 1500);
         }
     }
+        
        
     @FXML
     private void back(ActionEvent event) throws IOException {
@@ -111,7 +115,7 @@ public class NewMatrixSceneController implements Initializable {
     stage.setScene(scene);
     stage.show();
     }
-           
+              
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }    

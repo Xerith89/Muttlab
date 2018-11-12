@@ -26,7 +26,8 @@
         
             <GridPane hgap="3" vgap="3" alignment="center">
 				
-                <Button onAction="#clear" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="1">C</Button>
+                <Button onAction="#clear" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="1" >
+                <tooltip><Tooltip text="Clear Input" /></tooltip>C</Button>
 				
                 <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="0" GridPane.rowIndex="1">7</Button>
 				
@@ -50,13 +51,16 @@
 				
                 <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="4">.</Button>
 				
-                <Button onAction="#newMat" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="3">Enter</Button>
+                <Button onAction="#newMat" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                <tooltip><Tooltip text="Submit Matrix" /></tooltip>Enter</Button>
 				
-                <Button onAction="#space" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="4">Spc</Button>
+                <Button onAction="#space" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                <tooltip><Tooltip text="Space" /></tooltip>Spc</Button>
 				
                 <Button onAction="#back" fx:id="back" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="4">Back</Button>
 				
-                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="2">;</Button>
+                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                <tooltip><Tooltip text="Insert New Row" /></tooltip>;</Button>
             </GridPane>
         </VBox>
     </center>
