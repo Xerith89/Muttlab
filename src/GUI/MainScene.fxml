@@ -12,7 +12,7 @@
 <?import javafx.scene.image.Image?>
 
 
-<BorderPane id="borderPane" prefHeight="340" prefWidth="320" styleClass="root" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MainSceneController">
+<BorderPane id="borderPane" prefHeight="400" prefWidth="450" styleClass="root" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MainSceneController">
     <top>
         <VBox alignment="center"> 
         <Text id="welcome-text" text="MuttLab" />

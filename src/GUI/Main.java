@@ -13,8 +13,16 @@ import javafx.stage.Stage;
 import MuttLab.MuttLab;
 
 /**
- *
- * @author paul
+ * Things to do:
+ * Add button tool tips
+ * improve the matrix list view (remove brackets)
+ * error messages for operations with no matrices added
+ * Fix the text field in new matrix so you can type the matrix
+ * Change the alert boxes when adding a matrix
+ * Make the list view update when doing an operation
+ * Design and implement the load scene with streams
+ * Put things in packages and get it to work
+ * Go over the code to try and optimise 
  */
 public class Main extends Application {
     

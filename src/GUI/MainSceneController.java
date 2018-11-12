@@ -30,7 +30,6 @@ import javafx.stage.Stage;
  * @author paul
  */
 
-
 public class MainSceneController implements Initializable {
     
     CommandHandler comHandler = new CommandHandler();
