@@ -36,38 +36,21 @@ public class MainSceneController implements Initializable {
     CommandHandler comHandler = new CommandHandler();
     
     @FXML
-    private Button selectOps;
-           
-    @FXML
-    private Button selectNew;
+    Button button;
     
     @FXML
     private void handleOpsButton(ActionEvent event) throws IOException {
-    
-    Stage stage; 
-    Parent root;
-    stage=(Stage)selectOps.getScene().getWindow();
-     
-    root = FXMLLoader.load(getClass().getResource("OperationsScene.fxml"));
-       
-    Scene scene = new Scene(root);
-    stage.setScene(scene);
-    stage.show();
-    
+    swapScene("OperationsScene.fxml");
     }
     
     @FXML
     private void handleNewButton(ActionEvent event) throws IOException {
+    swapScene("NewMatrixScene.fxml");
+    }
     
-    Stage stage; 
-    Parent root;
-    stage=(Stage)selectNew.getScene().getWindow();
-     
-    root = FXMLLoader.load(getClass().getResource("NewMatrixScene.fxml"));
-       
-    Scene scene = new Scene(root);
-    stage.setScene(scene);
-    stage.show();
+    @FXML
+    private void handleLoadButton(ActionEvent event) throws IOException {
+    swapScene("LoadScene.fxml");     
     }
         
     @FXML
@@ -134,6 +117,19 @@ public class MainSceneController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+    }
+    
+    private void swapScene(String url) throws IOException
+    {
+        Stage stage; 
+        Parent root;
+        stage=(Stage)button.getScene().getWindow();
+     
+        root = FXMLLoader.load(getClass().getResource(url));
+       
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
         
 }
