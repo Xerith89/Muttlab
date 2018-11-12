@@ -27,18 +27,19 @@
 								
                 <Button onAction="#subt" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="0">-</Button>
 				
-                <Button onAction="#scale" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="1">* N</Button>
+                <Button onAction="#scale" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="3">* N</Button>
 				
-                <Button onAction="#back" fx:id="back" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="3">Back</Button>
+                <Button onAction="#back" fx:id="back" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="4">Back</Button>
 				
                 <Button onAction="#multiply" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="2">*</Button>
                 
                 <Button onAction="#multiplyPoint" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="1">*.</Button>
                 
-                <Button onAction="#dupe" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="3">Dupe</Button>
+                <Button onAction="#dupe" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="1">Dupe</Button>
            
                 <Button onAction="#stream" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="2">Streams</Button>
                 
+                <TextField fx:id="scaler" alignment="center" maxWidth="50.0" prefHeight="30.0" GridPane.columnIndex="3" GridPane.rowIndex="3"/>
             </GridPane>
         </HBox>
     </center>

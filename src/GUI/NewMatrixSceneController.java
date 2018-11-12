@@ -42,6 +42,8 @@ public class NewMatrixSceneController implements Initializable {
     @FXML
     TextField display;
         
+    //Need to bind the textfield to the string
+    
     @FXML
     private void input(ActionEvent event) throws IOException {
        setInput (input+((Button)event.getSource()).getText());

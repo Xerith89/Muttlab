@@ -23,6 +23,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
@@ -35,12 +36,15 @@ public class OperationsSceneController implements Initializable {
     @FXML
     private Button back;
     
+    @FXML
+    TextField scaler;
+    
     CommandHandler comHandler = new CommandHandler();
          
     ObservableList<Matrix> matList = FXCollections.observableList(MuttLab.matrixList);
     
     @FXML
-    private ListView<String> matrices = new ListView();
+    private final ListView<String> matrices = new ListView();
               
     @FXML
     private void add(ActionEvent event) throws IOException {
@@ -50,6 +54,7 @@ public class OperationsSceneController implements Initializable {
     @FXML
     private void scale()
     {   
+        executeCommandAndArg("*",scaler.getText());
     }
     
     @FXML
@@ -98,6 +103,14 @@ public class OperationsSceneController implements Initializable {
         commAndArg[0] = comm;
         comHandler.executeCommands(commAndArg);
     }
+    
+    private void executeCommandAndArg(String comm, String arg)
+    {
+        String[] commAndArg = new String[2] ;
+        commAndArg[0] = comm;
+        commAndArg[1] = arg;
+        comHandler.executeCommands(commAndArg);
+    }
     /**
      * Initializes the controller class.
      */
@@ -108,5 +121,4 @@ public class OperationsSceneController implements Initializable {
            matrices.getItems().add(Arrays.deepToString(matList.get(i).getMatrix()));
         }
     }    
-    
 }
