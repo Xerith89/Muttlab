@@ -25,6 +25,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 /**
  * FXML Controller class
@@ -56,12 +57,7 @@ public class OperationsSceneController implements Initializable {
     {   
         executeCommandAndArg("*",scaler.getText());
     }
-    
-    @FXML
-    private void stream()
-    {   
-    }
-    
+        
     @FXML
     private void multiplyPoint()
     {   

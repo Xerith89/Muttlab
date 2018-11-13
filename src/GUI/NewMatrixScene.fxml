@@ -26,41 +26,41 @@
         
             <GridPane hgap="3" vgap="3" alignment="center">
 				
-                <Button onAction="#clear" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="1" >
-                <tooltip><Tooltip text="Clear Input" /></tooltip>C</Button>
+                <Button onAction="#clear" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="1" text="C" >
+                <tooltip><Tooltip text="Clear Input" /></tooltip></Button>
 				
-                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="0" GridPane.rowIndex="1">7</Button>
+                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="0" GridPane.rowIndex="1" text="7"></Button>
 				
-                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="1">8</Button>
+                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="1" text="8"></Button>
 			
-                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="1">9</Button>
+                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="1" text="9"></Button>
 				
-                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="0" GridPane.rowIndex="2">4</Button>
+                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="0" GridPane.rowIndex="2" text="4"></Button>
 				
-                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="2">5</Button>
+                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="2" text="5"></Button>
                     
-                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="2">6</Button>
+                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="2" text="6"></Button>
 				
-                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="0" GridPane.rowIndex="3">1</Button>
+                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="0" GridPane.rowIndex="3" text="1"></Button>
 				
-                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="3">2</Button>
+                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="3" text="2"></Button>
 				
-                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="3">3</Button>
+                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="3" text="3"></Button>
 				
-                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="0" GridPane.rowIndex="4">0</Button>
+                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="0" GridPane.rowIndex="4" text="0"></Button>
 				
-                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="4">.</Button>
+                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="4" text="."></Button>
 				
-                <Button onAction="#newMat" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="3">
-                <tooltip><Tooltip text="Submit Matrix" /></tooltip>Enter</Button>
+                <Button onAction="#newMat" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="3" text="Enter">
+                <tooltip><Tooltip text="Submit Matrix" /></tooltip></Button>
 				
-                <Button onAction="#space" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="4">
-                <tooltip><Tooltip text="Space" /></tooltip>Spc</Button>
+                <Button onAction="#space" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="4" text="Spc">
+                <tooltip><Tooltip text="Space" /></tooltip></Button>
 				
-                <Button onAction="#back" fx:id="back" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="4">Back</Button>
+                <Button onAction="#back" fx:id="back" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="4" text="Back"></Button>
 				
-                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="2">
-                <tooltip><Tooltip text="Insert New Row" /></tooltip>;</Button>
+                <Button onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="2" text=";">
+                <tooltip><Tooltip text="Insert New Row" /></tooltip></Button>
             </GridPane>
         </VBox>
     </center>
