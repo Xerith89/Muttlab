@@ -15,7 +15,7 @@ import MuttLab.MuttLab;
 /**
  * Things to do:
  * fix the matrix list view (remove brackets)
- * tabbing/Enter fire buttons
+ * Enter fire buttons
  * Design and implement the load scene with streams
  * Put things in packages and get it to work
  * Go over the code to try and optimise - such as getting button text 
