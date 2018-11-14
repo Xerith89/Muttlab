@@ -36,7 +36,6 @@ public class OperationsSceneController implements Initializable {
     
     @FXML
     private Button backButton;
-    
     @FXML
     private Button addButton;
     @FXML
@@ -116,8 +115,7 @@ public class OperationsSceneController implements Initializable {
         });
         
     } 
-    
-              
+                  
     @FXML
     private void add(ActionEvent event) throws IOException {
         executeCommand("+");
@@ -220,7 +218,5 @@ public class OperationsSceneController implements Initializable {
             FailureLabel.setVisible(true);
             timer.schedule(clearLabel, 1500);
             }
-        }
-    
-   
+        }  
 }

@@ -83,7 +83,6 @@ public final class Matrix
     }
       
     public void showMatrix(float[][] impl) {
-        text.print("> [");
         for (int r = 0; r < impl.length; r ++) {
             for (int c = 0; c < impl[r].length; c++) {
                 text.print(impl[r][c]);
@@ -93,7 +92,6 @@ public final class Matrix
             if (r < impl.length -1)
                 text.print("; ");   
         }
-        text.printLine(" ]");
     }
     
     public float[][] getMatrix()
