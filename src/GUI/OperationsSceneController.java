@@ -13,6 +13,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,7 +35,20 @@ import javafx.stage.Stage;
 public class OperationsSceneController implements Initializable {
     
     @FXML
-    private Button back;
+    private Button backButton;
+    
+    @FXML
+    private Button addButton;
+    @FXML
+    private Button subButton;
+    @FXML
+    private Button dupeButton;
+    @FXML
+    private Button scaleButton;
+    @FXML
+    private Button multiplyButton;
+    @FXML
+    private Button multiplyPointButton;
         
     @FXML
     TextField scaler;
@@ -50,6 +65,58 @@ public class OperationsSceneController implements Initializable {
          
     @FXML
     private ListView<String> matrices = new ListView<>();
+    
+     /**
+     * Initializes the controller class.
+     * @param url
+     * @param rb
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        matrices.setItems(MuttLab.getMatrices());
+        
+        addButton.defaultButtonProperty().bind(addButton.focusedProperty());
+        subButton.defaultButtonProperty().bind(subButton.focusedProperty());
+        backButton.defaultButtonProperty().bind(backButton.focusedProperty());
+        dupeButton.defaultButtonProperty().bind(dupeButton.focusedProperty());
+        scaleButton.defaultButtonProperty().bind(scaleButton.focusedProperty());
+        multiplyButton.defaultButtonProperty().bind(multiplyButton.focusedProperty());
+        multiplyPointButton.defaultButtonProperty().bind(multiplyPointButton.focusedProperty());
+        
+        addButton.setOnAction(e -> {
+            try {add(e);} catch (IOException ex) {
+                Logger.getLogger(NewMatrixSceneController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        subButton.setOnAction(e -> {
+            try {subt(e);} catch (IOException ex) {
+                Logger.getLogger(NewMatrixSceneController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        backButton.setOnAction(e -> {
+            try {back(e);} catch (IOException ex) {
+                Logger.getLogger(NewMatrixSceneController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        dupeButton.setOnAction(e -> {
+            try {dupe(e);} catch (IOException ex) {
+                Logger.getLogger(NewMatrixSceneController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        scaleButton.setOnAction(e -> {
+            scale();
+        });
+        multiplyButton.setOnAction(e -> {
+            try {multiply(e);} catch (IOException ex) {
+                Logger.getLogger(NewMatrixSceneController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        multiplyPointButton.setOnAction(e -> {
+             multiplyPoint();
+        });
+        
+    } 
+    
               
     @FXML
     private void add(ActionEvent event) throws IOException {
@@ -88,7 +155,7 @@ public class OperationsSceneController implements Initializable {
     
     Stage stage; 
     Parent root;
-    stage=(Stage)back.getScene().getWindow();
+    stage=(Stage)backButton.getScene().getWindow();
      
     root = FXMLLoader.load(getClass().getResource("MainScene.fxml"));
        
@@ -155,13 +222,5 @@ public class OperationsSceneController implements Initializable {
             }
         }
     
-    /**
-     * Initializes the controller class.
-     * @param url
-     * @param rb
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        matrices.setItems(MuttLab.getMatrices());
-    } 
+   
 }

@@ -12,7 +12,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -37,10 +40,37 @@ public class NewMatrixSceneController implements Initializable {
     CommandHandler comHandler = new CommandHandler();
                  
     @FXML
-    private Button back;
-    
-     @FXML
-    private Button newMat;
+    private Button newButton;
+    @FXML
+    private Button clearButton;
+    @FXML
+    private Button backButton;
+    @FXML
+    private Button spaceButton;
+    @FXML
+    private Button oneButton;
+    @FXML
+    private Button twoButton;
+    @FXML
+    private Button threeButton;
+    @FXML
+    private Button fourButton;
+    @FXML
+    private Button fiveButton;
+    @FXML
+    private Button sixButton;
+    @FXML
+    private Button sevButton;
+    @FXML
+    private Button eigButton;
+    @FXML
+    private Button ninButton;
+    @FXML
+    private Button zeroButton;
+    @FXML
+    private Button lineButton;
+    @FXML
+    private Button pointButton;
     
     @FXML
     private TextField display;
@@ -52,6 +82,108 @@ public class NewMatrixSceneController implements Initializable {
     private Label FailureLabel;
     
     Timer timer = new Timer(true);
+    
+     @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        clearButton.defaultButtonProperty().bind(clearButton.focusedProperty());
+        newButton.defaultButtonProperty().bind(newButton.focusedProperty());
+        backButton.defaultButtonProperty().bind(backButton.focusedProperty());
+        zeroButton.defaultButtonProperty().bind(zeroButton.focusedProperty());
+        oneButton.defaultButtonProperty().bind(oneButton.focusedProperty());
+        twoButton.defaultButtonProperty().bind(twoButton.focusedProperty());
+        threeButton.defaultButtonProperty().bind(threeButton.focusedProperty());
+        fourButton.defaultButtonProperty().bind(fourButton.focusedProperty());
+        fiveButton.defaultButtonProperty().bind(fiveButton.focusedProperty());
+        sixButton.defaultButtonProperty().bind(sixButton.focusedProperty());
+        sevButton.defaultButtonProperty().bind(sevButton.focusedProperty());
+        eigButton.defaultButtonProperty().bind(eigButton.focusedProperty());
+        ninButton.defaultButtonProperty().bind(ninButton.focusedProperty());
+        pointButton.defaultButtonProperty().bind(pointButton.focusedProperty());
+        lineButton.defaultButtonProperty().bind(lineButton.focusedProperty());
+               
+        clearButton.setOnAction(e -> {
+            try {clear(e);} catch (IOException ex) {
+                Logger.getLogger(NewMatrixSceneController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        
+        backButton.setOnAction(e -> {
+            try {back(e);} catch (IOException ex) {
+                Logger.getLogger(NewMatrixSceneController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        zeroButton.setOnAction(e -> {
+            try {input(e);} catch (IOException ex) {
+                Logger.getLogger(NewMatrixSceneController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        oneButton.setOnAction(e -> {
+            try {input(e);} catch (IOException ex) {
+                Logger.getLogger(NewMatrixSceneController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        twoButton.setOnAction(e -> {
+            try {input(e);} catch (IOException ex) {
+                Logger.getLogger(NewMatrixSceneController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        threeButton.setOnAction(e -> {
+            try {input(e);} catch (IOException ex) {
+                Logger.getLogger(NewMatrixSceneController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        fourButton.setOnAction(e -> {
+            try {input(e);} catch (IOException ex) {
+                Logger.getLogger(NewMatrixSceneController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        fiveButton.setOnAction(e -> {
+            try {input(e);} catch (IOException ex) {
+                Logger.getLogger(NewMatrixSceneController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        sixButton.setOnAction(e -> {
+            try {input(e);} catch (IOException ex) {
+                Logger.getLogger(NewMatrixSceneController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        sevButton.setOnAction(e -> {
+            try {input(e);} catch (IOException ex) {
+                Logger.getLogger(NewMatrixSceneController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        eigButton.setOnAction(e -> {
+            try {input(e);} catch (IOException ex) {
+                Logger.getLogger(NewMatrixSceneController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        ninButton.setOnAction(e -> {
+            try {input(e);} catch (IOException ex) {
+                Logger.getLogger(NewMatrixSceneController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        pointButton.setOnAction(e -> {
+            try {input(e);} catch (IOException ex) {
+                Logger.getLogger(NewMatrixSceneController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        lineButton.setOnAction(e -> {
+            try {input(e);} catch (IOException ex) {
+                Logger.getLogger(NewMatrixSceneController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });        
+        spaceButton.setOnAction((ActionEvent e) -> {
+            try {space(e);} catch (IOException ex) {
+                Logger.getLogger(NewMatrixSceneController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        
+        newButton.setOnAction(e -> {
+            try {newMat(e);} catch (IOException | InterruptedException ex) {
+                Logger.getLogger(NewMatrixSceneController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+    }   
            
     @FXML
     private void input(ActionEvent event) throws IOException {
@@ -107,17 +239,12 @@ public class NewMatrixSceneController implements Initializable {
     
     Stage stage; 
     Parent root;
-    stage=(Stage)back.getScene().getWindow();
+    stage=(Stage)backButton.getScene().getWindow();
      
     root = FXMLLoader.load(getClass().getResource("MainScene.fxml"));
        
     Scene scene = new Scene(root);
     stage.setScene(scene);
     stage.show();
-    }
-              
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
     }    
-    
 }
