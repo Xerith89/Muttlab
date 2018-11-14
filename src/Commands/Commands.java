@@ -27,7 +27,7 @@ import java.util.Optional;
 public class Commands {
     
     TextHandler text = new TextHandler();
-                
+                    
     public class NewMatrix implements CommandInterface
     {
         @Override

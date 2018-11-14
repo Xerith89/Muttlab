@@ -14,13 +14,16 @@
         <VBox alignment="center"> 
         <Text id="welcome-text" text="Operations" />
         </VBox>
-     </top>
-    <center>
         
+     </top>
+     
+    <center>
+       
         <HBox alignment="center" >
             <padding><Insets top="5" bottom="5" left="5"></Insets> </padding>       
-            <ListView fx:id="matrices"  maxWidth="260.0" prefHeight="250.0" />
-            
+                   
+            <ListView fx:id="matrices"  prefWidth="260.0" prefHeight="220.0" />
+                        
             <GridPane alignment="center_right">
                				
                 <Button onAction="#add" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="0" text="+">
@@ -69,6 +72,13 @@
             </GridPane>
         </HBox>
     </center>
+    <bottom>
+        <HBox alignment="center" >
+        <Label fx:id="SuccessLabel" text= "Operation Successful" visible="false" textFill="red"></Label>
+           
+        <Label fx:id="FailureLabel" text= "Missing or Incorrect Operands" visible="false" textFill="red"></Label>
+    </HBox>
+    </bottom>
     <stylesheets>
         <URL value="@Style.css"/>
     </stylesheets>

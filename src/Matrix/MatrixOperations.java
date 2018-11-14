@@ -23,6 +23,13 @@ public class MatrixOperations {
     
     TextHandler text = new TextHandler();
     
+    private static boolean commandSuccess = false;
+    
+    public static boolean getOperationSuccess()
+    {
+        return commandSuccess;
+    }
+    
     /*Each of the functions in this class create a new 2D float array to store the result operation
     * The function then loop through the two matrices applying the operator and storing them in result
     * The result variable is then used with the constructor to create a new matrix
@@ -32,6 +39,7 @@ public class MatrixOperations {
        if ( MuttLab.matrixList.size() < 2)
        {
            text.printInvalidAmount();
+           commandSuccess = false;
            return;
        }
      
@@ -41,6 +49,7 @@ public class MatrixOperations {
         if (current.length != previous.length || current[0].length != previous[0].length) 
         {
             text.printInvalidOp();
+            commandSuccess = false;
             return;
         }
         
@@ -52,6 +61,7 @@ public class MatrixOperations {
                 result[r][c] = current[r][c] + previous[r][c];
             }
         }
+        commandSuccess = true;
         Matrix m = new Matrix (result);
     }
            
@@ -60,6 +70,7 @@ public class MatrixOperations {
        if ( MuttLab.matrixList.size() < 2)
        {
            text.printInvalidAmount();
+           commandSuccess = false;
            return;
        }
             float[][] current = MuttLab.matrixList.get(currentEntry).getMatrix();
@@ -69,6 +80,7 @@ public class MatrixOperations {
             if (current.length != previous.length || current[0].length != previous[0].length) 
             {
                 text.printInvalidOp();
+                commandSuccess = false;
                 return;
             }
             
@@ -79,7 +91,8 @@ public class MatrixOperations {
                     result[r][c] = previous[r][c] - current[r][c];
                 }
             }
-        Matrix m = new Matrix (result);
+        commandSuccess = true;
+        Matrix m = new Matrix (result);  
     }
     
     public void multiply()
@@ -87,6 +100,7 @@ public class MatrixOperations {
        if ( MuttLab.matrixList.size() < 2)
        {
            text.printInvalidAmount();
+           commandSuccess = false;
            return;
        }
             float[][] current = MuttLab.matrixList.get(currentEntry).getMatrix();
@@ -95,6 +109,7 @@ public class MatrixOperations {
                                 
         if (previous[0].length != current.length) {
             text.printInvalidOp();
+            commandSuccess = false;
             return;
         }
                 
@@ -108,6 +123,7 @@ public class MatrixOperations {
             }
         }
         Matrix m = new Matrix (result);
+        commandSuccess = true;
     }
     
     public void multiplyScalar(String scale)
@@ -115,6 +131,7 @@ public class MatrixOperations {
         if ( MuttLab.matrixList.isEmpty())
         {
             text.printInvalidAmount();
+            commandSuccess = false;
             return;
         }
         
@@ -127,6 +144,7 @@ public class MatrixOperations {
         } catch (NumberFormatException e)  
                 {
                     text.printInvalidInput();
+                    commandSuccess = false;
                     return;
                 }
         
@@ -136,6 +154,7 @@ public class MatrixOperations {
             }
         } 
         Matrix m = new Matrix (result);
+        commandSuccess = true;
     }
              
     public void multiplyElementwise()
@@ -143,6 +162,7 @@ public class MatrixOperations {
         if ( MuttLab.matrixList.size() < 2)
         {
            text.printInvalidAmount();
+           commandSuccess = false;
            return;
         }
             float[][] current = MuttLab.matrixList.get(currentEntry).getMatrix();
@@ -152,6 +172,7 @@ public class MatrixOperations {
         if (current.length != previous.length ||
             current[0].length != previous[0].length) {
             text.printInvalidOp();
+            commandSuccess = false;
             return;
         }
         
@@ -162,5 +183,6 @@ public class MatrixOperations {
             }
         }
         Matrix m = new Matrix (result);
+        commandSuccess = true;
     }
 }

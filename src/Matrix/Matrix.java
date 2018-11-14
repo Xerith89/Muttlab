@@ -31,7 +31,7 @@ public final class Matrix
         showMatrix(input);
         addToList();
     }
-       
+    
     public String getString()
     {
         return original;

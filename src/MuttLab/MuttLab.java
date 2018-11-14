@@ -5,7 +5,9 @@ import IOHandler.TextHandler;
 import Matrix.Matrix;
 import Commands.CommandHandler;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  * This class is the main processing class of the MuttLab application. 
@@ -30,7 +32,7 @@ public class MuttLab {
     private static boolean proVersion;
     private final TextHandler text;
     
-    public static List<Matrix> matrixList;
+    public static ObservableList<Matrix> matrixList; 
       
     /**
      * Create the editor and initialise its parser.
@@ -41,7 +43,7 @@ public class MuttLab {
     private MuttLab(){
         
         commHandler = new CommandHandler();
-        matrixList = new ArrayList();
+        matrixList = FXCollections.observableList(new ArrayList<>()); 
         parser = new Parser();
         text = new TextHandler();
     }
@@ -78,4 +80,13 @@ public class MuttLab {
     {
         return proVersion = true;
     }
+    
+    public static ObservableList<String> getMatrices(){
+        ObservableList<String> mats = FXCollections.observableList(new ArrayList<>()); 
+        matrixList.forEach((m) -> {
+            mats.add(Arrays.deepToString( m.getMatrix()));
+        });
+        return mats;
+    }
+    
 }

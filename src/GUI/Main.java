@@ -15,16 +15,14 @@ import MuttLab.MuttLab;
 /**
  * Things to do:
  * fix the matrix list view (remove brackets)
- * error messages for operations with no matrices added
  * tabbing/Enter fire buttons
- * Make the list view update when doing an operation
  * Design and implement the load scene with streams
  * Put things in packages and get it to work
  * Go over the code to try and optimise - such as getting button text 
  * 
  * wishlist:
  * new line when using ; button on new matrix
- * 
+ * delete matrix button
  */
 public class Main extends Application {
     

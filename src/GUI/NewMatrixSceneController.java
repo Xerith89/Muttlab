@@ -35,7 +35,7 @@ public class NewMatrixSceneController implements Initializable {
      */
     
     CommandHandler comHandler = new CommandHandler();
-                
+                 
     @FXML
     private Button back;
     

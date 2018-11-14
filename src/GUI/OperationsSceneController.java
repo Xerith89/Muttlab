@@ -6,15 +6,13 @@
 package GUI;
 
 import Commands.CommandHandler;
-import Matrix.Matrix;
+import Matrix.MatrixOperations;
 import MuttLab.MuttLab;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Arrays;
 import java.util.ResourceBundle;
-import java.util.function.Consumer;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import java.util.Timer;
+import java.util.TimerTask;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,10 +20,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 /**
  * FXML Controller class
@@ -36,16 +34,22 @@ public class OperationsSceneController implements Initializable {
     
     @FXML
     private Button back;
-    
+        
     @FXML
     TextField scaler;
     
     CommandHandler comHandler = new CommandHandler();
-         
-    ObservableList<Matrix> matList = FXCollections.observableList(MuttLab.matrixList);
     
     @FXML
-    private final ListView<String> matrices = new ListView();
+    private Label SuccessLabel;
+    
+    @FXML
+    private Label FailureLabel;
+    
+    Timer timer = new Timer(true);
+         
+    @FXML
+    private ListView<String> matrices = new ListView<>();
               
     @FXML
     private void add(ActionEvent event) throws IOException {
@@ -98,6 +102,7 @@ public class OperationsSceneController implements Initializable {
         String[] commAndArg = new String[1] ;
         commAndArg[0] = comm;
         comHandler.executeCommands(commAndArg);
+        checkOperationSuccess(comm);
     }
     
     private void executeCommandAndArg(String comm, String arg)
@@ -106,15 +111,57 @@ public class OperationsSceneController implements Initializable {
         commAndArg[0] = comm;
         commAndArg[1] = arg;
         comHandler.executeCommands(commAndArg);
+        checkOperationSuccess(comm);
     }
+    
+    private void checkOperationSuccess(String comm)
+    {
+        if (comm.matches("dup") && MuttLab.getMatrices().size()>0)
+        {
+            matrices.getItems().add((MuttLab.getMatrices().get(MuttLab.getMatrices().size()-1)));
+           
+            TimerTask clearLabel = new TimerTask() {
+            @Override
+            public void run() {
+            SuccessLabel.setVisible(false);
+                }
+            };
+            SuccessLabel.setVisible(true);
+            timer.schedule(clearLabel, 1500);
+        }
+        else if (MatrixOperations.getOperationSuccess())
+        {
+            matrices.getItems().add((MuttLab.getMatrices().get(MuttLab.getMatrices().size()-1)));
+           
+            TimerTask clearLabel = new TimerTask() {
+            @Override
+            public void run() {
+            SuccessLabel.setVisible(false);
+                }
+            };
+            SuccessLabel.setVisible(true);
+            timer.schedule(clearLabel, 1500);
+        }
+        else 
+        {
+            TimerTask clearLabel = new TimerTask() {
+            @Override
+            public void run() {
+            FailureLabel.setVisible(false);
+                }
+            };
+            FailureLabel.setVisible(true);
+            timer.schedule(clearLabel, 1500);
+            }
+        }
+    
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        for (int i = 0; i < MuttLab.matrixList.size(); i++)
-        {
-           matrices.getItems().add(Arrays.deepToString(matList.get(i).getMatrix()));
-        }
-    }    
+        matrices.setItems(MuttLab.getMatrices());
+    } 
 }
