@@ -36,7 +36,7 @@ public class Main extends Application {
         stage.setTitle("MuttLab");
         stage.setScene(scene);
         stage.show();
-        
+                
         Thread muttlabth = new Thread(() -> {
             MuttLab ml = MuttLab.getInstance();
             ml.exec();

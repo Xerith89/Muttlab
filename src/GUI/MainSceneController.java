@@ -11,17 +11,22 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -35,7 +40,59 @@ public class MainSceneController implements Initializable {
     CommandHandler comHandler = new CommandHandler();
     
     @FXML
-    Button button;
+    Button loadButton; 
+    @FXML
+    Button newButton;
+    @FXML
+    Button saveButton;
+    @FXML
+    Button opsButton;
+    @FXML
+    Button scriptButton;
+    @FXML
+    Button quitButton;
+            
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+                
+        loadButton.defaultButtonProperty().bind(loadButton.focusedProperty());
+        newButton.defaultButtonProperty().bind(newButton.focusedProperty());
+        saveButton.defaultButtonProperty().bind(saveButton.focusedProperty());
+        opsButton.defaultButtonProperty().bind(opsButton.focusedProperty());
+        scriptButton.defaultButtonProperty().bind(scriptButton.focusedProperty());
+        quitButton.defaultButtonProperty().bind(quitButton.focusedProperty());
+        
+        loadButton.setOnAction(e -> {
+        try {
+            handleLoadButton(e);
+        } catch (IOException ex) {
+            Logger.getLogger(MainSceneController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    });
+        newButton.setOnAction(e -> {
+        try {
+            handleNewButton(e);
+        } catch (IOException ex) {
+            Logger.getLogger(MainSceneController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    });
+        saveButton.setOnAction(e -> {
+            handleSaveButton(e);
+    });
+        opsButton.setOnAction(e -> {
+        try {
+            handleOpsButton(e);
+        } catch (IOException ex) {
+            Logger.getLogger(MainSceneController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    });
+        scriptButton.setOnAction(e -> {
+            handleScriptButton(e);
+    });
+        quitButton.setOnAction(e -> {
+            handleQuitButton(e);
+    });
+    }
     
     @FXML
     private void handleOpsButton(ActionEvent event) throws IOException {
@@ -73,10 +130,10 @@ public class MainSceneController implements Initializable {
         alert.showAndWait();
         }  
     }
-    
+        
     @FXML
     private void handleScriptButton(ActionEvent event) {
-       
+        
         FileChooser load = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
         load.getExtensionFilters().add(extFilter);
@@ -113,22 +170,17 @@ public class MainSceneController implements Initializable {
         else
             event.consume();
     }
-    
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-    }
-    
+       
     private void swapScene(String url) throws IOException
     {
         Stage stage; 
         Parent root;
-        stage=(Stage)button.getScene().getWindow();
+        stage=(Stage)loadButton.getScene().getWindow();
      
         root = FXMLLoader.load(getClass().getResource(url));
        
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-    }
-        
+    }    
 }
