@@ -44,7 +44,7 @@
                     </tooltip>
                 </Button>
 				
-                <Button fx:id="backButton" onAction="#back" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="3" text="Back">                </Button>
+                <Button fx:id="backButton" onAction="#back" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="3" text="Back"></Button>
 				
                 <Button fx:id="multiplyButton" onAction="#multiply" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="1" text="*">
                     <tooltip>

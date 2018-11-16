@@ -34,6 +34,7 @@ public class MuttLab {
     
     public static ObservableList<Matrix> matrixList; 
       
+    public static ObservableList<String> mats; 
     /**
      * Create the editor and initialise its parser.
      * Also creates the command handler, list of
@@ -46,6 +47,7 @@ public class MuttLab {
         matrixList = FXCollections.observableList(new ArrayList<>()); 
         parser = new Parser();
         text = new TextHandler();
+        mats = FXCollections.observableList(new ArrayList<>());
     }
     
     //This is for our singleton design
@@ -82,11 +84,11 @@ public class MuttLab {
     }
     
     public static ObservableList<String> getMatrices(){
-        ObservableList<String> mats = FXCollections.observableList(new ArrayList<>()); 
+         
         matrixList.forEach((m) -> {
             mats.add(Arrays.deepToString( m.getMatrix()));
         });
         return mats;
     }
-    
+        
 }

@@ -76,8 +76,10 @@ public class MainSceneController implements Initializable {
     @FXML
     private void handleSaveButton(ActionEvent event) {
         FileChooser save = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
-        save.getExtensionFilters().add(extFilter);
+        FileChooser.ExtensionFilter extFilter1 = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+        FileChooser.ExtensionFilter extFilter2 = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
+        save.getExtensionFilters().add(extFilter1);
+        save.getExtensionFilters().add(extFilter2);
         
         File dest = save.showSaveDialog(null);
         if (dest != null) {

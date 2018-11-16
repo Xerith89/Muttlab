@@ -17,6 +17,56 @@
         <Text id="welcome-text" text="Load Matrix" />
         </VBox>
      </top>
+     <center>
+         <VBox alignment="center">
+            <Button text="Load Max Sum" onAction="#loadSumMax" fx:id="loadSumMax" prefWidth="100.0" prefHeight="80.0">
+            <tooltip>
+            <Tooltip text="Load Matrix From File With Biggest Elements Sum" />
+            </tooltip>
+            </Button>
+            <Button text="Load Min Sum" onAction="#loadSumMin" fx:id="loadSumMin" prefWidth="100.0" prefHeight="80.0">
+            <tooltip>
+            <Tooltip text="Load Matrix From File With Smallest Elements Sum" />
+            </tooltip>
+            </Button>
+            <Button text="Load Max Element M" onAction="#loadMaxEle" fx:id="loadMaxEle" prefWidth="100.0" prefHeight="80.0">
+            <tooltip>
+            <Tooltip text="Load Matrix From File With Smallest Elements Sum" />
+            </tooltip>
+            </Button>
+            <Button text="Load Min Element M" onAction="#loadMinEle" fx:id="loadMinEle" prefWidth="100.0" prefHeight="80.0">
+            <tooltip>
+            <Tooltip text="Load Matrix From File With Smallest Elements Sum" />
+            </tooltip>
+            </Button>
+            <Button text="Load Max Element m" onAction="#loadMinEle" fx:id="loadMaxElem" prefWidth="100.0" prefHeight="80.0">
+            <tooltip>
+            <Tooltip text="Load Matrix From File With Smallest Elements Sum" />
+            </tooltip>
+            </Button>
+            <Button text="Load Min Element m" onAction="#loadMinEle" fx:id="loadMinElem" prefWidth="100.0" prefHeight="80.0">
+            <tooltip>
+            <Tooltip text="Load Matrix From File With Smallest Elements Sum" />
+            </tooltip>
+            </Button>
+            <Button text="Add" fx:id="add" prefWidth="100.0" prefHeight="80.0">
+            <tooltip>
+            <Tooltip text="Load Matrix From File With Smallest Elements Sum" />
+            </tooltip>
+            </Button>
+            <Button text="Scale and Save" fx:id="scaleSave" prefWidth="100.0" prefHeight="80.0">
+            <tooltip>
+            <Tooltip text="Load Matrix From File With Smallest Elements Sum" />
+            </tooltip>
+            </Button>
+            <Button text="Trim and Save" fx:id="trimSave" prefWidth="100.0" prefHeight="80.0">
+            <tooltip>
+            <Tooltip text="Load Matrix From File With Smallest Elements Sum" />
+            </tooltip>
+            </Button>
+            <Button fx:id="backButton" onAction="#back" prefWidth="80.0" prefHeight="40" text="Back"></Button>
+        </VBox>
+     </center>
         <stylesheets>
         <URL value="@Style.css"/>
     </stylesheets>
