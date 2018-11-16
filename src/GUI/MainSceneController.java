@@ -11,8 +11,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -58,37 +56,6 @@ public class MainSceneController implements Initializable {
         opsButton.defaultButtonProperty().bind(opsButton.focusedProperty());
         scriptButton.defaultButtonProperty().bind(scriptButton.focusedProperty());
         quitButton.defaultButtonProperty().bind(quitButton.focusedProperty());
-        
-        loadButton.setOnAction(e -> {
-        try {
-            handleLoadButton(e);
-        } catch (IOException ex) {
-            Logger.getLogger(MainSceneController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    });
-        newButton.setOnAction(e -> {
-        try {
-            handleNewButton(e);
-        } catch (IOException ex) {
-            Logger.getLogger(MainSceneController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    });
-        saveButton.setOnAction(e -> {
-            handleSaveButton(e);
-    });
-        opsButton.setOnAction(e -> {
-        try {
-            handleOpsButton(e);
-        } catch (IOException ex) {
-            Logger.getLogger(MainSceneController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    });
-        scriptButton.setOnAction(e -> {
-            handleScriptButton(e);
-    });
-        quitButton.setOnAction(e -> {
-            handleQuitButton(e);
-    });
     }
     
     @FXML

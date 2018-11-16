@@ -34,37 +34,37 @@
     
     <VBox alignment="center">
    
-    <Button text="New Matrix" fx:id="newButton" prefWidth="100.0" prefHeight="80.0"> 
+    <Button text="New Matrix" onAction="#handleNewButton" fx:id="newButton" prefWidth="100.0" prefHeight="80.0"> 
         <tooltip>
             <Tooltip text="Create New Matrix" />
         </tooltip> 
     </Button>
   
-    <Button text="Operations" fx:id="opsButton" prefWidth="100.0" prefHeight="80.0">
+    <Button text="Operations" onAction="#handleOpsButton" fx:id="opsButton" prefWidth="100.0" prefHeight="80.0">
         <tooltip>
             <Tooltip text="Matrix Operations Panel" />
-        </tooltip>
+        </tooltip> 
     </Button>
     
-    <Button text="Load" fx:id="loadButton"  prefWidth="100.0" prefHeight="80.0">
+    <Button text="Load" fx:id="loadButton" onAction="#handleLoadButton"  prefWidth="100.0" prefHeight="80.0">
         <tooltip>
             <Tooltip text="Load Matrices Panel" />
         </tooltip>
     </Button>
             
-    <Button text="Save" fx:id="saveButton" prefWidth="100.0" prefHeight="80.0">
+    <Button text="Save" fx:id="saveButton" onAction="#handleSaveButton" prefWidth="100.0" prefHeight="80.0">
         <tooltip>
             <Tooltip text="Save Matrix List To File" />
         </tooltip>
     </Button>
     
-    <Button text="Script" fx:id="scriptButton" prefWidth="100.0" prefHeight="80.0">
+    <Button text="Script" onAction="#handleScriptButton" fx:id="scriptButton" prefWidth="100.0" prefHeight="80.0">
         <tooltip>
             <Tooltip text="Load and Run a Script" />
         </tooltip>
     </Button>
      
-    <Button text="Quit" fx:id="quitButton" prefWidth="100.0" prefHeight="80.0">
+    <Button text="Quit" onAction="#handleQuitButton" fx:id="quitButton" prefWidth="100.0" prefHeight="80.0">
         <tooltip>
             <Tooltip text="Exit MattLab" />
         </tooltip>

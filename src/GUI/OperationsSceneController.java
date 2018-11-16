@@ -81,39 +81,6 @@ public class OperationsSceneController implements Initializable {
         scaleButton.defaultButtonProperty().bind(scaleButton.focusedProperty());
         multiplyButton.defaultButtonProperty().bind(multiplyButton.focusedProperty());
         multiplyPointButton.defaultButtonProperty().bind(multiplyPointButton.focusedProperty());
-        
-        addButton.setOnAction(e -> {
-            try {add(e);} catch (IOException ex) {
-                Logger.getLogger(NewMatrixSceneController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
-        subButton.setOnAction(e -> {
-            try {subt(e);} catch (IOException ex) {
-                Logger.getLogger(NewMatrixSceneController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
-        backButton.setOnAction(e -> {
-            try {back(e);} catch (IOException ex) {
-                Logger.getLogger(NewMatrixSceneController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
-        dupeButton.setOnAction(e -> {
-            try {dupe(e);} catch (IOException ex) {
-                Logger.getLogger(NewMatrixSceneController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
-        scaleButton.setOnAction(e -> {
-            scale();
-        });
-        multiplyButton.setOnAction(e -> {
-            try {multiply(e);} catch (IOException ex) {
-                Logger.getLogger(NewMatrixSceneController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
-        multiplyPointButton.setOnAction(e -> {
-             multiplyPoint();
-        });
-        
     } 
                   
     @FXML

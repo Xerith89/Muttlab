@@ -26,45 +26,45 @@
                         
             <GridPane alignment="center_right">
                				
-                <Button fx:id="addButton" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="0" text="+">
+                <Button fx:id="addButton" onAction="#add" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="0" text="+">
                         <tooltip>
                     <Tooltip text="Sum the Last Two Matrices Point Wise" />
                         </tooltip>
                 </Button>
 								
-                <Button fx:id="subButton" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="0" text="-">
+                <Button fx:id="subButton" onAction="#subt" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="0" text="-">
                     <tooltip>
                         <Tooltip text="Subtract the Last Two Matrices Point Wise" />
                     </tooltip>
                 </Button>
 				
-                <Button fx:id="scaleButton" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="2" text="* N">
+                <Button fx:id="scaleButton" onAction="#scale" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="2" text="* N">
                     <tooltip>
                         <Tooltip text="Multiply the Last Matrix by a Scaler" />
                     </tooltip>
                 </Button>
 				
-                <Button fx:id="backButton" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="3" text="Back">                </Button>
+                <Button fx:id="backButton" onAction="#back" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="3" text="Back">                </Button>
 				
-                <Button fx:id="multiplyButton" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="1" text="*">
+                <Button fx:id="multiplyButton" onAction="#multiply" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="1" text="*">
                     <tooltip>
                         <Tooltip text="Multiply the Last Two Matrices" />
                     </tooltip>
                 </Button>
                 
-                <Button fx:id="multiplyPointButton" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="1" text="*.">
+                <Button fx:id="multiplyPointButton" onAction="#multiplyPoint" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="1" text="*.">
                     <tooltip>
                         <Tooltip text="Multiply the Last Two Matrices Pointwise" />
                     </tooltip>
                 </Button>
                 
-                <Button fx:id="dupeButton" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="3" text="Dup">
+                <Button fx:id="dupeButton" onAction="#dupe" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="3" text="Dup">
                     <tooltip>
                         <Tooltip text="Duplicate the Last Matrix" />
                     </tooltip>
                 </Button>
                          
-                <TextField fx:id="scaler" alignment="center" maxWidth="60.0" prefHeight="30.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                <TextField fx:id="scaler" onAction="#scale" alignment="center" maxWidth="60.0" prefHeight="30.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                     <tooltip>
                         <Tooltip text="Enter a Number to Scale By" />
                     </tooltip>
