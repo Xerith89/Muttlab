@@ -65,10 +65,8 @@ public class LoadSceneController implements Initializable {
                  
             MuttLab.MuttLab.mats.add(inputFile.get(result.indexOf(Collections.max(result))));
              
-            System.out.println("The maximal matrix according to the sum is " + 
-                   inputFile.get(result.indexOf(Collections.max(result))) + " Total: " + 
-                    result.get(result.indexOf(Collections.max(result))));
-            
+            System.out.println("The maximal matrix according to the sum is " + inputFile.get(result.indexOf(Collections.max(result))));
+            System.out.println("This has been added to the matrix list");
         }
     }
     
@@ -92,13 +90,13 @@ public class LoadSceneController implements Initializable {
                 }
                 
             MuttLab.MuttLab.mats.add(inputFile.get(result.indexOf(Collections.min(result))));
-            System.out.println("The minimal matrix according to the sum is " + 
-            inputFile.get(result.indexOf(Collections.min(result))) + " Total: " + 
-            result.get(result.indexOf(Collections.min(result))));
+            
+            System.out.println("The minimal matrix according to the sum is " + inputFile.get(result.indexOf(Collections.min(result))));
+            System.out.println("This has been added to the matrix list");
         }
     }
     
-    public void loadMaxEle() throws IOException
+    public void loadMaxEleMax() throws IOException
     {
         FileChooser load = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
@@ -118,12 +116,14 @@ public class LoadSceneController implements Initializable {
                 }
             
             MuttLab.MuttLab.mats.add(inputFile.get(result.indexOf(Collections.max(result))));
-            System.out.println(inputFile.get(result.indexOf(Collections.max(result))));
+            System.out.println("The maximal matrix according to <M " + (inputFile.get(result.indexOf(Collections.max(result)))));
+            
+            System.out.println("This has been added to the matrix list");
             
         }
     }
     
-    public void loadMinEle() throws IOException
+    public void loadMaxEleMin() throws IOException
     {
         FileChooser load = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
@@ -137,14 +137,68 @@ public class LoadSceneController implements Initializable {
             for (int i = 0; i < inputFile.size(); i++)
                 {    
                     result.add(Arrays
-                    .stream(inputFile.get(i).split(" ")) 
-                    .filter((s) -> s.matches("\\d+"))  
-                    .mapToInt(Integer::parseInt)  
-                    .min().getAsInt());
+                    .stream(inputFile.get(i).split(" ")).map(s -> s.replaceAll(",", ""))  
+                    .mapToInt(Integer::parseInt) 
+                    .max().getAsInt());
                 }
             
             MuttLab.MuttLab.mats.add(inputFile.get(result.indexOf(Collections.min(result))));
-            System.out.println(inputFile.get(result.indexOf(Collections.min(result))));
+            System.out.println("The maximal matrix according to <m " +(inputFile.get(result.indexOf(Collections.min(result)))));
+            
+            System.out.println("This has been added to the matrix list");
+        }
+    }
+    
+    public void loadMinEleMax() throws IOException
+    {
+        FileChooser load = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
+        load.getExtensionFilters().add(extFilter);
+        File file = load.showOpenDialog(null); 
+                
+        if (file != null)
+        {
+            List<String> inputFile = Files.lines(file.toPath()).collect(toList());
+            List<Integer> result = new ArrayList();
+            for (int i = 0; i < inputFile.size(); i++)
+                {    
+                    result.add(Arrays
+                    .stream(inputFile.get(i).split(" ")).map(s -> s.replaceAll(",", ""))  
+                    .mapToInt(Integer::parseInt) 
+                    .max().getAsInt());
+                }
+                       
+            MuttLab.MuttLab.mats.add(inputFile.get(result.indexOf(Collections.max(result))));
+            System.out.println("The minimal matrix according to <M " + (inputFile.get(result.indexOf(Collections.min(result)))));
+            
+            System.out.println("This has been added to the matrix list");
+            
+        }
+    }
+    
+    public void loadMinEleMin() throws IOException
+    {
+        FileChooser load = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
+        load.getExtensionFilters().add(extFilter);
+        File file = load.showOpenDialog(null); 
+                
+        if (file != null)
+        {
+            List<String> inputFile = Files.lines(file.toPath()).collect(toList());
+            List<Integer> result = new ArrayList();
+            for (int i = 0; i < inputFile.size(); i++)
+                {    
+                    result.add(Arrays
+                    .stream(inputFile.get(i).split(" ")).map(s -> s.replaceAll(",", ""))  
+                    .mapToInt(Integer::parseInt) 
+                    .min().getAsInt());
+                }
+            
+            MuttLab.MuttLab.mats.add(inputFile.get(result.indexOf(Collections.max(result))));
+            
+            System.out.println("The minimal matrix according to <m " +(inputFile.get(result.indexOf(Collections.min(result)))));
+            System.out.println("This has been added to the matrix list");
         }
     }
 

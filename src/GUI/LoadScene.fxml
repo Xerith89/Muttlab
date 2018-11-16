@@ -29,22 +29,22 @@
             <Tooltip text="Load Matrix From File With Smallest Elements Sum" />
             </tooltip>
             </Button>
-            <Button text="Load Max Element M" onAction="#loadMaxEle" fx:id="loadMaxEle" prefWidth="100.0" prefHeight="80.0">
+            <Button text="Load Max Element M" onAction="#loadMaxEleMax" fx:id="loadMaxEle" prefWidth="100.0" prefHeight="80.0">
             <tooltip>
             <Tooltip text="Load Matrix From File With Smallest Elements Sum" />
             </tooltip>
             </Button>
-            <Button text="Load Min Element M" onAction="#loadMinEle" fx:id="loadMinEle" prefWidth="100.0" prefHeight="80.0">
+            <Button text="Load Max Element m" onAction="#loadMaxEleMin" fx:id="loadMinEle" prefWidth="100.0" prefHeight="80.0">
             <tooltip>
             <Tooltip text="Load Matrix From File With Smallest Elements Sum" />
             </tooltip>
             </Button>
-            <Button text="Load Max Element m" onAction="#loadMinEle" fx:id="loadMaxElem" prefWidth="100.0" prefHeight="80.0">
+            <Button text="Load min Element M" onAction="#loadMinEleMax" fx:id="loadMaxElem" prefWidth="100.0" prefHeight="80.0">
             <tooltip>
             <Tooltip text="Load Matrix From File With Smallest Elements Sum" />
             </tooltip>
             </Button>
-            <Button text="Load Min Element m" onAction="#loadMinEle" fx:id="loadMinElem" prefWidth="100.0" prefHeight="80.0">
+            <Button text="Load Min Element m" onAction="#loadMinEleMin" fx:id="loadMinElem" prefWidth="100.0" prefHeight="80.0">
             <tooltip>
             <Tooltip text="Load Matrix From File With Smallest Elements Sum" />
             </tooltip>

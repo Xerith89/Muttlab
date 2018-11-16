@@ -15,7 +15,9 @@ import MuttLab.MuttLab;
 /**
  * Things to do:
  * fix the matrix list view (remove brackets)
- * Design and implement the load scene with streams
+ * Fix load scene layout
+ * finish the add functionality
+ * finish manipulation and save as .csv
  * Put things in packages and get it to work
  * Go over the code to try and optimise - such as getting button text 
  * 
