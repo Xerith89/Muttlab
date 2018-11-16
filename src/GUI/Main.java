@@ -15,7 +15,6 @@ import MuttLab.MuttLab;
 /**
  * Things to do:
  * beautify the matrix list view
- * Operations don't work on vectors - they aren't being added to the matrixList
  * finish the add functionality
  * finish manipulation and save as .csv
  * Put things in packages and get it to work

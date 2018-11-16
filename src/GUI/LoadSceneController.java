@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import Commands.CommandHandler;
 import Matrix.Matrix;
 import java.io.File;
 import java.io.IOException;
@@ -43,7 +44,7 @@ public class LoadSceneController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    
+    CommandHandler commHandler = new CommandHandler();
     @FXML
     private Button backButton;
       
@@ -73,7 +74,9 @@ public class LoadSceneController implements Initializable {
                     .mapToInt(Integer::parseInt)
                     .sum()); 
                 }
-                 
+            String untrimmed = inputFile.get(result.indexOf(Collections.max(result)));
+            String trimmed = " " + untrimmed.replaceAll(",", "");
+            Matrix m = new Matrix(trimmed);
             MuttLab.MuttLab.mats.add(inputFile.get(result.indexOf(Collections.max(result))));
             display.setText(inputFile.get(result.indexOf(Collections.max(result))));
              
@@ -101,6 +104,9 @@ public class LoadSceneController implements Initializable {
                     .sum()); 
                 }
                 
+            String untrimmed = inputFile.get(result.indexOf(Collections.min(result)));
+            String trimmed = " " + untrimmed.replaceAll(",", "");
+            Matrix m = new Matrix(trimmed);
             MuttLab.MuttLab.mats.add(inputFile.get(result.indexOf(Collections.min(result))));
             display.setText(inputFile.get(result.indexOf(Collections.min(result))));
             System.out.println("The minimal matrix according to the sum is " + inputFile.get(result.indexOf(Collections.min(result))));
@@ -127,6 +133,9 @@ public class LoadSceneController implements Initializable {
                     .max().getAsInt());
                 }
             
+            String untrimmed = inputFile.get(result.indexOf(Collections.max(result)));
+            String trimmed = " " + untrimmed.replaceAll(",", "");
+            Matrix m = new Matrix(trimmed);
             MuttLab.MuttLab.mats.add(inputFile.get(result.indexOf(Collections.max(result))));
             System.out.println("The maximal matrix according to <M " + (inputFile.get(result.indexOf(Collections.max(result)))));
             display.setText(inputFile.get(result.indexOf(Collections.max(result))));
@@ -154,6 +163,9 @@ public class LoadSceneController implements Initializable {
                     .max().getAsInt());
                 }
             
+            String untrimmed = inputFile.get(result.indexOf(Collections.min(result)));
+            String trimmed = " " + untrimmed.replaceAll(",", "");
+            Matrix m = new Matrix(trimmed);
             MuttLab.MuttLab.mats.add(inputFile.get(result.indexOf(Collections.min(result))));
             System.out.println("The maximal matrix according to <m " +(inputFile.get(result.indexOf(Collections.min(result)))));
             display.setText(inputFile.get(result.indexOf(Collections.min(result))));
@@ -179,7 +191,10 @@ public class LoadSceneController implements Initializable {
                     .mapToInt(Integer::parseInt) 
                     .max().getAsInt());
                 }
-                       
+                 
+            String untrimmed = inputFile.get(result.indexOf(Collections.min(result)));
+            String trimmed = " " + untrimmed.replaceAll(",", "");
+            Matrix m = new Matrix(trimmed);
             MuttLab.MuttLab.mats.add(inputFile.get(result.indexOf(Collections.min(result))));
             System.out.println("The minimal matrix according to <M " + (inputFile.get(result.indexOf(Collections.min(result)))));
             display.setText(inputFile.get(result.indexOf(Collections.min(result))));
@@ -207,6 +222,9 @@ public class LoadSceneController implements Initializable {
                     .min().getAsInt());
                 }
             
+            String untrimmed = inputFile.get(result.indexOf(Collections.min(result)));
+            String trimmed = " " + untrimmed.replaceAll(",", "");
+            Matrix m = new Matrix(trimmed);
             MuttLab.MuttLab.mats.add(inputFile.get(result.indexOf(Collections.min(result))));
             display.setText(inputFile.get(result.indexOf(Collections.min(result))));
             System.out.println("The minimal matrix according to <m " +(inputFile.get(result.indexOf(Collections.min(result)))));
