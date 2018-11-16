@@ -12,10 +12,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -100,6 +97,7 @@ public class NewMatrixSceneController implements Initializable {
         ninButton.defaultButtonProperty().bind(ninButton.focusedProperty());
         pointButton.defaultButtonProperty().bind(pointButton.focusedProperty());
         lineButton.defaultButtonProperty().bind(lineButton.focusedProperty());
+        spaceButton.defaultButtonProperty().bind((spaceButton.focusedProperty()));
     }   
            
     @FXML
@@ -149,8 +147,7 @@ public class NewMatrixSceneController implements Initializable {
             timer.schedule(clearLabel, 1500);
         }
     }
-        
-       
+              
     @FXML
     private void back(ActionEvent event) throws IOException {
     

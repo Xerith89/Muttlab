@@ -36,6 +36,7 @@ public class Commands {
             {
                //Uses our string based constructor
                Matrix matrix = new Matrix(arg.get()); 
+               MuttLab.mats.add(matrix.getString());
             }
             else 
             {

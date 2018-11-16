@@ -14,13 +14,13 @@ import MuttLab.MuttLab;
 
 /**
  * Things to do:
- * fix the matrix list view (remove brackets)
- * Fix load scene layout
+ * beautify the matrix list view
+ * Operations don't work on vectors - they aren't being added to the matrixList
  * finish the add functionality
  * finish manipulation and save as .csv
  * Put things in packages and get it to work
- * Go over the code to try and optimise - such as getting button text 
- * 
+ * Go over the code to try and optimise
+ * pressing enter on cancel when quitting still quits
  * wishlist:
  * new line when using ; button on new matrix
  * delete matrix button

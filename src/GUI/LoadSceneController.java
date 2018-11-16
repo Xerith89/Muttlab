@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import Matrix.Matrix;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -15,6 +16,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 import static java.util.stream.Collectors.toList;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +24,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.DialogPane;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -36,12 +44,15 @@ public class LoadSceneController implements Initializable {
      * Initializes the controller class.
      */
     
-      @FXML
+    @FXML
     private Button backButton;
+      
+    @FXML
+    private TextArea display;
       
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        display.setEditable(false);
     }  
     
     public void loadSumMax() throws IOException
@@ -64,6 +75,7 @@ public class LoadSceneController implements Initializable {
                 }
                  
             MuttLab.MuttLab.mats.add(inputFile.get(result.indexOf(Collections.max(result))));
+            display.setText(inputFile.get(result.indexOf(Collections.max(result))));
              
             System.out.println("The maximal matrix according to the sum is " + inputFile.get(result.indexOf(Collections.max(result))));
             System.out.println("This has been added to the matrix list");
@@ -90,7 +102,7 @@ public class LoadSceneController implements Initializable {
                 }
                 
             MuttLab.MuttLab.mats.add(inputFile.get(result.indexOf(Collections.min(result))));
-            
+            display.setText(inputFile.get(result.indexOf(Collections.min(result))));
             System.out.println("The minimal matrix according to the sum is " + inputFile.get(result.indexOf(Collections.min(result))));
             System.out.println("This has been added to the matrix list");
         }
@@ -117,7 +129,7 @@ public class LoadSceneController implements Initializable {
             
             MuttLab.MuttLab.mats.add(inputFile.get(result.indexOf(Collections.max(result))));
             System.out.println("The maximal matrix according to <M " + (inputFile.get(result.indexOf(Collections.max(result)))));
-            
+            display.setText(inputFile.get(result.indexOf(Collections.max(result))));
             System.out.println("This has been added to the matrix list");
             
         }
@@ -144,7 +156,7 @@ public class LoadSceneController implements Initializable {
             
             MuttLab.MuttLab.mats.add(inputFile.get(result.indexOf(Collections.min(result))));
             System.out.println("The maximal matrix according to <m " +(inputFile.get(result.indexOf(Collections.min(result)))));
-            
+            display.setText(inputFile.get(result.indexOf(Collections.min(result))));
             System.out.println("This has been added to the matrix list");
         }
     }
@@ -168,9 +180,9 @@ public class LoadSceneController implements Initializable {
                     .max().getAsInt());
                 }
                        
-            MuttLab.MuttLab.mats.add(inputFile.get(result.indexOf(Collections.max(result))));
+            MuttLab.MuttLab.mats.add(inputFile.get(result.indexOf(Collections.min(result))));
             System.out.println("The minimal matrix according to <M " + (inputFile.get(result.indexOf(Collections.min(result)))));
-            
+            display.setText(inputFile.get(result.indexOf(Collections.min(result))));
             System.out.println("This has been added to the matrix list");
             
         }
@@ -195,12 +207,55 @@ public class LoadSceneController implements Initializable {
                     .min().getAsInt());
                 }
             
-            MuttLab.MuttLab.mats.add(inputFile.get(result.indexOf(Collections.max(result))));
-            
+            MuttLab.MuttLab.mats.add(inputFile.get(result.indexOf(Collections.min(result))));
+            display.setText(inputFile.get(result.indexOf(Collections.min(result))));
             System.out.println("The minimal matrix according to <m " +(inputFile.get(result.indexOf(Collections.min(result)))));
             System.out.println("This has been added to the matrix list");
         }
     }
+    
+    public void loadAndAdd()
+    {
+        
+    } 
+    
+    public void trimAndSave()
+    {
+        Dialog<String> inputDialog = new Dialog<>();
+        inputDialog.setTitle("Trim and Save");
+        inputDialog.setHeaderText("Enter a New Vector Length...");
+        DialogPane dialogPane = inputDialog.getDialogPane();
+        dialogPane.getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+        TextField input = new TextField("1");
+        dialogPane.setContent(new VBox(8, input));
+        Platform.runLater(input::requestFocus);
+        inputDialog.setResultConverter((ButtonType button) -> {
+            if (button == ButtonType.OK) {
+               //do something
+            }
+            return null;
+        });
+       inputDialog.showAndWait();       
+    } 
+    
+    public void scaleAndSave()
+    {
+        Dialog<String> inputDialog = new Dialog<>();
+        inputDialog.setTitle("Scale and Save");
+        inputDialog.setHeaderText("Enter a Number to Scale by...");
+        DialogPane dialogPane = inputDialog.getDialogPane();
+        dialogPane.getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+        TextField input = new TextField("1");
+        dialogPane.setContent(new VBox(8, input));
+        Platform.runLater(input::requestFocus);
+        inputDialog.setResultConverter((ButtonType button) -> {
+            if (button == ButtonType.OK) {
+                //do something
+            }
+            return null;
+        });
+       inputDialog.showAndWait();       
+    } 
 
     @FXML
     private void back(ActionEvent event) throws IOException {

@@ -2,6 +2,7 @@ package Matrix;
 
 import MuttLab.MuttLab;
 import IOHandler.TextHandler;
+import java.util.Arrays;
 
 /**
  * This class is responsible for matrix creation 
@@ -28,6 +29,7 @@ public final class Matrix
     public Matrix(float[][] input) 
     {     
         matrix = input;
+        original = Arrays.deepToString(input);
         showMatrix(input);
         addToList();
     }

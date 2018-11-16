@@ -19,55 +19,73 @@
      </top>
      <center>
          <VBox alignment="center">
-            <Button text="Load Max Sum" onAction="#loadSumMax" fx:id="loadSumMax" prefWidth="100.0" prefHeight="80.0">
-            <tooltip>
-            <Tooltip text="Load Matrix From File With Biggest Elements Sum" />
-            </tooltip>
-            </Button>
-            <Button text="Load Min Sum" onAction="#loadSumMin" fx:id="loadSumMin" prefWidth="100.0" prefHeight="80.0">
-            <tooltip>
-            <Tooltip text="Load Matrix From File With Smallest Elements Sum" />
-            </tooltip>
-            </Button>
-            <Button text="Load Max Element M" onAction="#loadMaxEleMax" fx:id="loadMaxEle" prefWidth="100.0" prefHeight="80.0">
-            <tooltip>
-            <Tooltip text="Load Matrix From File With Smallest Elements Sum" />
-            </tooltip>
-            </Button>
-            <Button text="Load Max Element m" onAction="#loadMaxEleMin" fx:id="loadMinEle" prefWidth="100.0" prefHeight="80.0">
-            <tooltip>
-            <Tooltip text="Load Matrix From File With Smallest Elements Sum" />
-            </tooltip>
-            </Button>
-            <Button text="Load min Element M" onAction="#loadMinEleMax" fx:id="loadMaxElem" prefWidth="100.0" prefHeight="80.0">
-            <tooltip>
-            <Tooltip text="Load Matrix From File With Smallest Elements Sum" />
-            </tooltip>
-            </Button>
-            <Button text="Load Min Element m" onAction="#loadMinEleMin" fx:id="loadMinElem" prefWidth="100.0" prefHeight="80.0">
-            <tooltip>
-            <Tooltip text="Load Matrix From File With Smallest Elements Sum" />
-            </tooltip>
-            </Button>
-            <Button text="Add" fx:id="add" prefWidth="100.0" prefHeight="80.0">
-            <tooltip>
-            <Tooltip text="Load Matrix From File With Smallest Elements Sum" />
-            </tooltip>
-            </Button>
-            <Button text="Scale and Save" fx:id="scaleSave" prefWidth="100.0" prefHeight="80.0">
-            <tooltip>
-            <Tooltip text="Load Matrix From File With Smallest Elements Sum" />
-            </tooltip>
-            </Button>
-            <Button text="Trim and Save" fx:id="trimSave" prefWidth="100.0" prefHeight="80.0">
-            <tooltip>
-            <Tooltip text="Load Matrix From File With Smallest Elements Sum" />
-            </tooltip>
-            </Button>
-            <Button fx:id="backButton" onAction="#back" prefWidth="80.0" prefHeight="40" text="Back"></Button>
+            
+            <Label text="Matrix Result: " textFill="red"></Label>
+            <TextArea fx:id="display" maxWidth="300.0" prefHeight="50.0" />
+            
+            <GridPane hgap="3" vgap="3" alignment="center">
+                
+                <Button text="Load Max Sum" onAction="#loadSumMax" fx:id="loadSumMax" GridPane.columnIndex="0" GridPane.rowIndex="0" prefWidth="140.0" prefHeight="40.0">
+                <tooltip>
+                    <Tooltip text="Load Matrix From File With Biggest Elements Sum" />
+                </tooltip>
+                </Button>
+                
+                <Button text="Load Min Sum" onAction="#loadSumMin" fx:id="loadSumMin" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="140.0" prefHeight="40.0">
+                <tooltip>
+                    <Tooltip text="Load Matrix From File With Smallest Elements Sum" />
+                </tooltip>
+                </Button>
+                
+                <Button text="Load Max Element M" onAction="#loadMaxEleMax" fx:id="loadMaxEle" GridPane.columnIndex="2" GridPane.rowIndex="0" prefWidth="140.0" prefHeight="40.0">
+                <tooltip>
+                    <Tooltip text="Load Matrix From File with the Highest Element of all Matrices" />
+                </tooltip>
+                </Button>
+                
+                <Button text="Load Max Element m" onAction="#loadMaxEleMin" fx:id="loadMinEle" GridPane.columnIndex="0" GridPane.rowIndex="1" prefWidth="140.0" prefHeight="40.0">
+                <tooltip>
+                    <Tooltip text="Load Matrix From File with the Smallest Element that is the Biggest of all Matrices" />
+                </tooltip>
+                </Button>
+            
+                <Button text="Load min Element M" onAction="#loadMinEleMax" fx:id="loadMaxElem" GridPane.columnIndex="1" GridPane.rowIndex="1" prefWidth="140.0" prefHeight="40.0">
+                <tooltip>
+                    <Tooltip text="Load Matrix From File with the Biggest Element that is the Smallest of all Matrices" />
+                </tooltip>
+                </Button>
+                
+                <Button text="Load Min Element m" onAction="#loadMinEleMin" fx:id="loadMinElem" GridPane.columnIndex="2" GridPane.rowIndex="1" prefWidth="140.0" prefHeight="40.0">
+                <tooltip>
+                    <Tooltip text="Load Matrix From File with the Smallest Element that is the Smallest of all Matrices" />
+                </tooltip>
+                </Button>
+                
+                <Button text="Load and Add" onAction="#loadAndAdd" fx:id="add" GridPane.columnIndex="0" GridPane.rowIndex="2" prefWidth="140.0" prefHeight="40.0">
+                <tooltip>
+                    <Tooltip text="Load Matrices, Add them together and Store the Resulting Matrix" />
+                </tooltip>
+                </Button>
+                
+                <Button text="Scale and Save" onAction="#scaleAndSave" fx:id="scaleSave" GridPane.columnIndex="1" GridPane.rowIndex="2" prefWidth="140.0" prefHeight="40.0">
+                <tooltip>
+                    <Tooltip text="Load Matrices, Scale Each Matrix and Save to a File" />
+                </tooltip>
+                </Button>
+                
+                <Button text="Trim and Save" onAction="#trimAndSave" fx:id="trimSave" GridPane.columnIndex="2" GridPane.rowIndex="2" prefWidth="140.0" prefHeight="40.0">
+                <tooltip>
+                    <Tooltip text="Load Matrices, Trim to a Specified Shape and Save to a File" />
+                </tooltip>
+                </Button>
+            
+        </GridPane>
+              
+        <Button fx:id="backButton" onAction="#back" prefWidth="80.0" prefHeight="40" text="Back"></Button>
+            
         </VBox>
-     </center>
+    </center>
         <stylesheets>
-        <URL value="@Style.css"/>
-    </stylesheets>
+            <URL value="@Style.css"/>
+        </stylesheets>
 </BorderPane>

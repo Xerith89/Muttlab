@@ -61,7 +61,7 @@ public class MatrixOperations {
                 result[r][c] = current[r][c] + previous[r][c];
             }
         }
-        commandSuccess = true;
+        commandSuccess = true;        
         Matrix m = new Matrix (result);
     }
            

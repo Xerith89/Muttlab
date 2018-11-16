@@ -6,6 +6,7 @@ import Matrix.Matrix;
 import Commands.CommandHandler;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -32,7 +33,7 @@ public class MuttLab {
     private static boolean proVersion;
     private final TextHandler text;
     
-    public static ObservableList<Matrix> matrixList; 
+    public static List<Matrix> matrixList; 
       
     public static ObservableList<String> mats; 
     /**
@@ -44,7 +45,7 @@ public class MuttLab {
     private MuttLab(){
         
         commHandler = new CommandHandler();
-        matrixList = FXCollections.observableList(new ArrayList<>()); 
+        matrixList = new ArrayList(); 
         parser = new Parser();
         text = new TextHandler();
         mats = FXCollections.observableList(new ArrayList<>());
@@ -82,13 +83,5 @@ public class MuttLab {
     {
         return proVersion = true;
     }
-    
-    public static ObservableList<String> getMatrices(){
-         
-        matrixList.forEach((m) -> {
-            mats.add(Arrays.deepToString( m.getMatrix()));
-        });
-        return mats;
-    }
-        
+            
 }

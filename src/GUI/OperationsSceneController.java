@@ -13,8 +13,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,9 +21,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -48,10 +51,7 @@ public class OperationsSceneController implements Initializable {
     private Button multiplyButton;
     @FXML
     private Button multiplyPointButton;
-        
-    @FXML
-    TextField scaler;
-    
+           
     CommandHandler comHandler = new CommandHandler();
     
     @FXML
@@ -72,8 +72,8 @@ public class OperationsSceneController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        matrices.setItems(MuttLab.getMatrices());
-        
+                              
+        matrices.setItems(MuttLab.mats);        
         addButton.defaultButtonProperty().bind(addButton.focusedProperty());
         subButton.defaultButtonProperty().bind(subButton.focusedProperty());
         backButton.defaultButtonProperty().bind(backButton.focusedProperty());
@@ -91,7 +91,21 @@ public class OperationsSceneController implements Initializable {
     @FXML
     private void scale()
     {   
-        executeCommandAndArg("*",scaler.getText());
+        Dialog<String> inputDialog = new Dialog<>();
+        inputDialog.setTitle("Scale a Matrix");
+        inputDialog.setHeaderText("Enter a Number to Scale by...");
+        DialogPane dialogPane = inputDialog.getDialogPane();
+        dialogPane.getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+        TextField input = new TextField("1");
+        dialogPane.setContent(new VBox(8, input));
+        Platform.runLater(input::requestFocus);
+        inputDialog.setResultConverter((ButtonType button) -> {
+            if (button == ButtonType.OK) {
+                executeCommandAndArg("*",input.getText());
+            }
+            return null;
+        });
+       inputDialog.showAndWait();        
     }
         
     @FXML
@@ -148,9 +162,9 @@ public class OperationsSceneController implements Initializable {
     
     private void checkOperationSuccess(String comm)
     {
-        if (comm.matches("dup") && MuttLab.getMatrices().size()>0)
+        if (comm.matches("dup") && MuttLab.mats.size() >0)
         {
-            matrices.getItems().add((MuttLab.getMatrices().get(MuttLab.getMatrices().size()-1)));
+            matrices.getItems().add((MuttLab.mats.get(MuttLab.mats.size()-1)));
            
             TimerTask clearLabel = new TimerTask() {
             @Override
@@ -163,7 +177,8 @@ public class OperationsSceneController implements Initializable {
         }
         else if (MatrixOperations.getOperationSuccess())
         {
-            matrices.getItems().add((MuttLab.getMatrices().get(MuttLab.getMatrices().size()-1)));
+           MuttLab.mats.add(MuttLab.matrixList.get(MuttLab.matrixList.size()-1).getString());
+            //matrices.getItems().add((MuttLab.mats.get(MuttLab.mats.size()-1)));
            
             TimerTask clearLabel = new TimerTask() {
             @Override
