@@ -22,20 +22,35 @@ public final class Matrix
     
     public Matrix(String input) 
     {     
-        original = input;
         parseMatrix(input);
     }
     
     public Matrix(float[][] input) 
     {     
         matrix = input;
-        original = Arrays.deepToString(input);
+        String temp = Arrays.deepToString(input);
+        StringBuilder builder = new StringBuilder(temp);
+        builder.replace(0, 1, "");
+        builder.replace(builder.length()-1, builder.length(), "");
+        original = builder.toString();
         showMatrix(input);
         addToList();
     }
     
     public String getString()
     {
+        String temp = Arrays.deepToString(matrix);
+        StringBuilder builder = new StringBuilder(temp);
+        builder.replace(0, 1, "");
+        builder.replace(builder.length()-1, builder.length(), "");
+        for(int i = 0; i < builder.length()-1; i++)
+        {
+            if (builder.charAt(i) == ']' && builder.charAt(i+1)== ',')
+            {
+                builder.replace(i+1, i+3, System.lineSeparator());
+            }
+        }
+        original = builder.toString();
         return original;
     }
     

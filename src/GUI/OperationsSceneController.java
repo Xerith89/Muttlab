@@ -178,8 +178,7 @@ public class OperationsSceneController implements Initializable {
         else if (MatrixOperations.getOperationSuccess())
         {
            MuttLab.mats.add(MuttLab.matrixList.get(MuttLab.matrixList.size()-1).getString());
-            //matrices.getItems().add((MuttLab.mats.get(MuttLab.mats.size()-1)));
-           
+                       
             TimerTask clearLabel = new TimerTask() {
             @Override
             public void run() {

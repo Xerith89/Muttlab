@@ -14,15 +14,18 @@ import MuttLab.MuttLab;
 
 /**
  * Things to do:
- * beautify the matrix list view
- * finish the add functionality
+ * change inputting a matrix to reflect what the list view shows
+ * scene for add choices
+ * implement the various add options
  * finish manipulation and save as .csv
  * Put things in packages and get it to work
- * Go over the code to try and optimise
+ * Go over the code to try to clean up and optimise
  * pressing enter on cancel when quitting still quits
+ * 
  * wishlist:
  * new line when using ; button on new matrix
  * delete matrix button
+ * backspace button when adding
  */
 public class Main extends Application {
     
