@@ -7,6 +7,7 @@ package GUI;
 
 import Commands.CommandHandler;
 import Matrix.Matrix;
+import MuttLab.MuttLab;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,6 +21,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -43,7 +45,7 @@ public class NewMatrixSceneController implements Initializable {
     @FXML
     private Button backButton;
     @FXML
-    private Button spaceButton;
+    private Button commaButton;
     @FXML
     private Button oneButton;
     @FXML
@@ -70,7 +72,7 @@ public class NewMatrixSceneController implements Initializable {
     private Button pointButton;
     
     @FXML
-    private TextField display;
+    private TextArea display;
     
     @FXML
     private Label SuccessLabel;
@@ -97,31 +99,44 @@ public class NewMatrixSceneController implements Initializable {
         ninButton.defaultButtonProperty().bind(ninButton.focusedProperty());
         pointButton.defaultButtonProperty().bind(pointButton.focusedProperty());
         lineButton.defaultButtonProperty().bind(lineButton.focusedProperty());
-        spaceButton.defaultButtonProperty().bind((spaceButton.focusedProperty()));
+        commaButton.defaultButtonProperty().bind((commaButton.focusedProperty()));
     }   
            
     @FXML
     private void input(ActionEvent event) throws IOException {
        display.setText((display.getText()+((Button)event.getSource()).getText()));
     }
-    
-     @FXML
-    private void space(ActionEvent event) throws IOException {
-       display.setText((display.getText()+ " "));
-    }
-    
+        
     @FXML
     private void clear(ActionEvent event) throws IOException {
        display.setText("");
     }
     
     @FXML
+    private void newLine(ActionEvent event) throws IOException {
+       StringBuilder builder = new StringBuilder(display.getText());
+       builder.append(System.lineSeparator());
+       display.setText(builder.toString());
+    }
+    
+    @FXML
     private void newMat(ActionEvent event) throws IOException, InterruptedException {
-             
-        String[] commAndArg = new String[2] ;
-        commAndArg[0] = "[";
-        commAndArg[1] = " "+display.getText();
-        comHandler.executeCommands(commAndArg);
+        
+        StringBuilder builder = new StringBuilder(display.getText());
+        for (int i = 0; i < display.getText().length()-1; i++)
+        {
+            if (display.getText().charAt(i)== ',')
+            {
+                builder.replace(i, i+1, " ");
+            }
+            else if (display.getText().charAt(i) == '\n')
+            {
+                builder.replace(i, i+1, ";");
+            }
+        }
+        
+        Matrix matrix = new Matrix(builder.toString()); 
+        MuttLab.mats.add(matrix.getString());
         display.setText("");
         
         if (Matrix.getParseSucceed())

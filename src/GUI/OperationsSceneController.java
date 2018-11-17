@@ -51,6 +51,8 @@ public class OperationsSceneController implements Initializable {
     private Button multiplyButton;
     @FXML
     private Button multiplyPointButton;
+    @FXML
+    private Button deleteButton;
            
     CommandHandler comHandler = new CommandHandler();
     
@@ -81,6 +83,7 @@ public class OperationsSceneController implements Initializable {
         scaleButton.defaultButtonProperty().bind(scaleButton.focusedProperty());
         multiplyButton.defaultButtonProperty().bind(multiplyButton.focusedProperty());
         multiplyPointButton.defaultButtonProperty().bind(multiplyPointButton.focusedProperty());
+        deleteButton.defaultButtonProperty().bind(deleteButton.focusedProperty());
     } 
                   
     @FXML
@@ -124,9 +127,15 @@ public class OperationsSceneController implements Initializable {
         executeCommand("*");
     }
     
-     @FXML
+    @FXML
     private void dupe(ActionEvent event) throws IOException {
         executeCommand("dup");
+    }
+    
+    @FXML
+    private void delete(ActionEvent event) throws IOException {
+        MuttLab.matrixList.remove(MuttLab.matrixList.size()-1);
+        MuttLab.mats.remove(MuttLab.mats.size()-1);
     }
     
     @FXML

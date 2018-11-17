@@ -22,7 +22,7 @@
            
             <Label fx:id="FailureLabel" text= "Invalid Matrix" visible="false" textFill="red" ></Label>
            
-            <TextField fx:id="display" alignment="center" maxWidth="250.0" prefHeight="30.0" />
+            <TextArea fx:id="display" maxWidth="250.0" prefHeight="30.0" />
         
             <GridPane hgap="3" vgap="3" alignment="center">
 								
@@ -41,7 +41,7 @@
                     
             <Button fx:id="sixButton" onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="2" text="6"></Button>
 				
-            <Button fx:id="lineButton" onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="2" text=";">
+            <Button fx:id="lineButton" onAction="#newLine" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="2" text="New Line">
             <tooltip><Tooltip text="Insert New Row" /></tooltip></Button>
             
             <Button fx:id="oneButton" onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="0" GridPane.rowIndex="3" text="1"></Button>
@@ -57,7 +57,7 @@
 				
             <Button fx:id="pointButton" onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="4" text="."></Button>
 	  
-            <Button fx:id="spaceButton" onAction="#space" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="4" text="Spc">
+            <Button fx:id="commaButton" onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="4" text=",">
             <tooltip><Tooltip text="Space" /></tooltip></Button>
 				
             <Button fx:id="backButton" onAction="#back" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="4" text="Back"></Button>

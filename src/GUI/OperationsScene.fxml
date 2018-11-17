@@ -62,8 +62,12 @@
                         <Tooltip text="Multiply the Last Two Matrices" />
                     </tooltip>
                 </Button>
-                        
-                 <Button fx:id="backButton" onAction="#back" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="0" GridPane.rowIndex="3" text="Back"></Button>
+                <Button fx:id="deleteButton" onAction="#delete" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="0" GridPane.rowIndex="3" text="Delete">
+                    <tooltip>
+                        <Tooltip text="Removes the Last Matrix" />
+                    </tooltip>
+                </Button>
+                 <Button fx:id="backButton" onAction="#back" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="3" text="Back"></Button>
             </GridPane>
         </HBox>
     </center>
