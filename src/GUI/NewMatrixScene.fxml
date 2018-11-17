@@ -34,6 +34,8 @@
 				
             <Button fx:id="clearButton" onAction="#clear" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="1" text="C" >
             <tooltip><Tooltip text="Clear Input" /></tooltip></Button>
+            
+            
 
             <Button fx:id="fourButton" onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="0" GridPane.rowIndex="2" text="4"></Button>
 				
@@ -41,8 +43,10 @@
                     
             <Button fx:id="sixButton" onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="2" text="6"></Button>
 				
-            <Button fx:id="lineButton" onAction="#newLine" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="2" text="New Line">
-            <tooltip><Tooltip text="Insert New Row" /></tooltip></Button>
+            <Button fx:id="backspaceButton" onAction="#backspace" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="2" text="Del" >
+            <tooltip><Tooltip text="Removes Last Character Entered" /></tooltip></Button>
+            
+            
             
             <Button fx:id="oneButton" onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="0" GridPane.rowIndex="3" text="1"></Button>
 				
@@ -50,19 +54,21 @@
 				
             <Button fx:id="threeButton" onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="3" text="3"></Button>
 				
-            <Button fx:id="newButton" onAction="#newMat" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="3" text="Enter">
-            <tooltip><Tooltip text="Submit Matrix" /></tooltip></Button>
-            
+            <Button fx:id="lineButton" onAction="#newLine" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="3" text="New Line">
+            <tooltip><Tooltip text="Insert New Row" /></tooltip></Button>
+                  
             <Button fx:id="zeroButton" onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="0" GridPane.rowIndex="4" text="0"></Button>
 				
             <Button fx:id="pointButton" onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="4" text="."></Button>
 	  
             <Button fx:id="commaButton" onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="4" text=",">
             <tooltip><Tooltip text="Space" /></tooltip></Button>
-				
-            <Button fx:id="backButton" onAction="#back" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="4" text="Back"></Button>
-				
+            
+            <Button fx:id="newButton" onAction="#newMat" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="4" text="Enter">
+            <tooltip><Tooltip text="Submit Matrix" /></tooltip></Button>
+            			
             </GridPane>
+              <Button fx:id="backButton" onAction="#back" prefWidth="80.0" prefHeight="40" text="Back"></Button>
         </VBox>
     </center>
     <stylesheets>

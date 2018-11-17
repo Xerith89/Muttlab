@@ -5,7 +5,6 @@
  */
 package GUI;
 
-import Commands.CommandHandler;
 import Matrix.Matrix;
 import MuttLab.MuttLab;
 import java.io.IOException;
@@ -22,7 +21,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
@@ -35,9 +33,7 @@ public class NewMatrixSceneController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    
-    CommandHandler comHandler = new CommandHandler();
-                 
+                     
     @FXML
     private Button newButton;
     @FXML
@@ -82,7 +78,7 @@ public class NewMatrixSceneController implements Initializable {
     
     Timer timer = new Timer(true);
     
-     @Override
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
         clearButton.defaultButtonProperty().bind(clearButton.focusedProperty());
         newButton.defaultButtonProperty().bind(newButton.focusedProperty());
@@ -116,6 +112,13 @@ public class NewMatrixSceneController implements Initializable {
     private void newLine(ActionEvent event) throws IOException {
        StringBuilder builder = new StringBuilder(display.getText());
        builder.append(System.lineSeparator());
+       display.setText(builder.toString());
+    }
+    
+    @FXML
+    private void backspace(ActionEvent event) throws IOException {
+       StringBuilder builder = new StringBuilder(display.getText());
+       builder.deleteCharAt(builder.length()-1);
        display.setText(builder.toString());
     }
     

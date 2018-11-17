@@ -20,7 +20,7 @@ import MuttLab.MuttLab;
  * Put things in packages and get it to work
  * Go over the code to try to clean up and optimise
  * pressing enter on cancel when quitting still quits
- * backspace button when adding
+ * pressing enter on buttons in load scene doesn't work
  */
 public class Main extends Application {
     
