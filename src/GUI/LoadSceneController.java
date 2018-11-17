@@ -25,6 +25,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -35,6 +36,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -236,9 +238,15 @@ public class LoadSceneController implements Initializable {
         }
     }
     
-    public void loadAndAdd()
-    {
-        
+    public void loadAndAdd() throws IOException
+    {  
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("AddMenu.fxml"));
+        stage.setScene(new Scene(root));
+        stage.setTitle("Load and Add");
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(((Node)backButton).getScene().getWindow() );
+        stage.show(); 
     } 
     
     public void trimAndSave() throws IOException
@@ -322,15 +330,15 @@ public class LoadSceneController implements Initializable {
     @FXML
     private void back(ActionEvent event) throws IOException {
     
-    Stage stage; 
-    Parent root;
-    stage=(Stage)backButton.getScene().getWindow();
-     
-    root = FXMLLoader.load(getClass().getResource("MainScene.fxml"));
-       
-    Scene scene = new Scene(root);
-    stage.setScene(scene);
-    stage.show();
+        Stage stage; 
+        Parent root;
+        stage=(Stage)backButton.getScene().getWindow();
+
+        root = FXMLLoader.load(getClass().getResource("MainScene.fxml"));
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
 

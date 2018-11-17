@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<BorderPane id="BorderPane" prefHeight="360.0" prefWidth="250.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AddMenuController">
+    <center>
+    <VBox alignment = "center">
+        <Button text="Discard" onAction="#discardAndAdd" fx:id="discardAndAdd" prefWidth="100.0" prefHeight="40.0">
+            <tooltip>
+                <Tooltip text="Load Matrix From File, discard any with a different shape than first and add" />
+            </tooltip>
+        </Button>
+        
+        <Button text="Pad Right" onAction="#padRightAndAdd" fx:id="padRightAndAdd" prefWidth="100.0" prefHeight="40.0">
+            <tooltip>
+                <Tooltip text="Load Matrix From File,fill any smaller than the biggest with 0 on right and add" />
+            </tooltip>
+        </Button>
+        
+        <Button text="Pad Left" onAction="#padLeftAndAdd" fx:id="padLeftAndAdd" prefWidth="100.0" prefHeight="40.0">
+            <tooltip>
+                <Tooltip text="Load Matrix From File,fill any smaller than the biggest with 0 on left and add" />
+            </tooltip>
+        </Button>
+     
+        <Button text="Cancel" onAction="#cancel" fx:id="cancelButton" prefWidth="100.0" prefHeight="40.0"></Button>  
+    </VBox>
+    </center>    
+    <stylesheets>
+        <URL value="@Style.css"/>
+    </stylesheets>
+</BorderPane>
