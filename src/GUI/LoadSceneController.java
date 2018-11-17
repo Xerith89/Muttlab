@@ -8,7 +8,9 @@ package GUI;
 import Commands.CommandHandler;
 import Matrix.Matrix;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.nio.file.Files;
 import java.util.ArrayList;
@@ -16,11 +18,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import static java.util.stream.Collectors.toList;
 import javafx.application.Platform;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,6 +30,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
@@ -298,28 +301,66 @@ public class LoadSceneController implements Initializable {
                         
             Dialog<String> inputDialog = new Dialog<>();
             inputDialog.setTitle("Scale and Save");
-            inputDialog.setHeaderText("Enter a Scaler...");
+            inputDialog.setHeaderText("Enter a Number to Scale by");
             DialogPane dialogPane = inputDialog.getDialogPane();
             dialogPane.getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
             TextField input = new TextField("1");
             dialogPane.setContent(new VBox(8, input));
             Platform.runLater(input::requestFocus);
             inputDialog.setResultConverter(new Callback<ButtonType, String>() {
+                
                 @Override
                 public String call(ButtonType button) {
                     if (button == ButtonType.OK) {
                         
-                    List<Integer> result = new ArrayList();
-                    
-                    for (int i = 0; i < inputFile.size(); i++)
-                    {    
-                       /* result.add(Arrays
-                        .stream(inputFile.get(i).split(" ")).map(s -> s.replaceAll(",", ""))  
-                        .mapToInt(Integer::parseInt).peek(e -> System.out.println(e)).toArray());
+                        List<String> parsed = new ArrayList();
+                                                
+                        for (int i = 0; i < inputFile.size(); i++)
+                        {   
+                            List<Integer> numbers = new ArrayList();
+                            List<Integer> scaled = new ArrayList();
+                            numbers = Arrays
+                            .stream(inputFile.get(i).split(" ")).map(s -> s.replaceAll(",", ""))
+                            .filter((s) -> s.matches("\\d+"))  
+                            .map(Integer::parseInt)
+                            .collect(Collectors.toList());
+
+                           numbers.forEach(e -> {
+                                try{scaled.add(e*Integer.parseInt(input.getText()));
+                              } catch (NumberFormatException t){System.out.println("Invalid Input");}
+                           });
+                                                        
+                            StringBuilder builder = new StringBuilder(scaled.toString());
+                            builder.deleteCharAt(0);
+                            builder.deleteCharAt(builder.length()-1);
+                            parsed.add(builder.toString());
+                        }
                         
-                        */
-                    }                  
-                }
+                        FileChooser save = new FileChooser();
+        
+                        FileChooser.ExtensionFilter extFilter1 = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
+                        save.getExtensionFilters().add(extFilter1);
+        
+                        File dest = save.showSaveDialog(null);
+                        if (dest != null) {
+                             try (FileWriter fw = new FileWriter(dest, true)) {
+                             PrintWriter pw = new PrintWriter(fw);
+                             parsed.forEach(e-> {
+                                 System.out.println(e);
+                                 pw.println(e+",");
+                             });
+                             } catch (IOException e) {
+                                System.err.println(e.getMessage());
+                            }
+
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("MuttLab");
+                        alert.setHeaderText("Save File");
+                        alert.setContentText("File has been saved.");
+
+                        alert.showAndWait();
+                        }
+                    }
                 return null;
                 }
             });

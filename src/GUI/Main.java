@@ -14,11 +14,10 @@ import MuttLab.MuttLab;
 
 /**
  * Things to do:
- * scene for add choices
  * implement the various add options
  * finish manipulation and save as .csv
  * Put things in packages and get it to work
- * Go over the code to try to clean up and optimise
+ * Go over the code to try to clean up and optimise - reduce dupe code
  * pressing enter on cancel when quitting still quits
  * pressing enter on buttons in load scene doesn't work
  */
