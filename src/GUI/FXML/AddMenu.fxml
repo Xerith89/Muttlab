@@ -11,7 +11,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 
-<BorderPane id="BorderPane" prefHeight="360.0" prefWidth="250.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AddMenuController">
+<BorderPane id="BorderPane" prefHeight="360.0" prefWidth="250.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.AddMenuController">
     <center>
     <VBox alignment = "center">
         <Button text="Discard" onAction="#discardAndAdd" fx:id="discardAndAdd" prefWidth="100.0" prefHeight="40.0">
@@ -36,6 +36,6 @@
     </VBox>
     </center>    
     <stylesheets>
-        <URL value="@Style.css"/>
+        <URL value="@/GUI/Resources/Style.css" />
     </stylesheets>
 </BorderPane>

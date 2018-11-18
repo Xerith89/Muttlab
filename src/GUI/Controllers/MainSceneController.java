@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+package GUI.Controllers;
 
 import Commands.CommandHandler;
 import java.io.File;
@@ -62,17 +62,17 @@ public class MainSceneController implements Initializable {
     
     @FXML
     private void handleOpsButton(ActionEvent event) throws IOException {
-    swapScene("OperationsScene.fxml");
+    swapScene("/GUI/FXML/OperationsScene.fxml");
     }
     
     @FXML
     private void handleNewButton(ActionEvent event) throws IOException {
-    swapScene("NewMatrixScene.fxml");
+    swapScene("/GUI/FXML/NewMatrixScene.fxml");
     }
     
     @FXML
     private void handleLoadButton(ActionEvent event) throws IOException {
-    swapScene("LoadScene.fxml");     
+    swapScene("/GUI/FXML/LoadScene.fxml");     
     }
         
     @FXML
@@ -126,7 +126,7 @@ public class MainSceneController implements Initializable {
     private void handleQuitButton(ActionEvent event) throws IOException {
         
         Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("QuitScene.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/GUI/FXML/QuitScene.fxml"));
         stage.setScene(new Scene(root));
         stage.setTitle("Quit MuttLab");
         stage.initModality(Modality.WINDOW_MODAL);

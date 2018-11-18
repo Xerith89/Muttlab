@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+package GUI.Controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -17,28 +17,36 @@ import javafx.scene.control.Button;
  *
  * @author paul
  */
-public class QuitSceneController implements Initializable {
+public class AddMenuController implements Initializable {
 
-    
-    @FXML
-    Button cancelButton;
-    @FXML
-    Button yesButton;
     /**
      * Initializes the controller class.
      */
+    
+    @FXML
+    private Button cancelButton;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        cancelButton.defaultButtonProperty().bind(cancelButton.focusedProperty());
-        yesButton.defaultButtonProperty().bind(yesButton.focusedProperty());
-    } 
+        // TODO
+    }  
     
-    public void quit()
+    public void discardAndAdd()
     {
-        Platform.exit();
+        
     }
     
-    public void cancel()
+    public void padLeftAndAdd()
+    {
+        
+    }
+    
+    public void padRightAndAdd()
+    {
+        
+    }
+    
+    public void cancel() throws IOException
     {
         cancelButton.getScene().getWindow().hide();
     }

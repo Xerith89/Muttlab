@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+package Main;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -16,15 +16,14 @@ import MuttLab.MuttLab;
  * Things to do:
  * implement the various add options
  * finish manipulation and save as .csv
- * Put things in packages and get it to work
- * Go over the code to try to clean up and optimise - reduce dupe code
+ * Go over the code to try to clean up and optimise - reduce dupe code, optimise saving etc
  */
 public class Main extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
         
-        Parent root = FXMLLoader.load(getClass().getResource("MainScene.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/GUI/FXML/MainScene.fxml"));
         
         Scene scene = new Scene(root);
         

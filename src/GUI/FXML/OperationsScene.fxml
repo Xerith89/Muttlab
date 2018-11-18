@@ -9,7 +9,7 @@
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 
-  <BorderPane id="BorderPane" prefHeight="400.0" prefWidth="450.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.OperationsSceneController">
+  <BorderPane id="BorderPane" prefHeight="400.0" prefWidth="450.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.OperationsSceneController">
      <top>
         <VBox alignment="center"> 
         <Text id="welcome-text" text="Operations" />
@@ -79,6 +79,6 @@
     </HBox>
     </bottom>
     <stylesheets>
-        <URL value="@Style.css"/>
+        <URL value="@/GUI/Resources/Style.css" />
     </stylesheets>
   </BorderPane>

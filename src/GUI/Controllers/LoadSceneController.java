@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+package GUI.Controllers;
 
 import Matrix.Matrix;
 import java.io.File;
@@ -266,7 +266,7 @@ public class LoadSceneController implements Initializable {
     public void loadAndAdd() throws IOException
     {  
         Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("AddMenu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/GUI/FXML/AddMenu.fxml"));
         stage.setScene(new Scene(root));
         stage.setTitle("Load and Add");
         stage.initModality(Modality.WINDOW_MODAL);
@@ -397,7 +397,7 @@ public class LoadSceneController implements Initializable {
         Parent root;
         stage=(Stage)backButton.getScene().getWindow();
 
-        root = FXMLLoader.load(getClass().getResource("MainScene.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/GUI/FXML/MainScene.fxml"));
 
         Scene scene = new Scene(root);
         stage.setScene(scene);

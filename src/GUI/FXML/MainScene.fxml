@@ -12,7 +12,7 @@
 <?import javafx.scene.image.Image?>
 
 
-<BorderPane id="borderPane" prefHeight="400" prefWidth="450" styleClass="root" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MainSceneController">
+<BorderPane id="borderPane" prefHeight="400" prefWidth="450" styleClass="root" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.MainSceneController">
     <top>
         <VBox alignment="center"> 
         <Text id="welcome-text" text="MuttLab" />
@@ -25,7 +25,7 @@
                 pickOnBounds="true"
                 preserveRatio="true">
         <image>
-            <Image url="GUI/muttdog.png" />
+            <Image url="GUI/Resources/muttdog.png" />
         </image>
         </ImageView>
         </VBox>
@@ -72,7 +72,7 @@
    </VBox>
          </center>
     <stylesheets>
-        <URL value="@Style.css" />
+        <URL value="@/GUI/Resources/Style.css" />
     </stylesheets>
     
 </BorderPane>

@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane id="BorderPane" prefHeight="400.0" prefWidth="450.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.NewMatrixSceneController">
+<BorderPane id="BorderPane" prefHeight="400.0" prefWidth="450.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.NewMatrixSceneController">
      <top>
         <VBox alignment="center"> 
         <Text id="welcome-text" text="Add Matrix" />
@@ -22,7 +22,7 @@
            
             <Label fx:id="FailureLabel" text= "Invalid Matrix" visible="false" textFill="red" ></Label>
            
-            <TextArea fx:id="display" maxWidth="250.0" prefHeight="80 .0" />
+            <TextArea fx:id="display" maxWidth="250.0" prefHeight="80.0" />
         
             <GridPane hgap="3" vgap="3" alignment="center">
 								
@@ -35,8 +35,6 @@
             <Button fx:id="clearButton" onAction="#clear" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="1" text="C" >
             <tooltip><Tooltip text="Clear Input" /></tooltip></Button>
             
-            
-
             <Button fx:id="fourButton" onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="0" GridPane.rowIndex="2" text="4"></Button>
 				
             <Button fx:id="fiveButton" onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="2" text="5"></Button>
@@ -45,9 +43,7 @@
 				
             <Button fx:id="backspaceButton" onAction="#backspace" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="2" text="Del" >
             <tooltip><Tooltip text="Removes Last Character Entered" /></tooltip></Button>
-            
-            
-            
+                     
             <Button fx:id="oneButton" onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="0" GridPane.rowIndex="3" text="1"></Button>
 				
             <Button fx:id="twoButton" onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="3" text="2"></Button>
@@ -62,7 +58,7 @@
             <Button fx:id="pointButton" onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="4" text="."></Button>
 	  
             <Button fx:id="commaButton" onAction="#input" prefWidth="50.0" prefHeight="40" GridPane.columnIndex="2" GridPane.rowIndex="4" text=",">
-            <tooltip><Tooltip text="Space" /></tooltip></Button>
+            <tooltip><Tooltip text="Separate an Element" /></tooltip></Button>
             
             <Button fx:id="newButton" onAction="#newMat" prefWidth="80.0" prefHeight="40" GridPane.columnIndex="3" GridPane.rowIndex="4" text="Enter">
             <tooltip><Tooltip text="Submit Matrix" /></tooltip></Button>
@@ -72,6 +68,6 @@
         </VBox>
     </center>
     <stylesheets>
-        <URL value="@Style.css"/>
+        <URL value="@/GUI/Resources/Style.css" />
     </stylesheets>
   </BorderPane>

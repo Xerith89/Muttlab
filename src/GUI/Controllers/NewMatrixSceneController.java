@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+package GUI.Controllers;
 
 import Matrix.Matrix;
 import MuttLab.MuttLab;
@@ -66,13 +66,10 @@ public class NewMatrixSceneController implements Initializable {
     private Button lineButton;
     @FXML
     private Button pointButton;
-    
     @FXML
     private TextArea display;
-    
     @FXML
     private Label SuccessLabel;
-    
     @FXML
     private Label FailureLabel;
     
@@ -173,7 +170,7 @@ public class NewMatrixSceneController implements Initializable {
     Parent root;
     stage=(Stage)backButton.getScene().getWindow();
      
-    root = FXMLLoader.load(getClass().getResource("MainScene.fxml"));
+    root = FXMLLoader.load(getClass().getResource("/GUI/FXML/MainScene.fxml"));
        
     Scene scene = new Scene(root);
     stage.setScene(scene);
