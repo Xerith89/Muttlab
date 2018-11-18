@@ -5,7 +5,6 @@
  */
 package GUI;
 
-import Commands.CommandHandler;
 import Matrix.Matrix;
 import java.io.File;
 import java.io.FileWriter;
@@ -18,8 +17,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import static java.util.stream.Collectors.toList;
 import javafx.application.Platform;
@@ -50,19 +47,17 @@ import javafx.util.Callback;
  */
 public class LoadSceneController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
-    CommandHandler commHandler = new CommandHandler();
     @FXML
     private Button backButton;
       
     @FXML
     private TextArea display;
-      
+    
+    /**
+    * Initializes the controller class.
+    */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        display.setEditable(false);
     }  
     
     public void loadSumMax() throws IOException

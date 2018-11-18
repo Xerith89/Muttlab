@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<BorderPane id="BorderPane" prefHeight="60.0" prefWidth="250.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.QuitSceneController">
+    <center>
+    <VBox alignment = "center">
+        <Label text="Are you sure you want to quit?"></Label>
+        <HBox alignment = "center">
+        <Button text="OK" onAction="#quit" fx:id="yesButton" prefWidth="80.0" prefHeight="40.0"></Button>
+             
+        <Button text="Cancel" onAction="#cancel" fx:id="cancelButton" prefWidth="80.0" prefHeight="40.0"></Button>  
+        </HBox>
+    </VBox>
+    </center>    
+    <stylesheets>
+        <URL value="@Style.css"/>
+    </stylesheets>
+</BorderPane>

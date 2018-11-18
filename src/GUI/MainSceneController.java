@@ -16,6 +16,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -23,6 +24,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -121,20 +123,15 @@ public class MainSceneController implements Initializable {
     }
     
     @FXML
-    private void handleQuitButton(ActionEvent event) {
+    private void handleQuitButton(ActionEvent event) throws IOException {
         
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setTitle("MuttLab");
-        alert.setHeaderText("Quit");
-        alert.setContentText("Are you want to quit?");
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK)
-        {
-            Platform.exit();
-        }
-        else
-            event.consume();
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("QuitScene.fxml"));
+        stage.setScene(new Scene(root));
+        stage.setTitle("Quit MuttLab");
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(((Node)quitButton).getScene().getWindow() );
+        stage.show(); 
     }
        
     private void swapScene(String url) throws IOException

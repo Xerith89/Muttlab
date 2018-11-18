@@ -21,7 +21,7 @@
          <VBox alignment="center">
             
             <Label text="Matrix Result: " textFill="red"></Label>
-            <TextArea fx:id="display" maxWidth="300.0" prefHeight="50.0" />
+            <TextArea fx:id="display" editable="false" maxWidth="300.0" prefHeight="50.0" />
             
             <GridPane hgap="3" vgap="3" alignment="center">
                 
