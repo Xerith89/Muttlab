@@ -22,7 +22,7 @@
            
             <Label fx:id="FailureLabel" text= "Invalid Matrix" visible="false" textFill="red" ></Label>
            
-            <TextArea fx:id="display" maxWidth="250.0" prefHeight="30.0" />
+            <TextArea fx:id="display" maxWidth="250.0" prefHeight="80 .0" />
         
             <GridPane hgap="3" vgap="3" alignment="center">
 								

@@ -49,7 +49,24 @@ public class LoadSceneController implements Initializable {
 
     @FXML
     private Button backButton;
-      
+    @FXML
+    private Button loadSumMax;
+    @FXML
+    private Button loadSumMin;
+    @FXML
+    private Button loadMaxEle;
+    @FXML
+    private Button loadMinEle;
+    @FXML
+    private Button loadMaxElem;
+    @FXML
+    private Button loadMinElem;
+    @FXML
+    private Button add;
+    @FXML
+    private Button scaleSave;
+    @FXML
+    private Button trimSave;
     @FXML
     private TextArea display;
     
@@ -58,6 +75,16 @@ public class LoadSceneController implements Initializable {
     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        loadSumMax.defaultButtonProperty().bind(loadSumMax.focusedProperty());
+        loadSumMin.defaultButtonProperty().bind(loadSumMin.focusedProperty());
+        loadMaxEle.defaultButtonProperty().bind(loadMaxEle.focusedProperty());
+        loadMinEle.defaultButtonProperty().bind(loadMinEle.focusedProperty());
+        loadMaxElem.defaultButtonProperty().bind(loadMaxElem.focusedProperty());
+        loadMinElem.defaultButtonProperty().bind(loadMinElem.focusedProperty());
+        add.defaultButtonProperty().bind(add.focusedProperty());
+        scaleSave.defaultButtonProperty().bind(scaleSave.focusedProperty());
+        trimSave.defaultButtonProperty().bind(trimSave.focusedProperty());
+        backButton.defaultButtonProperty().bind(backButton.focusedProperty());
     }  
     
     public void loadSumMax() throws IOException
