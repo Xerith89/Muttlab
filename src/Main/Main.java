@@ -14,7 +14,8 @@ import MuttLab.MuttLab;
 
 /**
  * Things to do:
- * implement the various add options
+ * improve add scene so buttons work with enter - also maybe get the matrix result in the box
+ * Layout of load scene needs work
  * Go over the code to try to clean up and optimise - reduce dupe code, optimise saving etc
  */
 public class Main extends Application {
@@ -42,9 +43,6 @@ public class Main extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
         launch(args);
-        
     }
-    
 }

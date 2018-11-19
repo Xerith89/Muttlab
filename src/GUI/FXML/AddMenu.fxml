@@ -32,7 +32,7 @@
             </tooltip>
         </Button>
      
-        <Button text="Cancel" onAction="#cancel" fx:id="cancelButton" prefWidth="100.0" prefHeight="40.0"></Button>  
+        <Button text="Close" onAction="#close" fx:id="closeButton" prefWidth="100.0" prefHeight="40.0"></Button>  
     </VBox>
     </center>    
     <stylesheets>
