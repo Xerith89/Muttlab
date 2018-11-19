@@ -15,7 +15,6 @@ import MuttLab.MuttLab;
 /**
  * Things to do:
  * implement the various add options
- * finish manipulation and save as .csv
  * Go over the code to try to clean up and optimise - reduce dupe code, optimise saving etc
  */
 public class Main extends Application {

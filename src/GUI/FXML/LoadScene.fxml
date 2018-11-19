@@ -73,9 +73,9 @@
                 </tooltip>
                 </Button>
                 
-                <Button text="Trim and Save" onAction="#trimAndSave" fx:id="trimSave" GridPane.columnIndex="2" GridPane.rowIndex="2" prefWidth="140.0" prefHeight="40.0">
+                <Button text="Filter and Save" onAction="#filterAndSave" fx:id="filterSave" GridPane.columnIndex="2" GridPane.rowIndex="2" prefWidth="140.0" prefHeight="40.0">
                 <tooltip>
-                    <Tooltip text="Load Matrices, Trim to a Specified Shape and Save to a File" />
+                    <Tooltip text="Load Matrices, Filter to a Specified Shape and Save to a File" />
                 </tooltip>
                 </Button>
             

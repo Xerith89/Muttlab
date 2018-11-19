@@ -66,7 +66,7 @@ public class LoadSceneController implements Initializable {
     @FXML
     private Button scaleSave;
     @FXML
-    private Button trimSave;
+    private Button filterSave;
     @FXML
     private TextArea display;
     
@@ -83,7 +83,7 @@ public class LoadSceneController implements Initializable {
         loadMinElem.defaultButtonProperty().bind(loadMinElem.focusedProperty());
         add.defaultButtonProperty().bind(add.focusedProperty());
         scaleSave.defaultButtonProperty().bind(scaleSave.focusedProperty());
-        trimSave.defaultButtonProperty().bind(trimSave.focusedProperty());
+        filterSave.defaultButtonProperty().bind(filterSave.focusedProperty());
         backButton.defaultButtonProperty().bind(backButton.focusedProperty());
     }  
     
@@ -274,7 +274,7 @@ public class LoadSceneController implements Initializable {
         stage.show(); 
     } 
     
-    public void trimAndSave() throws IOException
+    public void filterAndSave() throws IOException
     {
         FileChooser load = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
@@ -286,8 +286,8 @@ public class LoadSceneController implements Initializable {
             List<String> inputFile = Files.lines(file.toPath()).collect(toList());
                         
             Dialog<String> inputDialog = new Dialog<>();
-            inputDialog.setTitle("Trim and Save");
-            inputDialog.setHeaderText("Enter a New Vector Length...");
+            inputDialog.setTitle("Filter and Save");
+            inputDialog.setHeaderText("Enter a Length to Filter On");
             DialogPane dialogPane = inputDialog.getDialogPane();
             dialogPane.getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
             TextField input = new TextField("1");
@@ -298,9 +298,46 @@ public class LoadSceneController implements Initializable {
                 public String call(ButtonType button) {
                     if (button == ButtonType.OK) {
                         
-                
- 
-                }
+                        List<String> filtered = new ArrayList();
+                        for (int i = 0; i < inputFile.size(); ++i)
+                        {  
+                            long count = Arrays
+                            .stream(inputFile.get(i).split(" ")).map(s -> s.replaceAll(",", ""))
+                            .map(Integer::parseInt)
+                            .count();                           
+                            
+                           if (count == Integer.parseInt(input.getText()))
+                           {
+                               filtered.add(inputFile.get(i));
+                           }
+                        }
+                        
+                     
+                   FileChooser save = new FileChooser();
+        
+                   FileChooser.ExtensionFilter extFilter1 = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
+                        save.getExtensionFilters().add(extFilter1);
+        
+                        File dest = save.showSaveDialog(null);
+                        if (dest != null) {
+                             try (FileWriter fw = new FileWriter(dest, true)) {
+                             PrintWriter pw = new PrintWriter(fw);
+                             filtered.forEach(e-> {
+                                 System.out.println(e);
+                                 pw.println(e+",");
+                             });
+                             } catch (IOException e) {
+                                System.err.println(e.getMessage());
+                            }
+
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("MuttLab");
+                        alert.setHeaderText("Save File");
+                        alert.setContentText("File has been saved.");
+
+                        alert.showAndWait();
+                     }
+                    }
                     return null;
                 }
             });
@@ -343,7 +380,6 @@ public class LoadSceneController implements Initializable {
                             List<Integer> scaled = new ArrayList();
                             numbers = Arrays
                             .stream(inputFile.get(i).split(" ")).map(s -> s.replaceAll(",", ""))
-                            .filter((s) -> s.matches("\\d+"))  
                             .map(Integer::parseInt)
                             .collect(Collectors.toList());
 
