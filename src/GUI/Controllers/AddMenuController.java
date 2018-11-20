@@ -20,6 +20,7 @@ import static java.util.stream.Collectors.toList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.FileChooser;
 
 /**
@@ -29,20 +30,30 @@ import javafx.stage.FileChooser;
  */
 public class AddMenuController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
-    
+    @FXML
+    private Button discardAndAdd;
+    @FXML
+    private Button padLeftAndAdd; 
+    @FXML
+    private Button padRightAndAdd; 
     @FXML
     private Button closeButton;
-    
+    @FXML
+    private Label statusLabel;
+     /**
+     * Initializes the controller class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        closeButton.defaultButtonProperty().bind(closeButton.focusedProperty());
+        discardAndAdd.defaultButtonProperty().bind(discardAndAdd.focusedProperty());
+        padLeftAndAdd.defaultButtonProperty().bind(padLeftAndAdd.focusedProperty());
+        padRightAndAdd.defaultButtonProperty().bind(padRightAndAdd.focusedProperty());
     }  
     
     public void discardAndAdd() throws IOException
     {
+        statusLabel.setText("");
         FileChooser load = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
         load.getExtensionFilters().add(extFilter);
@@ -94,6 +105,8 @@ public class AddMenuController implements Initializable {
                     results[i]+=numbers.get(i);
                 }
             }
+            
+        statusLabel.setText("Operation Completed!");
         String temp = Arrays.toString(results);
         StringBuilder builder = new StringBuilder(temp);
         builder.replace(0, 1, "");
@@ -105,7 +118,7 @@ public class AddMenuController implements Initializable {
                 builder.replace(i+1, i+2, "");
             }
         }
-        System.out.println(builder.toString());
+        
         Matrix m = new Matrix( builder.toString());
         MuttLab.mats.add(m.getString());
         }
@@ -113,11 +126,12 @@ public class AddMenuController implements Initializable {
     
     public void padLeftAndAdd() throws IOException
     {
+        statusLabel.setText("");
         FileChooser load = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
         load.getExtensionFilters().add(extFilter);
         File file = load.showOpenDialog(null); 
-       
+        
         List<String[]> split = new ArrayList();
         List<Integer> numbers = new ArrayList(); 
         
@@ -173,7 +187,7 @@ public class AddMenuController implements Initializable {
                     results[i]+=numbers.get(j+i);
                 }
             }
-            
+        statusLabel.setText("Operation Completed!");   
         String temp = Arrays.toString(results);
         StringBuilder builder = new StringBuilder(temp);
         builder.replace(0, 1, "");
@@ -193,6 +207,7 @@ public class AddMenuController implements Initializable {
     
     public void padRightAndAdd() throws IOException
     {
+        statusLabel.setText("");
         FileChooser load = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
         load.getExtensionFilters().add(extFilter);
@@ -204,7 +219,7 @@ public class AddMenuController implements Initializable {
         if (file != null)
         {
             List<String> inputFile = Files.lines(file.toPath()).collect(toList());
-                        
+                       
             String[] longest = new String[1];
             longest [0] = inputFile.stream().max(Comparator.comparingInt(String::length)).get();
             
@@ -214,7 +229,7 @@ public class AddMenuController implements Initializable {
             .count(); 
             
             int[] results = new int[(int)indexCount];
-            
+             
             for (int i = 0; i < inputFile.size(); ++i)
             {  
                 long count = Arrays
@@ -253,7 +268,7 @@ public class AddMenuController implements Initializable {
                     results[i]+=numbers.get(j+i);
                 }
             }
-            
+        statusLabel.setText("Operation Completed!");    
         String temp = Arrays.toString(results);
         StringBuilder builder = new StringBuilder(temp);
         builder.replace(0, 1, "");
@@ -268,11 +283,10 @@ public class AddMenuController implements Initializable {
         }
         Matrix m = new Matrix( builder.toString());
         MuttLab.mats.add(m.getString());
-        }  
-        
+        }   
     }
     
-    public void back() throws IOException
+    public void close() throws IOException
     {
         closeButton.getScene().getWindow().hide();
     }

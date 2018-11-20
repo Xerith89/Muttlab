@@ -14,7 +14,7 @@ import MuttLab.MuttLab;
 
 /**
  * Things to do:
- * improve add scene so buttons work with enter - also maybe get the matrix result in the box
+ * get the matrix result in the textarea
  * Layout of load scene needs work
  * Go over the code to try to clean up and optimise - reduce dupe code, optimise saving etc
  */
@@ -26,7 +26,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/GUI/FXML/MainScene.fxml"));
         
         Scene scene = new Scene(root);
-        
+                
         stage.setTitle("MuttLab");
         stage.setScene(scene);
         stage.show();
@@ -38,7 +38,8 @@ public class Main extends Application {
         muttlabth.setDaemon(true);
         muttlabth.start();
     }
-   
+    
+    
     /**
      * @param args the command line arguments
      */

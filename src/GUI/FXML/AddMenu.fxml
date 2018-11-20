@@ -13,7 +13,9 @@
 
 <BorderPane id="BorderPane" prefHeight="360.0" prefWidth="250.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.AddMenuController">
     <center>
+       
     <VBox alignment = "center">
+         <Label text="" fx:id="statusLabel"></Label>
         <Button text="Discard" onAction="#discardAndAdd" fx:id="discardAndAdd" prefWidth="100.0" prefHeight="40.0">
             <tooltip>
                 <Tooltip text="Load Matrix From File, discard any with a different shape than first and add" />

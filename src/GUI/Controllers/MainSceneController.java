@@ -51,7 +51,6 @@ public class MainSceneController implements Initializable {
             
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-                
         loadButton.defaultButtonProperty().bind(loadButton.focusedProperty());
         newButton.defaultButtonProperty().bind(newButton.focusedProperty());
         saveButton.defaultButtonProperty().bind(saveButton.focusedProperty());

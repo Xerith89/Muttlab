@@ -324,7 +324,6 @@ public class LoadSceneController implements Initializable {
                              PrintWriter pw = new PrintWriter(fw);
                              filtered.forEach(e-> {
                                  System.out.println(e);
-                                 pw.println(e+",");
                              });
                              } catch (IOException e) {
                                 System.err.println(e.getMessage());
@@ -404,7 +403,6 @@ public class LoadSceneController implements Initializable {
                              try (FileWriter fw = new FileWriter(dest, true)) {
                              PrintWriter pw = new PrintWriter(fw);
                              parsed.forEach(e-> {
-                                 System.out.println(e);
                                  pw.println(e+",");
                              });
                              } catch (IOException e) {
