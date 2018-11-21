@@ -34,31 +34,31 @@
                 </tooltip>
                 </Button>
                 
-                <Button text="Minimal Sum"  fx:id="loadSumMin" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="140.0" prefHeight="40.0">
+                <Button text="Minimal Sum" onAction="#sumMin"  fx:id="loadSumMin" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="140.0" prefHeight="40.0">
                 <tooltip>
                     <Tooltip text="Load Matrix From File With Smallest Elements Sum" />
                 </tooltip>
                 </Button>
                 
-                <Button text="Maximal Biggest E" onAction="#loadMaxEleMax" fx:id="loadMaxEle" GridPane.columnIndex="2" GridPane.rowIndex="0" prefWidth="140.0" prefHeight="40.0">
+                <Button text="Maximal Biggest E" onAction="#maxEleMax" fx:id="loadMaxEle" GridPane.columnIndex="2" GridPane.rowIndex="0" prefWidth="140.0" prefHeight="40.0">
                 <tooltip>
                     <Tooltip text="Load Matrix From File with the Highest Element of all Matrices" />
                 </tooltip>
                 </Button>
                 
-                <Button text="Maximal Smallest E" onAction="#loadMaxEleMin" fx:id="loadMinEle" GridPane.columnIndex="0" GridPane.rowIndex="1" prefWidth="140.0" prefHeight="40.0">
+                <Button text="Maximal Smallest E" onAction="#maxEleMin" fx:id="loadMinEle" GridPane.columnIndex="0" GridPane.rowIndex="1" prefWidth="140.0" prefHeight="40.0">
                 <tooltip>
                     <Tooltip text="Load Matrix From File with the Smallest Element that is the Biggest of all Matrices" />
                 </tooltip>
                 </Button>
             
-                <Button text="Minimal Biggest E" onAction="#loadMinEleMax" fx:id="loadMaxElem" GridPane.columnIndex="1" GridPane.rowIndex="1" prefWidth="140.0" prefHeight="40.0">
+                <Button text="Minimal Biggest E" onAction="#minEleMax" fx:id="loadMaxElem" GridPane.columnIndex="1" GridPane.rowIndex="1" prefWidth="140.0" prefHeight="40.0">
                 <tooltip>
                     <Tooltip text="Load Matrix From File with the Biggest Element that is the Smallest of all Matrices" />
                 </tooltip>
                 </Button>
                 
-                <Button text="Minimal Smallest E" onAction="#loadMinEleMin" fx:id="loadMinElem" GridPane.columnIndex="2" GridPane.rowIndex="1" prefWidth="140.0" prefHeight="40.0">
+                <Button text="Minimal Smallest E" onAction="#minEleMin" fx:id="loadMinElem" GridPane.columnIndex="2" GridPane.rowIndex="1" prefWidth="140.0" prefHeight="40.0">
                 <tooltip>
                     <Tooltip text="Load Matrix From File with the Smallest Element that is the Smallest of all Matrices" />
                 </tooltip>

@@ -12,6 +12,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import static java.util.stream.Collectors.toList;
 import javafx.application.Platform;
@@ -59,7 +61,9 @@ public class LoadSceneController implements Initializable {
     private Button filterSave;
     @FXML
     public TextArea display;
-    
+    File file;
+    private List<String> inputFile;
+        
     /**
     * Initializes the controller class.
      * @param url
@@ -77,181 +81,134 @@ public class LoadSceneController implements Initializable {
         scaleSave.defaultButtonProperty().bind(scaleSave.focusedProperty());
         filterSave.defaultButtonProperty().bind(filterSave.focusedProperty());
         backButton.defaultButtonProperty().bind(backButton.focusedProperty());
+        
+    try {file = loadFile();
+        inputFile = new ArrayList();
+        if (file != null)
+        {inputFile = Files.lines(file.toPath()).collect(toList());}
+        } catch (IOException ex) {
+        Logger.getLogger(LoadSceneController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }  
     
-    public void loadSumMax() throws IOException
+    public List<Integer> getMax() throws IOException
     {
-        FileChooser load = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
-        load.getExtensionFilters().add(extFilter);
-        File file = load.showOpenDialog(null); 
-                
-        if (file != null)
+        if (inputFile.isEmpty())
         {
-            List<String> inputFile = Files.lines(file.toPath()).collect(toList());
-            List<Integer> result = new ArrayList();
+            file = loadFile();
+        }
+        List<Integer> result = new ArrayList();        
+        if (!inputFile.isEmpty())
+        {
             for (int i = 0; i < inputFile.size(); i++)
-                {    
-                    result.add(Arrays
-                    .stream(inputFile.get(i).split(" ")).map(s -> s.replaceAll(",", ""))  
-                    .mapToInt(Integer::parseInt)
-                    .sum()); 
-                }
-            String untrimmed = inputFile.get(result.indexOf(Collections.max(result)));
-            String trimmed = " " + untrimmed.replaceAll(",", "");
-            Matrix m = new Matrix(trimmed);
-            MuttLab.MuttLab.mats.add(m.getString());
-            display.setText(inputFile.get(result.indexOf(Collections.max(result))));
-             
-            System.out.println("The maximal matrix according to the sum is " + inputFile.get(result.indexOf(Collections.max(result))));
-            System.out.println("This has been added to the matrix list");
+            {    
+                result.add(Arrays
+                .stream(inputFile.get(i).split(" ")).map(s -> s.replaceAll(",", ""))  
+                .mapToInt(Integer::parseInt)
+                .max().getAsInt()); 
+            }
+        }
+        return result;
+    }
+    
+    public List<Integer> getMin() throws IOException
+    {
+        if (inputFile.isEmpty())
+        {
+            file = loadFile();
+        }
+        List<Integer> result = new ArrayList();        
+        if (!inputFile.isEmpty())
+        {
+            for (int i = 0; i < inputFile.size(); i++)
+            {    
+                result.add(Arrays
+                .stream(inputFile.get(i).split(" ")).map(s -> s.replaceAll(",", ""))  
+                .mapToInt(Integer::parseInt)
+                .min().getAsInt()); 
+            }
+        }
+        return result;
+    }
+    
+    public void sumMax() throws IOException
+    {
+        List<Integer> result = new ArrayList(); 
+        result = getMax();
+        if (!result.isEmpty()){
+        String untrimmed = inputFile.get(result.indexOf(Collections.max(result)));
+        String trimmed = " " + untrimmed.replaceAll(",", "");
+        Matrix m = new Matrix(trimmed);
+        MuttLab.MuttLab.mats.add(m.getString());
+        display.setText(inputFile.get(result.indexOf(Collections.max(result))));
         }
     }
     
-    public void loadSumMin() throws IOException
+    public void sumMin() throws IOException
     {
-        FileChooser load = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
-        load.getExtensionFilters().add(extFilter);
-        File file = load.showOpenDialog(null); 
-                
-        if (file != null)
-        {
-            List<String> inputFile = Files.lines(file.toPath()).collect(toList());
-            List<Integer> result = new ArrayList();
-            for (int i = 0; i < inputFile.size(); i++)
-                {    
-                    result.add(Arrays
-                    .stream(inputFile.get(i).split(" ")).map(s -> s.replaceAll(",", ""))  
-                    .mapToInt(Integer::parseInt)
-                    .sum()); 
-                }
-                
-            String untrimmed = inputFile.get(result.indexOf(Collections.min(result)));
-            String trimmed = " " + untrimmed.replaceAll(",", "");
-            Matrix m = new Matrix(trimmed);
-            MuttLab.MuttLab.mats.add(m.getString());
-            display.setText(inputFile.get(result.indexOf(Collections.min(result))));
-            System.out.println("The minimal matrix according to the sum is " + inputFile.get(result.indexOf(Collections.min(result))));
-            System.out.println("This has been added to the matrix list");
+        List<Integer> result = new ArrayList(); 
+        result = getMin(); 
+        if (!result.isEmpty()){
+        String untrimmed = inputFile.get(result.indexOf(Collections.min(result)));
+        String trimmed = " " + untrimmed.replaceAll(",", "");
+        Matrix m = new Matrix(trimmed);
+        MuttLab.MuttLab.mats.add(m.getString());
+        display.setText(inputFile.get(result.indexOf(Collections.min(result))));
         }
     }
     
-    public void loadMaxEleMax() throws IOException
+    
+    public void maxEleMax() throws IOException
     {
-        FileChooser load = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
-        load.getExtensionFilters().add(extFilter);
-        File file = load.showOpenDialog(null); 
-                
-        if (file != null)
-        {
-            List<String> inputFile = Files.lines(file.toPath()).collect(toList());
-            List<Integer> result = new ArrayList();
-            for (int i = 0; i < inputFile.size(); i++)
-                {    
-                    result.add(Arrays
-                    .stream(inputFile.get(i).split(" ")).map(s -> s.replaceAll(",", ""))  
-                    .mapToInt(Integer::parseInt) 
-                    .max().getAsInt());
-                }
-            
-            String untrimmed = inputFile.get(result.indexOf(Collections.max(result)));
-            String trimmed = " " + untrimmed.replaceAll(",", "");
-            Matrix m = new Matrix(trimmed);
-            MuttLab.MuttLab.mats.add(m.getString());
-            System.out.println("The maximal matrix according to <M " + (inputFile.get(result.indexOf(Collections.max(result)))));
-            display.setText(inputFile.get(result.indexOf(Collections.max(result))));
-            System.out.println("This has been added to the matrix list");
-            
+        List<Integer> result = new ArrayList(); 
+        result = getMax();  
+        if (!result.isEmpty()){
+        String untrimmed = inputFile.get(result.indexOf(Collections.max(result)));
+        String trimmed = " " + untrimmed.replaceAll(",", "");
+        Matrix m = new Matrix(trimmed);
+        MuttLab.MuttLab.mats.add(m.getString());
+        display.setText(inputFile.get(result.indexOf(Collections.max(result))));
         }
     }
     
-    public void loadMaxEleMin() throws IOException
+    
+    public void maxEleMin() throws IOException
     {
-        FileChooser load = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
-        load.getExtensionFilters().add(extFilter);
-        File file = load.showOpenDialog(null); 
-                
-        if (file != null)
-        {
-            List<String> inputFile = Files.lines(file.toPath()).collect(toList());
-            List<Integer> result = new ArrayList();
-            for (int i = 0; i < inputFile.size(); i++)
-                {    
-                    result.add(Arrays
-                    .stream(inputFile.get(i).split(" ")).map(s -> s.replaceAll(",", ""))  
-                    .mapToInt(Integer::parseInt) 
-                    .max().getAsInt());
-                }
-            
-            String untrimmed = inputFile.get(result.indexOf(Collections.min(result)));
-            String trimmed = " " + untrimmed.replaceAll(",", "");
-            Matrix m = new Matrix(trimmed);
-            MuttLab.MuttLab.mats.add(m.getString());
-            System.out.println("The maximal matrix according to <m " +(inputFile.get(result.indexOf(Collections.min(result)))));
-            display.setText(inputFile.get(result.indexOf(Collections.min(result))));
-            System.out.println("This has been added to the matrix list");
+        List<Integer> result = new ArrayList(); 
+        result = getMin();
+        if (!result.isEmpty()){
+        String untrimmed = inputFile.get(result.indexOf(Collections.max(result)));
+        String trimmed = " " + untrimmed.replaceAll(",", "");
+        Matrix m = new Matrix(trimmed);
+        MuttLab.MuttLab.mats.add(m.getString());
+        display.setText(inputFile.get(result.indexOf(Collections.max(result))));
+        }
+    }
+ 
+    
+    public void minEleMax() throws IOException
+    {
+        List<Integer> result = new ArrayList(); 
+        result = getMax();
+        if (!result.isEmpty()){
+        String untrimmed = inputFile.get(result.indexOf(Collections.min(result)));
+        String trimmed = " " + untrimmed.replaceAll(",", "");
+        Matrix m = new Matrix(trimmed);
+        MuttLab.MuttLab.mats.add(m.getString());
+        display.setText(inputFile.get(result.indexOf(Collections.min(result))));
         }
     }
     
-    public void loadMinEleMax() throws IOException
+    public void minEleMin() throws IOException
     {
-        FileChooser load = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
-        load.getExtensionFilters().add(extFilter);
-        File file = load.showOpenDialog(null); 
-                
-        if (file != null)
-        {
-            List<String> inputFile = Files.lines(file.toPath()).collect(toList());
-            List<Integer> result = new ArrayList();
-            for (int i = 0; i < inputFile.size(); i++)
-                {    
-                    result.add(Arrays
-                    .stream(inputFile.get(i).split(" ")).map(s -> s.replaceAll(",", ""))  
-                    .mapToInt(Integer::parseInt) 
-                    .max().getAsInt());
-                }
-                 
-            String untrimmed = inputFile.get(result.indexOf(Collections.min(result)));
-            String trimmed = " " + untrimmed.replaceAll(",", "");
-            Matrix m = new Matrix(trimmed);
-            MuttLab.MuttLab.mats.add(m.getString());
-            System.out.println("The minimal matrix according to <M " + (inputFile.get(result.indexOf(Collections.min(result)))));
-            display.setText(inputFile.get(result.indexOf(Collections.min(result))));
-            System.out.println("This has been added to the matrix list");
-            
-        }
-    }
-    
-    public void loadMinEleMin() throws IOException
-    {
-        FileChooser load = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
-        load.getExtensionFilters().add(extFilter);
-        File file = load.showOpenDialog(null); 
-                
-        if (file != null)
-        {
-            List<String> inputFile = Files.lines(file.toPath()).collect(toList());
-            List<Integer> result = new ArrayList();
-            for (int i = 0; i < inputFile.size(); i++)
-                {    
-                    result.add(Arrays
-                    .stream(inputFile.get(i).split(" ")).map(s -> s.replaceAll(",", ""))  
-                    .mapToInt(Integer::parseInt) 
-                    .min().getAsInt());
-                }
-            
-            String untrimmed = inputFile.get(result.indexOf(Collections.min(result)));
-            String trimmed = " " + untrimmed.replaceAll(",", "");
-            Matrix m = new Matrix(trimmed);
-            MuttLab.MuttLab.mats.add(m.getString());
-            display.setText(inputFile.get(result.indexOf(Collections.min(result))));
-            System.out.println("The minimal matrix according to <m " +(inputFile.get(result.indexOf(Collections.min(result)))));
-            System.out.println("This has been added to the matrix list");
+        List<Integer> result = new ArrayList(); 
+        result = getMin();
+        if (!result.isEmpty()){
+        String untrimmed = inputFile.get(result.indexOf(Collections.min(result)));
+        String trimmed = " " + untrimmed.replaceAll(",", "");
+        Matrix m = new Matrix(trimmed);
+        MuttLab.MuttLab.mats.add(m.getString());
+        display.setText(inputFile.get(result.indexOf(Collections.min(result))));
         }
     }
     
@@ -272,15 +229,11 @@ public class LoadSceneController implements Initializable {
     
     public void filterAndSave() throws IOException
     {
-        FileChooser load = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
-        load.getExtensionFilters().add(extFilter);
-        File file = load.showOpenDialog(null); 
+        file = loadFile();
                 
         if (file != null)
         {
-            List<String> inputFile = Files.lines(file.toPath()).collect(toList());
-                        
+            inputFile = Files.lines(file.toPath()).collect(toList());             
             Dialog<String> inputDialog = new Dialog<>();
             inputDialog.setTitle("Filter and Save");
             inputDialog.setHeaderText("Enter a Length to Filter On");
@@ -290,68 +243,43 @@ public class LoadSceneController implements Initializable {
             dialogPane.setContent(new VBox(8, input));
             Platform.runLater(input::requestFocus);
             inputDialog.setResultConverter(new Callback<ButtonType, String>() {
-                @Override
-                public String call(ButtonType button) {
-                    if (button == ButtonType.OK) {
-                        
-                        List<String> filtered = new ArrayList();
-                        for (int i = 0; i < inputFile.size(); ++i)
-                        {  
-                            long count = Arrays
-                            .stream(inputFile.get(i).split(" ")).map(s -> s.replaceAll(",", ""))
-                            .map(Integer::parseInt)
-                            .count();                           
+            
+            @Override
+            public String call(ButtonType button) {
+            if (button == ButtonType.OK) {
+                List<String> filtered = new ArrayList();
+                    for (int i = 0; i < inputFile.size(); ++i)
+                    {  
+                        long count = Arrays
+                        .stream(inputFile.get(i).split(" "))
+                        .map(s -> s.replaceAll(",", ""))
+                        .map(Integer::parseInt)
+                        .count();                           
                             
-                           if (count == Integer.parseInt(input.getText()))
-                           {
-                               filtered.add(inputFile.get(i));
-                           }
-                        }
-                        
-                     
-                   FileChooser save = new FileChooser();
-        
-                   FileChooser.ExtensionFilter extFilter1 = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
-                        save.getExtensionFilters().add(extFilter1);
-        
-                        File dest = save.showSaveDialog(null);
-                        if (dest != null) {
-                             try (FileWriter fw = new FileWriter(dest, true)) {
-                             PrintWriter pw = new PrintWriter(fw);
-                             filtered.forEach(e-> {
-                                 System.out.println(e);
-                             });
-                             } catch (IOException e) {
-                                System.err.println(e.getMessage());
-                            }
-
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setTitle("MuttLab");
-                        alert.setHeaderText("Save File");
-                        alert.setContentText("File has been saved.");
-
-                        alert.showAndWait();
-                     }
+                    if (count == Integer.parseInt(input.getText()))
+                    {
+                        filtered.add(inputFile.get(i));
                     }
-                    return null;
-                }
-            });
-           inputDialog.showAndWait(); 
-             
+                    }
+                        
+                saveFile(filtered);
+            }
+        return null;
+            }
+        });
+        inputDialog.showAndWait(); 
         } 
     }
     
     
     public void scaleAndSave() throws IOException
     {
-        FileChooser load = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
-        load.getExtensionFilters().add(extFilter);
-        File file = load.showOpenDialog(null); 
+        
+        file = loadFile();
                 
         if (file != null)
         {
-            List<String> inputFile = Files.lines(file.toPath()).collect(toList());
+            inputFile = Files.lines(file.toPath()).collect(toList());
                         
             Dialog<String> inputDialog = new Dialog<>();
             inputDialog.setTitle("Scale and Save");
@@ -361,64 +289,76 @@ public class LoadSceneController implements Initializable {
             TextField input = new TextField("1");
             dialogPane.setContent(new VBox(8, input));
             Platform.runLater(input::requestFocus);
-            inputDialog.setResultConverter(new Callback<ButtonType, String>() {
-                
-                @Override
-                public String call(ButtonType button) {
-                    if (button == ButtonType.OK) {
-                        
-                        List<String> parsed = new ArrayList();
-                                                
-                        for (int i = 0; i < inputFile.size(); i++)
-                        {   
-                            List<Integer> numbers = new ArrayList();
-                            List<Integer> scaled = new ArrayList();
-                            numbers = Arrays
-                            .stream(inputFile.get(i).split(" ")).map(s -> s.replaceAll(",", ""))
-                            .map(Integer::parseInt)
-                            .collect(Collectors.toList());
-
-                           numbers.forEach(e -> {
-                                try{scaled.add(e*Integer.parseInt(input.getText()));
-                              } catch (NumberFormatException t){System.out.println("Invalid Input");}
-                           });
+            inputDialog.setResultConverter(new Callback<ButtonType, String>() {   
+            @Override
+            public String call(ButtonType button) {
+            if (button == ButtonType.OK) {
+            List<String> parsed = new ArrayList();
+            for (int i = 0; i < inputFile.size(); i++)
+                {   
+                List<Integer> numbers = new ArrayList();
+                List<Integer> scaled = new ArrayList();
+                numbers = Arrays
+                .stream(inputFile.get(i).split(" ")).map(s -> s.replaceAll(",", ""))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+                numbers.forEach(e -> {
+                try{scaled.add(e*Integer.parseInt(input.getText()));
+                } catch (NumberFormatException t){System.out.println("Invalid Input");}
+                });
                                                         
-                            StringBuilder builder = new StringBuilder(scaled.toString());
-                            builder.deleteCharAt(0);
-                            builder.deleteCharAt(builder.length()-1);
-                            parsed.add(builder.toString());
-                        }
-                        
-                        FileChooser save = new FileChooser();
-        
-                        FileChooser.ExtensionFilter extFilter1 = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
-                        save.getExtensionFilters().add(extFilter1);
-        
-                        File dest = save.showSaveDialog(null);
-                        if (dest != null) {
-                             try (FileWriter fw = new FileWriter(dest, true)) {
-                             PrintWriter pw = new PrintWriter(fw);
-                             parsed.forEach(e-> {
-                                 pw.println(e+",");
-                             });
-                             } catch (IOException e) {
-                                System.err.println(e.getMessage());
-                            }
-
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setTitle("MuttLab");
-                        alert.setHeaderText("Save File");
-                        alert.setContentText("File has been saved.");
-
-                        alert.showAndWait();
-                        }
-                    }
-                return null;
+                StringBuilder builder = new StringBuilder(scaled.toString());
+                builder.deleteCharAt(0);
+                builder.deleteCharAt(builder.length()-1);
+                parsed.add(builder.toString());
                 }
-            });
-           inputDialog.showAndWait();   
+            saveFile(parsed);
+            }
+            return null;
+            }
+        });
+        inputDialog.showAndWait();   
         }        
     } 
+    
+    private File loadFile() throws IOException
+    {
+        FileChooser load = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
+        load.getExtensionFilters().add(extFilter);
+        file = load.showOpenDialog(null); 
+        inputFile = new ArrayList();
+        if (file != null)
+        {
+            inputFile = Files.lines(file.toPath()).collect(toList());
+        }
+        return file;
+    }
+    
+    private void saveFile(List<String> parsed)
+    {
+        FileChooser save = new FileChooser();
+        FileChooser.ExtensionFilter extFilter1 = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
+        save.getExtensionFilters().add(extFilter1);
+        File dest = save.showSaveDialog(null);
+        if (dest != null) 
+        {
+            try (FileWriter fw = new FileWriter(dest, true)) {
+            PrintWriter pw = new PrintWriter(fw);
+            parsed.forEach(e-> {
+            pw.println(e+",");
+            });
+            } catch (IOException e) {
+            System.err.println(e.getMessage());
+            }
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("MuttLab");
+            alert.setHeaderText("Save File");
+            alert.setContentText("File has been saved.");
+            alert.showAndWait();
+        }
+    }
 
     @FXML
     private void back(ActionEvent event) throws IOException {

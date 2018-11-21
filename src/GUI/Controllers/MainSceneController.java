@@ -72,16 +72,14 @@ public class MainSceneController implements Initializable {
     }
     
     /**
-    * Opens a file chooser and saves all matrices as a text or CSV document.
+    * Opens a file chooser and saves all matrices as a text document.
     */
     @FXML
     private void handleSaveButton(ActionEvent event) {
         FileChooser save = new FileChooser();
         FileChooser.ExtensionFilter extFilter1 = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
-        FileChooser.ExtensionFilter extFilter2 = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
         save.getExtensionFilters().add(extFilter1);
-        save.getExtensionFilters().add(extFilter2);
-        
+              
         File dest = save.showSaveDialog(null);
         if (dest != null) {
         String[] commAndArg = new String[2] ;
@@ -137,7 +135,7 @@ public class MainSceneController implements Initializable {
         stage.setTitle("Quit MuttLab");
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node)quitButton).getScene().getWindow() );
-        stage.showAndWait(); 
+        stage.show(); 
     }
       
     /**
