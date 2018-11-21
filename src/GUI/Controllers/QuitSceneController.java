@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GUI.Controllers;
 
 import java.net.URL;
@@ -15,10 +10,9 @@ import javafx.scene.control.Button;
 /**
  * FXML Controller class
  *
- * @author paul
+ * Handles exiting MuttLab.
  */
 public class QuitSceneController implements Initializable {
-
     
     @FXML
     Button cancelButton;
@@ -26,18 +20,27 @@ public class QuitSceneController implements Initializable {
     Button yesButton;
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //For some reason, space is the default fire button so this sets it to enter for the buttons.
         cancelButton.defaultButtonProperty().bind(cancelButton.focusedProperty());
         yesButton.defaultButtonProperty().bind(yesButton.focusedProperty());
     } 
-    
+   
+    /**
+     * Exit MuttLab.
+     */
     public void quit()
     {
         Platform.exit();
     }
     
+    /**
+    * return to MuttLab without quitting.
+    */
     public void cancel()
     {
         cancelButton.getScene().getWindow().hide();

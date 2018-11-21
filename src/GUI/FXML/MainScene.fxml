@@ -15,8 +15,8 @@
 <BorderPane id="borderPane" prefHeight="400" prefWidth="450" styleClass="root" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.MainSceneController">
     <top>
         <VBox alignment="center"> 
-        <Text id="welcome-text" text="MuttLab" />
-        <ImageView
+            <Text id="welcome-text" text="MuttLab" />
+            <ImageView
               fx:id="imageView"
                 fitHeight="150.0"
                 fitWidth="200.0"
@@ -24,55 +24,53 @@
                 layoutY="83.0"
                 pickOnBounds="true"
                 preserveRatio="true">
-        <image>
-            <Image url="GUI/Resources/muttdog.png" />
-        </image>
-        </ImageView>
+            <image>
+                <Image url="GUI/Resources/muttdog.png" />
+            </image>
+            </ImageView>
         </VBox>
     </top>   
     <center> 
-    
-    <VBox alignment="center">
+        <VBox alignment="center">
    
-    <Button text="New Matrix" onAction="#handleNewButton" fx:id="newButton" prefWidth="100.0" prefHeight="80.0"> 
-        <tooltip>
-            <Tooltip text="Create New Matrix" />
-        </tooltip> 
-    </Button>
+            <Button text="New Matrix" onAction="#handleNewButton" fx:id="newButton" prefWidth="100.0" prefHeight="80.0"> 
+                <tooltip>
+                    <Tooltip text="Create New Matrix" />
+                </tooltip> 
+            </Button>
   
-    <Button text="Operations" onAction="#handleOpsButton" fx:id="opsButton" prefWidth="100.0" prefHeight="80.0">
-        <tooltip>
-            <Tooltip text="Matrix Operations Panel" />
-        </tooltip> 
-    </Button>
+            <Button text="Operations" onAction="#handleOpsButton" fx:id="opsButton" prefWidth="100.0" prefHeight="80.0">
+                <tooltip>
+                    <Tooltip text="Matrix Operations Panel" />
+                </tooltip> 
+            </Button>
     
-    <Button text="Load" fx:id="loadButton" onAction="#handleLoadButton"  prefWidth="100.0" prefHeight="80.0">
-        <tooltip>
-            <Tooltip text="Load Matrices Panel" />
-        </tooltip>
-    </Button>
+            <Button text="Load" fx:id="loadButton" onAction="#handleLoadButton"  prefWidth="100.0" prefHeight="80.0">
+                <tooltip>
+                    <Tooltip text="Load Matrices Panel" />
+                </tooltip>
+            </Button>
             
-    <Button text="Save" fx:id="saveButton" onAction="#handleSaveButton" prefWidth="100.0" prefHeight="80.0">
-        <tooltip>
-            <Tooltip text="Save Matrix List To File" />
-        </tooltip>
-    </Button>
+            <Button text="Save" fx:id="saveButton" onAction="#handleSaveButton" prefWidth="100.0" prefHeight="80.0">
+                <tooltip>
+                    <Tooltip text="Save Matrix List To File" />
+                </tooltip>
+            </Button>
     
-    <Button text="Script" onAction="#handleScriptButton" fx:id="scriptButton" prefWidth="100.0" prefHeight="80.0">
-        <tooltip>
-            <Tooltip text="Load and Run a Script" />
-        </tooltip>
-    </Button>
+            <Button text="Script" onAction="#handleScriptButton" fx:id="scriptButton" prefWidth="100.0" prefHeight="80.0">
+                <tooltip>
+                    <Tooltip text="Load and Run a Script" />
+                </tooltip>
+            </Button>
      
-    <Button text="Quit" onAction="#handleQuitButton" fx:id="quitButton" prefWidth="100.0" prefHeight="80.0">
-        <tooltip>
-            <Tooltip text="Exit MattLab" />
-        </tooltip>
-    </Button>
-   </VBox>
-         </center>
+            <Button text="Quit" onAction="#handleQuitButton" fx:id="quitButton" prefWidth="100.0" prefHeight="80.0">
+                <tooltip>
+                    <Tooltip text="Exit MattLab" />
+                </tooltip>
+            </Button>
+        </VBox>
+    </center>
     <stylesheets>
         <URL value="@/GUI/Resources/Style.css" />
-    </stylesheets>
-    
+    </stylesheets> 
 </BorderPane>

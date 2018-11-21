@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GUI.Controllers;
 
 import Commands.CommandHandler;
@@ -31,9 +26,9 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
- *
- * @author paul
+ * Operations Controller class
+ * Handles our operation scene
+ * and its methods.
  */
 public class OperationsSceneController implements Initializable {
     
@@ -74,8 +69,9 @@ public class OperationsSceneController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-                              
-        matrices.setItems(MuttLab.mats);        
+        //Intialise list view with oberservable list.                      
+        matrices.setItems(MuttLab.mats);  
+        //For some reason, space is the default fire button so this sets it to enter for the buttons.
         addButton.defaultButtonProperty().bind(addButton.focusedProperty());
         subButton.defaultButtonProperty().bind(subButton.focusedProperty());
         backButton.defaultButtonProperty().bind(backButton.focusedProperty());
@@ -85,23 +81,32 @@ public class OperationsSceneController implements Initializable {
         multiplyPointButton.defaultButtonProperty().bind(multiplyPointButton.focusedProperty());
         deleteButton.defaultButtonProperty().bind(deleteButton.focusedProperty());
     } 
-                  
+       
+    /**
+    * Sums two compatible matrices pointwise.
+    */
     @FXML
     private void add(ActionEvent event) throws IOException {
         executeCommand("+");
     }
     
+    /**
+    * Opens a dialog box to get a scaler
+    * from the user and then multiples each
+    * element by this number.
+    */
     @FXML
     private void scale()
     {   
         Dialog<String> inputDialog = new Dialog<>();
         inputDialog.setTitle("Scale a Matrix");
-        inputDialog.setHeaderText("Enter a Number to Scale by...");
+        inputDialog.setHeaderText("Enter a Number to Scale by");
         DialogPane dialogPane = inputDialog.getDialogPane();
         dialogPane.getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
         TextField input = new TextField("1");
         dialogPane.setContent(new VBox(8, input));
         Platform.runLater(input::requestFocus);
+        
         inputDialog.setResultConverter((ButtonType button) -> {
             if (button == ButtonType.OK) {
                 executeCommandAndArg("*",input.getText());
@@ -110,37 +115,56 @@ public class OperationsSceneController implements Initializable {
         });
        inputDialog.showAndWait();        
     }
-        
+      
+    /**
+    * Multiplies two compatible matrices pointwise.
+    */
     @FXML
     private void multiplyPoint()
     {   
         executeCommand(".*");
     }
     
+    /**
+    * Subtracts two compatible matrices.
+    */
     @FXML
     private void subt(ActionEvent event) throws IOException {
         executeCommand("-");
     }
     
+    /**
+    * Multiplies two compatible matrices.
+    */
     @FXML
     private void multiply(ActionEvent event) throws IOException {
         executeCommand("*");
     }
     
+    /**
+    * Duplicates the last matrix created.
+    */
     @FXML
     private void dupe(ActionEvent event) throws IOException {
         executeCommand("dup");
     }
     
+    /**
+    * Removes the last character from the input string 
+    * if it is not empty.
+    */
     @FXML
     private void delete(ActionEvent event) throws IOException {
-        if (MuttLab.matrixList.size()>0)
+        if (!MuttLab.matrixList.isEmpty())
         {
         MuttLab.matrixList.remove(MuttLab.matrixList.size()-1);
         MuttLab.mats.remove(MuttLab.mats.size()-1);
         }
     }
     
+    /**
+    * Returns to the previous scene.
+    */
     @FXML
     private void back(ActionEvent event) throws IOException {
     
@@ -155,6 +179,11 @@ public class OperationsSceneController implements Initializable {
     stage.show();
     }
     
+    /**
+    * Passes the command with to the
+    * command handler then calls the function to
+    * check if the operation succeeds.
+    */
     private void executeCommand(String comm)
     {
         String[] commAndArg = new String[1] ;
@@ -163,6 +192,11 @@ public class OperationsSceneController implements Initializable {
         checkOperationSuccess(comm);
     }
     
+    /**
+    * Passes the command with its argument to the
+    * command handler then calls the function to
+    * check if the operation succeeds.
+    */
     private void executeCommandAndArg(String comm, String arg)
     {
         String[] commAndArg = new String[2] ;
@@ -172,6 +206,12 @@ public class OperationsSceneController implements Initializable {
         checkOperationSuccess(comm);
     }
     
+    /**
+    * Checks the operation type and then
+    * determines if it succeeded
+    * If so, it will print a message for a few seconds
+    * If not, it will also print a message for a few seconds.
+    */
     private void checkOperationSuccess(String comm)
     {
         if (comm.matches("dup") && MuttLab.mats.size() >0)
@@ -210,6 +250,6 @@ public class OperationsSceneController implements Initializable {
             };
             FailureLabel.setVisible(true);
             timer.schedule(clearLabel, 1500);
-            }
-        }  
+        }
+    }  
 }

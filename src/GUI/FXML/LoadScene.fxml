@@ -28,13 +28,13 @@
             
             <GridPane hgap="3" vgap="3" alignment="center">
                 
-                <Button text="Maximal Sum" onAction="#loadSumMax" fx:id="loadSumMax" GridPane.columnIndex="0" GridPane.rowIndex="0" prefWidth="140.0" prefHeight="40.0">
+                <Button text="Maximal Sum" onAction="#sumMax" fx:id="loadSumMax" GridPane.columnIndex="0" GridPane.rowIndex="0" prefWidth="140.0" prefHeight="40.0">
                 <tooltip>
                     <Tooltip text="Load Matrix From File With Biggest Elements Sum" />
                 </tooltip>
                 </Button>
                 
-                <Button text="Minimal Sum" onAction="#loadSumMin" fx:id="loadSumMin" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="140.0" prefHeight="40.0">
+                <Button text="Minimal Sum"  fx:id="loadSumMin" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="140.0" prefHeight="40.0">
                 <tooltip>
                     <Tooltip text="Load Matrix From File With Smallest Elements Sum" />
                 </tooltip>

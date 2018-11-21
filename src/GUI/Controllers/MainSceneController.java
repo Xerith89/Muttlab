@@ -1,17 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GUI.Controllers;
 
 import Commands.CommandHandler;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,15 +15,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
-/**
- *
- * @author paul
- */
 
 public class MainSceneController implements Initializable {
     
@@ -51,6 +38,7 @@ public class MainSceneController implements Initializable {
             
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //For some reason, space is the default fire button so this sets it to enter for the buttons.
         loadButton.defaultButtonProperty().bind(loadButton.focusedProperty());
         newButton.defaultButtonProperty().bind(newButton.focusedProperty());
         saveButton.defaultButtonProperty().bind(saveButton.focusedProperty());
@@ -59,21 +47,33 @@ public class MainSceneController implements Initializable {
         quitButton.defaultButtonProperty().bind(quitButton.focusedProperty());
     }
     
+    /**
+    * Swaps to the operations scene by calling swapScene.
+    */
     @FXML
     private void handleOpsButton(ActionEvent event) throws IOException {
     swapScene("/GUI/FXML/OperationsScene.fxml");
     }
     
+    /**
+    * Swaps to the New Matrix scene by calling swapScene.
+    */
     @FXML
     private void handleNewButton(ActionEvent event) throws IOException {
     swapScene("/GUI/FXML/NewMatrixScene.fxml");
     }
     
+    /**
+    * Swaps to the Load scene by calling swapScene.
+    */
     @FXML
     private void handleLoadButton(ActionEvent event) throws IOException {
     swapScene("/GUI/FXML/LoadScene.fxml");     
     }
-        
+    
+    /**
+    * Opens a file chooser and saves all matrices as a text or CSV document.
+    */
     @FXML
     private void handleSaveButton(ActionEvent event) {
         FileChooser save = new FileChooser();
@@ -98,6 +98,9 @@ public class MainSceneController implements Initializable {
         }  
     }
         
+    /**
+    * Loads and runs a script in .txt format.
+    */
     @FXML
     private void handleScriptButton(ActionEvent event) {
         
@@ -121,6 +124,10 @@ public class MainSceneController implements Initializable {
         }
     }
     
+    /**
+    * Opens a modal window that prompts the user to confirm whether they are sure
+    * they want to quit or not.
+    */
     @FXML
     private void handleQuitButton(ActionEvent event) throws IOException {
         
@@ -130,9 +137,13 @@ public class MainSceneController implements Initializable {
         stage.setTitle("Quit MuttLab");
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node)quitButton).getScene().getWindow() );
-        stage.show(); 
+        stage.showAndWait(); 
     }
-       
+      
+    /**
+    * Gets the current window and uses that to load a new resource 
+    * which is then set as the scene.
+    */
     private void swapScene(String url) throws IOException
     {
         Stage stage; 

@@ -74,21 +74,7 @@ public class AddMenuController implements Initializable {
     public void handlePadRightButton() throws IOException {
         add(padRight());
     }
-    
-    public void setText()
-    {
-        FXMLLoader loader = new FXMLLoader(); 
-        loader.setLocation(getClass().getResource("/GUI/FXML/LoadScene.fxml"));
-        try {
-            loader.load();
-        } catch (IOException ex) {
-            Logger.getLogger(AddMenuController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        System.out.println("here");
-        LoadSceneController display = loader.getController();
-        display.display.setText("Hi");
-    }
-        
+            
     /**
     * Initializes the controller class.
      * @param url

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GUI.Controllers;
 
 import Matrix.Matrix;
@@ -24,16 +19,14 @@ import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
- *
- * @author paul
+ * New Matrix Controller class
+ * Handles creation of new matrices. 
  */
 public class NewMatrixSceneController implements Initializable {
 
     /**
-     * Initializes the controller class.
-     */
-                     
+    * Initializes the controller class.
+    */                  
     @FXML
     private Button newButton;
     @FXML
@@ -77,6 +70,7 @@ public class NewMatrixSceneController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //For some reason, space is the default fire button so this sets it to enter for the buttons.
         clearButton.defaultButtonProperty().bind(clearButton.focusedProperty());
         newButton.defaultButtonProperty().bind(newButton.focusedProperty());
         backButton.defaultButtonProperty().bind(backButton.focusedProperty());
@@ -94,17 +88,26 @@ public class NewMatrixSceneController implements Initializable {
         lineButton.defaultButtonProperty().bind(lineButton.focusedProperty());
         commaButton.defaultButtonProperty().bind((commaButton.focusedProperty()));
     }   
-           
+    
+    /**
+    * Takes the button value and appends it to the string.
+    */
     @FXML
     private void input(ActionEvent event) throws IOException {
        display.setText((display.getText()+((Button)event.getSource()).getText()));
     }
-        
+    
+    /**
+    * Clears the current input string.
+    */  
     @FXML
     private void clear(ActionEvent event) throws IOException {
        display.setText("");
     }
     
+    /**
+    * Inserts a new line into the input string.
+    */
     @FXML
     private void newLine(ActionEvent event) throws IOException {
        StringBuilder builder = new StringBuilder(display.getText());
@@ -112,6 +115,10 @@ public class NewMatrixSceneController implements Initializable {
        display.setText(builder.toString());
     }
     
+    /**
+    * Removes the last character from the input string
+    * if there is at least 1 character in the string.
+    */
     @FXML
     private void backspace(ActionEvent event) throws IOException {
        StringBuilder builder = new StringBuilder(display.getText());
@@ -122,6 +129,12 @@ public class NewMatrixSceneController implements Initializable {
        }
     }
     
+    /**
+    * Converts the string input into a format that the
+    * new matrix command is able to parse and then creates a new
+    * matrix,adds it to the observable list and then prints
+    * a message to confirm whether this operation succeeded or not.
+    */
     @FXML
     private void newMat(ActionEvent event) throws IOException, InterruptedException {
         
@@ -165,7 +178,10 @@ public class NewMatrixSceneController implements Initializable {
             timer.schedule(clearLabel, 1500);
         }
     }
-              
+           
+    /**
+    * Returns to the previous scene.
+    */
     @FXML
     private void back(ActionEvent event) throws IOException {
     
