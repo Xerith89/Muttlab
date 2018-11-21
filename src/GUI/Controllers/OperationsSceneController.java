@@ -134,8 +134,11 @@ public class OperationsSceneController implements Initializable {
     
     @FXML
     private void delete(ActionEvent event) throws IOException {
+        if (MuttLab.matrixList.size()>0)
+        {
         MuttLab.matrixList.remove(MuttLab.matrixList.size()-1);
         MuttLab.mats.remove(MuttLab.mats.size()-1);
+        }
     }
     
     @FXML

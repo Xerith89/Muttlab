@@ -16,9 +16,12 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static java.util.stream.Collectors.toList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -53,6 +56,9 @@ public class AddMenuController implements Initializable {
     long indexCount;
     long count;
     
+    //Store the results of our add operations
+    public static List<String> summedMats = new ArrayList();
+    
     /**
     * These functions are triggered by clicking the corresponding buttons
     * you need to call add and pass in a function that returns a List<String>
@@ -68,6 +74,20 @@ public class AddMenuController implements Initializable {
     public void handlePadRightButton() throws IOException {
         add(padRight());
     }
+    
+    public void setText()
+    {
+        FXMLLoader loader = new FXMLLoader(); 
+        loader.setLocation(getClass().getResource("/GUI/FXML/LoadScene.fxml"));
+        try {
+            loader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(AddMenuController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println("here");
+        LoadSceneController display = loader.getController();
+        display.display.setText("Hi");
+    }
         
     /**
     * Initializes the controller class.
@@ -79,7 +99,7 @@ public class AddMenuController implements Initializable {
         closeButton.defaultButtonProperty().bind(closeButton.focusedProperty());
         discardAndAdd.defaultButtonProperty().bind(discardAndAdd.focusedProperty());
         padLeftAndAdd.defaultButtonProperty().bind(padLeftAndAdd.focusedProperty());
-        padRightAndAdd.defaultButtonProperty().bind(padRightAndAdd.focusedProperty());     
+        padRightAndAdd.defaultButtonProperty().bind(padRightAndAdd.focusedProperty()); 
     }  
     
     /**
@@ -245,23 +265,26 @@ public class AddMenuController implements Initializable {
                 results[i]+=numbers.get(j+i);
             }
         }
-            
-        statusLabel.setText("Operation Completed!");
+           
         String temp = Arrays.toString(results);
-        StringBuilder builder = new StringBuilder(temp);
-        builder.replace(0, 1, "");
-        builder.replace(builder.length()-1, builder.length(), "");
-        
-        for(int i = 0; i < builder.length()-1; i++)
+        if (temp.length() > 2)
         {
-            if (builder.charAt(i+1)== ',')
+            summedMats.add(temp);
+            StringBuilder builder = new StringBuilder(temp);
+            builder.replace(0, 1, "");
+            builder.replace(builder.length()-1, builder.length(), "");
+
+            for(int i = 0; i < builder.length()-1; i++)
             {
-                builder.replace(i+1, i+2, "");
+                if (builder.charAt(i+1)== ',')
+                {
+                    builder.replace(i+1, i+2, "");
+                }
             }
+
+            Matrix m = new Matrix( builder.toString());
+            MuttLab.mats.add(m.getString());
         }
-        
-        Matrix m = new Matrix( builder.toString());
-        MuttLab.mats.add(m.getString());
         close();
     }
 

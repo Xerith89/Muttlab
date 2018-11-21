@@ -115,8 +115,11 @@ public class NewMatrixSceneController implements Initializable {
     @FXML
     private void backspace(ActionEvent event) throws IOException {
        StringBuilder builder = new StringBuilder(display.getText());
-       builder.deleteCharAt(builder.length()-1);
-       display.setText(builder.toString());
+       if (builder.length()>0)
+       {
+            builder.deleteCharAt(builder.length()-1);
+            display.setText(builder.toString());
+       }
     }
     
     @FXML

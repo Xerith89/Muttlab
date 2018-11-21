@@ -14,8 +14,6 @@ import MuttLab.MuttLab;
 
 /**
  * Things to do:
- * get the matrix result in the textarea
- * Layout of load scene needs work
  * Go over the code to try to clean up and optimise - reduce dupe code, optimise saving etc
  */
 public class Main extends Application {

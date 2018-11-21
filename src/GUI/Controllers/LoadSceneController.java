@@ -68,10 +68,12 @@ public class LoadSceneController implements Initializable {
     @FXML
     private Button filterSave;
     @FXML
-    private TextArea display;
+    public TextArea display;
     
     /**
     * Initializes the controller class.
+     * @param url
+     * @param rb
     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -271,7 +273,11 @@ public class LoadSceneController implements Initializable {
         stage.setTitle("Load and Add");
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node)backButton).getScene().getWindow() );
-        stage.show(); 
+        stage.showAndWait();
+        if (!AddMenuController.summedMats.isEmpty())
+        {
+            display.setText(AddMenuController.summedMats.get(AddMenuController.summedMats.size()-1));
+        }
     } 
     
     public void filterAndSave() throws IOException
@@ -437,6 +443,4 @@ public class LoadSceneController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
-
 }

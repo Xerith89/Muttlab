@@ -12,68 +12,74 @@
 <?import javafx.scene.image.Image?>
 
 <BorderPane id="BorderPane" prefHeight="400.0" prefWidth="450.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.LoadSceneController">
-     <top>
+    <top>
         <VBox alignment="center"> 
         <Text id="welcome-text" text="Load Matrix" />
         </VBox>
-     </top>
+    </top>
      <center>
          <VBox alignment="center">
             
             <Label text="Matrix Result: " textFill="red"></Label>
+            
             <TextArea fx:id="display" editable="false" maxWidth="300.0" prefHeight="50.0" />
+            
+            <Label text="Maximal/Minimal Matrix" ></Label>
             
             <GridPane hgap="3" vgap="3" alignment="center">
                 
-                <Button text="Load Max Sum" onAction="#loadSumMax" fx:id="loadSumMax" GridPane.columnIndex="0" GridPane.rowIndex="0" prefWidth="140.0" prefHeight="40.0">
+                <Button text="Maximal Sum" onAction="#loadSumMax" fx:id="loadSumMax" GridPane.columnIndex="0" GridPane.rowIndex="0" prefWidth="140.0" prefHeight="40.0">
                 <tooltip>
                     <Tooltip text="Load Matrix From File With Biggest Elements Sum" />
                 </tooltip>
                 </Button>
                 
-                <Button text="Load Min Sum" onAction="#loadSumMin" fx:id="loadSumMin" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="140.0" prefHeight="40.0">
+                <Button text="Minimal Sum" onAction="#loadSumMin" fx:id="loadSumMin" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="140.0" prefHeight="40.0">
                 <tooltip>
                     <Tooltip text="Load Matrix From File With Smallest Elements Sum" />
                 </tooltip>
                 </Button>
                 
-                <Button text="Load Max Element M" onAction="#loadMaxEleMax" fx:id="loadMaxEle" GridPane.columnIndex="2" GridPane.rowIndex="0" prefWidth="140.0" prefHeight="40.0">
+                <Button text="Maximal Biggest E" onAction="#loadMaxEleMax" fx:id="loadMaxEle" GridPane.columnIndex="2" GridPane.rowIndex="0" prefWidth="140.0" prefHeight="40.0">
                 <tooltip>
                     <Tooltip text="Load Matrix From File with the Highest Element of all Matrices" />
                 </tooltip>
                 </Button>
                 
-                <Button text="Load Max Element m" onAction="#loadMaxEleMin" fx:id="loadMinEle" GridPane.columnIndex="0" GridPane.rowIndex="1" prefWidth="140.0" prefHeight="40.0">
+                <Button text="Maximal Smallest E" onAction="#loadMaxEleMin" fx:id="loadMinEle" GridPane.columnIndex="0" GridPane.rowIndex="1" prefWidth="140.0" prefHeight="40.0">
                 <tooltip>
                     <Tooltip text="Load Matrix From File with the Smallest Element that is the Biggest of all Matrices" />
                 </tooltip>
                 </Button>
             
-                <Button text="Load min Element M" onAction="#loadMinEleMax" fx:id="loadMaxElem" GridPane.columnIndex="1" GridPane.rowIndex="1" prefWidth="140.0" prefHeight="40.0">
+                <Button text="Minimal Biggest E" onAction="#loadMinEleMax" fx:id="loadMaxElem" GridPane.columnIndex="1" GridPane.rowIndex="1" prefWidth="140.0" prefHeight="40.0">
                 <tooltip>
                     <Tooltip text="Load Matrix From File with the Biggest Element that is the Smallest of all Matrices" />
                 </tooltip>
                 </Button>
                 
-                <Button text="Load Min Element m" onAction="#loadMinEleMin" fx:id="loadMinElem" GridPane.columnIndex="2" GridPane.rowIndex="1" prefWidth="140.0" prefHeight="40.0">
+                <Button text="Minimal Smallest E" onAction="#loadMinEleMin" fx:id="loadMinElem" GridPane.columnIndex="2" GridPane.rowIndex="1" prefWidth="140.0" prefHeight="40.0">
                 <tooltip>
                     <Tooltip text="Load Matrix From File with the Smallest Element that is the Smallest of all Matrices" />
                 </tooltip>
                 </Button>
-                
-                <Button text="Load and Add" onAction="#loadAndAdd" fx:id="add" GridPane.columnIndex="0" GridPane.rowIndex="2" prefWidth="140.0" prefHeight="40.0">
+            </GridPane>
+            
+            <Label text="File Processing"></Label>
+            <GridPane hgap="3" vgap="3" alignment="center">             
+                <Button text="Add" onAction="#loadAndAdd" fx:id="add" GridPane.columnIndex="0" GridPane.rowIndex="0" prefWidth="140.0" prefHeight="40.0">
                 <tooltip>
                     <Tooltip text="Load Matrices, Add them together and Store the Resulting Matrix" />
                 </tooltip>
                 </Button>
                 
-                <Button text="Scale and Save" onAction="#scaleAndSave" fx:id="scaleSave" GridPane.columnIndex="1" GridPane.rowIndex="2" prefWidth="140.0" prefHeight="40.0">
+                <Button text="Scale and Save" onAction="#scaleAndSave" fx:id="scaleSave" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="140.0" prefHeight="40.0">
                 <tooltip>
                     <Tooltip text="Load Matrices, Scale Each Matrix and Save to a File" />
                 </tooltip>
                 </Button>
                 
-                <Button text="Filter and Save" onAction="#filterAndSave" fx:id="filterSave" GridPane.columnIndex="2" GridPane.rowIndex="2" prefWidth="140.0" prefHeight="40.0">
+                <Button text="Filter and Save" onAction="#filterAndSave" fx:id="filterSave" GridPane.columnIndex="2" GridPane.rowIndex="0" prefWidth="140.0" prefHeight="40.0">
                 <tooltip>
                     <Tooltip text="Load Matrices, Filter to a Specified Shape and Save to a File" />
                 </tooltip>
