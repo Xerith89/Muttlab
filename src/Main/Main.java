@@ -30,7 +30,8 @@ public class Main extends Application {
         stage.setTitle("MuttLab");
         stage.setScene(scene);
         stage.show();
-                
+           
+        //Create a new thread to run the console version of the program
         Thread muttlabth = new Thread(() -> {
             MuttLab ml = MuttLab.getInstance();
             ml.exec();
@@ -38,8 +39,7 @@ public class Main extends Application {
         muttlabth.setDaemon(true);
         muttlabth.start();
     }
-    
-    
+     
     /**
      * @param args the command line arguments
      */

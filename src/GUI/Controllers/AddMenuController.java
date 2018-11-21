@@ -17,6 +17,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
 import static java.util.stream.Collectors.toList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -40,118 +41,108 @@ public class AddMenuController implements Initializable {
     private Button closeButton;
     @FXML
     private Label statusLabel;
-     /**
-     * Initializes the controller class.
-     */
+    
+    /**
+    * indexCount will store the amount of lines
+    * that are in the CSV file and the amount of
+    * values per line (these will be the same as
+    * we can only add elementwise on square matrices
+    * index is used to compare the current line to the
+    * master line
+    */
+    long indexCount;
+    long count;
+    
+    /**
+    * These functions are triggered by clicking the corresponding buttons
+    * you need to call add and pass in a function that returns a List<String>
+    * as a parameter
+     * @throws java.io.IOException
+    */
+    public void handleDiscardButton() throws IOException {
+        add(discard());
+    }
+    public void handlePadLeftButton() throws IOException {
+        add(padLeft());
+    }
+    public void handlePadRightButton() throws IOException {
+        add(padRight());
+    }
+        
+    /**
+    * Initializes the controller class.
+     * @param url
+     * @param rb
+    */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         closeButton.defaultButtonProperty().bind(closeButton.focusedProperty());
         discardAndAdd.defaultButtonProperty().bind(discardAndAdd.focusedProperty());
         padLeftAndAdd.defaultButtonProperty().bind(padLeftAndAdd.focusedProperty());
-        padRightAndAdd.defaultButtonProperty().bind(padRightAndAdd.focusedProperty());
+        padRightAndAdd.defaultButtonProperty().bind(padRightAndAdd.focusedProperty());     
     }  
     
-    public void discardAndAdd() throws IOException
+    /**
+    * Loads a file, gets the count of the first line
+    * then iterates through and returns a new list
+    * that only contains elements of the same size 
+    * as the first.
+    */
+    private List<String> discard() throws IOException
     {
-        statusLabel.setText("");
-        FileChooser load = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
-        load.getExtensionFilters().add(extFilter);
-        File file = load.showOpenDialog(null); 
-                
+        File file = loadFile();
+        List<String> filtered = new ArrayList();        
         if (file != null)
         {
             List<String> inputFile = Files.lines(file.toPath()).collect(toList());
-            List<String> filtered = new ArrayList();
-            List<String[]> split = new ArrayList();
-            List<Integer> numbers = new ArrayList();     
-                       
-            long indexCount = Arrays
+                                    
+            indexCount = Arrays
             .stream(inputFile.get(0).split(" ")).map(s -> s.replaceAll(",", ""))
             .map(Integer::parseInt)
             .count();  
             
-            int[] results = new int[(int)indexCount];
-         
             for (int i = 0; i < inputFile.size(); ++i)
             {  
-                long count = Arrays
+                count = Arrays
                 .stream(inputFile.get(i).split(" ")).map(s -> s.replaceAll(",", ""))
                 .map(Integer::parseInt)
                 .count();                           
-                            
+                
                 if (count == indexCount)
                 {
                     filtered.add(inputFile.get(i));
                 }
             } 
-                        
-            filtered.forEach((s) -> {
-                split.add(s.split(" "));
-            });
-                            
-            split.forEach((s) -> {
-                Arrays.stream(s).map(h -> h.replaceAll(",", ""))
-                .mapToInt(Integer::parseInt)
-                .forEach(e -> {
-                    numbers.add(e);
-                });
-            });
-                        
-            for (int i = 0; i < (int)indexCount; i++)
-            {
-                for (int j = 0; j< numbers.size(); j+=(int)indexCount)
-                {
-                    results[i]+=numbers.get(i);
-                }
-            }
-            
-        statusLabel.setText("Operation Completed!");
-        String temp = Arrays.toString(results);
-        StringBuilder builder = new StringBuilder(temp);
-        builder.replace(0, 1, "");
-        builder.replace(builder.length()-1, builder.length(), "");
-        for(int i = 0; i < builder.length()-1; i++)
-        {
-            if (builder.charAt(i+1)== ',')
-            {
-                builder.replace(i+1, i+2, "");
-            }
         }
-        
-        Matrix m = new Matrix( builder.toString());
-        MuttLab.mats.add(m.getString());
-        }
+        return filtered;
     }
     
-    public void padLeftAndAdd() throws IOException
+    /**
+    * Loads a file, gets the count of the first line
+    * then iterates through and returns a new list
+    * that adds 0s to the beginning of the string so
+    * the count matches the index count.    * 
+    */
+    private List<String> padLeft() throws IOException
     {
-        statusLabel.setText("");
-        FileChooser load = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
-        load.getExtensionFilters().add(extFilter);
-        File file = load.showOpenDialog(null); 
-        
-        List<String[]> split = new ArrayList();
-        List<Integer> numbers = new ArrayList(); 
+        File file = loadFile();
+        List<String> inputFile = new ArrayList();
         
         if (file != null)
         {
-            List<String> inputFile = Files.lines(file.toPath()).collect(toList());
+            inputFile = Files.lines(file.toPath()).collect(toList());
                         
             String[] longest = new String[1];
             longest [0] = inputFile.stream().max(Comparator.comparingInt(String::length)).get();
             
-            long indexCount = Arrays
+            indexCount = Arrays
             .stream(longest[0].split(" ")).map(s -> s.replaceAll(",", ""))
             .map(Integer::parseInt)
             .count(); 
-            
-            int[] results = new int[(int)indexCount];
-            
+                        
             for (int i = 0; i < inputFile.size(); ++i)
             {  
-                long count = Arrays
+                count = Arrays
                 .stream(inputFile.get(i).split(" ")).map(s -> s.replaceAll(",", ""))
                 .map(Integer::parseInt)
                 .count();                           
@@ -167,72 +158,36 @@ public class AddMenuController implements Initializable {
                     inputFile.set(i, builder.toString());
                 }     
             }
-                        
-            inputFile.forEach((s) -> {
-                split.add(s.split(" "));
-            });
-                            
-            split.forEach((s) -> {
-                Arrays.stream(s).map(h -> h.replaceAll(",", ""))
-                .mapToInt(Integer::parseInt)
-                .forEach(e -> {
-                    numbers.add(e);
-                });
-            });
-                               
-            for (int i = 0; i < (int)indexCount; i++)
-            {
-                for (int j = 0; j< numbers.size(); j+=(int)indexCount)
-                {
-                    results[i]+=numbers.get(j+i);
-                }
-            }
-        statusLabel.setText("Operation Completed!");   
-        String temp = Arrays.toString(results);
-        StringBuilder builder = new StringBuilder(temp);
-        builder.replace(0, 1, "");
-        builder.replace(builder.length()-1, builder.length(), "");
-        
-        for(int i = 0; i < builder.length()-1; i++)
-        {
-            if (builder.charAt(i+1)== ',')
-            {
-                builder.replace(i+1, i+2, "");
-            }
-        }
-        Matrix m = new Matrix( builder.toString());
-        MuttLab.mats.add(m.getString());
         }   
+        return inputFile;
     }
     
-    public void padRightAndAdd() throws IOException
+    /**
+    * Loads a file, gets the count of the first line
+    * then iterates through and returns a new list
+    * that adds 0s to the end of the string so
+    * the count matches the index count.    * 
+    */
+    private List<String> padRight() throws IOException
     {
-        statusLabel.setText("");
-        FileChooser load = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
-        load.getExtensionFilters().add(extFilter);
-        File file = load.showOpenDialog(null);
-        
-        List<String[]> split = new ArrayList();
-        List<Integer> numbers = new ArrayList(); 
+        File file = loadFile();
+        List<String> inputFile = new ArrayList();
                 
         if (file != null)
         {
-            List<String> inputFile = Files.lines(file.toPath()).collect(toList());
+            inputFile = Files.lines(file.toPath()).collect(toList());
                        
             String[] longest = new String[1];
             longest [0] = inputFile.stream().max(Comparator.comparingInt(String::length)).get();
             
-            long indexCount = Arrays
+            indexCount = Arrays
             .stream(longest[0].split(" ")).map(s -> s.replaceAll(",", ""))
             .map(Integer::parseInt)
             .count(); 
             
-            int[] results = new int[(int)indexCount];
-             
             for (int i = 0; i < inputFile.size(); ++i)
             {  
-                long count = Arrays
+                count = Arrays
                 .stream(inputFile.get(i).split(" ")).map(s -> s.replaceAll(",", ""))
                 .map(Integer::parseInt)
                 .count();                           
@@ -248,27 +203,50 @@ public class AddMenuController implements Initializable {
                     inputFile.set(i, builder.toString());
                 }
             }
-            
-               inputFile.forEach((s) -> {
-                split.add(s.split(" "));
-            });
+        }
+        return inputFile;
+    }
+    
+    public void close() throws IOException
+    {
+        closeButton.getScene().getWindow().hide();
+    }
+    
+    /**
+    * This function takes in a list of string, parses it and then
+    * sums element wise, converts back to a string in order to 
+    * create a new matrix which is added to the matrix list.
+    * @param input
+    * @throws java.io.IOException
+    */
+    public void add(List<String> input) throws IOException
+    {
+        List<String[]> split = new ArrayList();
+        List<Integer> numbers = new ArrayList();
+        
+        input.forEach((s) -> {
+        split.add(s.split(" "));
+        });
                             
-            split.forEach((s) -> {
-                Arrays.stream(s).map(h -> h.replaceAll(",", ""))
-                .mapToInt(Integer::parseInt)
-                .forEach(e -> {
-                    numbers.add(e);
-                });
+        split.forEach((s) -> {
+        Arrays.stream(s).map(h -> h.replaceAll(",", ""))
+        .mapToInt(Integer::parseInt)
+        .forEach(e -> {
+        numbers.add(e);
             });
-                               
-            for (int i = 0; i < (int)indexCount; i++)
+        });
+            
+        int[] results = new int[(int)indexCount];
+                        
+        for (int i = 0; i < (int)indexCount; i++)
+        {
+            for (int j = 0; j< numbers.size(); j+=(int)indexCount)
             {
-                for (int j = 0; j< numbers.size(); j+=(int)indexCount)
-                {
-                    results[i]+=numbers.get(j+i);
-                }
+                results[i]+=numbers.get(j+i);
             }
-        statusLabel.setText("Operation Completed!");    
+        }
+            
+        statusLabel.setText("Operation Completed!");
         String temp = Arrays.toString(results);
         StringBuilder builder = new StringBuilder(temp);
         builder.replace(0, 1, "");
@@ -281,14 +259,19 @@ public class AddMenuController implements Initializable {
                 builder.replace(i+1, i+2, "");
             }
         }
+        
         Matrix m = new Matrix( builder.toString());
         MuttLab.mats.add(m.getString());
-        }   
+        close();
     }
-    
-    public void close() throws IOException
+
+    private File loadFile()
     {
-        closeButton.getScene().getWindow().hide();
+        statusLabel.setText("");
+        FileChooser load = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
+        load.getExtensionFilters().add(extFilter);
+        File file = load.showOpenDialog(null); 
+        return file;
     }
-    
 }
