@@ -70,7 +70,7 @@ public class NewMatrixSceneController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //For some reason, space is the default fire button so this sets it to enter for the buttons.
+        //space is the default fire button so this sets it to enter for the buttons.
         clearButton.defaultButtonProperty().bind(clearButton.focusedProperty());
         newButton.defaultButtonProperty().bind(newButton.focusedProperty());
         backButton.defaultButtonProperty().bind(backButton.focusedProperty());
@@ -137,7 +137,7 @@ public class NewMatrixSceneController implements Initializable {
     */
     @FXML
     private void newMat(ActionEvent event) throws IOException, InterruptedException {
-        
+       
         StringBuilder builder = new StringBuilder(display.getText());
         for (int i = 0; i < display.getText().length()-1; i++)
         {
@@ -152,9 +152,6 @@ public class NewMatrixSceneController implements Initializable {
         }
         
         Matrix matrix = new Matrix(builder.toString()); 
-        MuttLab.mats.add(matrix.getString());
-        display.setText("");
-        
         if (Matrix.getParseSucceed())
         {
             TimerTask clearLabel = new TimerTask() {
@@ -164,6 +161,8 @@ public class NewMatrixSceneController implements Initializable {
                 }
             };
             SuccessLabel.setVisible(true);
+            MuttLab.mats.add(matrix.getString());
+            display.setText("");
             timer.schedule(clearLabel, 1500);
         }
         else
@@ -175,6 +174,7 @@ public class NewMatrixSceneController implements Initializable {
                 }
             };
             FailureLabel.setVisible(true);
+            display.setText("");
             timer.schedule(clearLabel, 1500);
         }
     }

@@ -82,6 +82,7 @@ public class AddMenuController implements Initializable {
     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //space is the default fire button so this sets it to enter for the buttons.
         closeButton.defaultButtonProperty().bind(closeButton.focusedProperty());
         discardAndAdd.defaultButtonProperty().bind(discardAndAdd.focusedProperty());
         padLeftAndAdd.defaultButtonProperty().bind(padLeftAndAdd.focusedProperty());

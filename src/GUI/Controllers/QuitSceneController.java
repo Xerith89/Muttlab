@@ -25,7 +25,7 @@ public class QuitSceneController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //For some reason, space is the default fire button so this sets it to enter for the buttons.
+        //space is the default fire button so this sets it to enter for the buttons.
         cancelButton.defaultButtonProperty().bind(cancelButton.focusedProperty());
         yesButton.defaultButtonProperty().bind(yesButton.focusedProperty());
     } 

@@ -38,7 +38,7 @@ public class MainSceneController implements Initializable {
             
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //For some reason, space is the default fire button so this sets it to enter for the buttons.
+        //space is the default fire button so this sets it to enter for the buttons.
         loadButton.defaultButtonProperty().bind(loadButton.focusedProperty());
         newButton.defaultButtonProperty().bind(newButton.focusedProperty());
         saveButton.defaultButtonProperty().bind(saveButton.focusedProperty());

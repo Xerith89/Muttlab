@@ -69,9 +69,7 @@ public final class Matrix
             mat[r] = new float[elements.length];
             for(int c = 0; c < elements.length; c++)
             {   
-                try 
-                {
-                    mat[r][c] = Float.parseFloat(elements[c].trim());
+                try {mat[r][c] = Float.parseFloat(elements[c].trim());
                 } catch (NumberFormatException e)
                 {
                     text.printInvalidInput();

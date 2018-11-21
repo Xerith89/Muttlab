@@ -71,7 +71,7 @@ public class OperationsSceneController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         //Intialise list view with oberservable list.                      
         matrices.setItems(MuttLab.mats);  
-        //For some reason, space is the default fire button so this sets it to enter for the buttons.
+        //space is the default fire button so this sets it to enter for the buttons.
         addButton.defaultButtonProperty().bind(addButton.focusedProperty());
         subButton.defaultButtonProperty().bind(subButton.focusedProperty());
         backButton.defaultButtonProperty().bind(backButton.focusedProperty());

@@ -71,6 +71,7 @@ public class LoadSceneController implements Initializable {
     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //space is the default fire button so this sets it to enter for the buttons.
         loadSumMax.defaultButtonProperty().bind(loadSumMax.focusedProperty());
         loadSumMin.defaultButtonProperty().bind(loadSumMin.focusedProperty());
         loadMaxEle.defaultButtonProperty().bind(loadMaxEle.focusedProperty());
@@ -81,7 +82,10 @@ public class LoadSceneController implements Initializable {
         scaleSave.defaultButtonProperty().bind(scaleSave.focusedProperty());
         filterSave.defaultButtonProperty().bind(filterSave.focusedProperty());
         backButton.defaultButtonProperty().bind(backButton.focusedProperty());
-        
+    /**
+    * Load and cache a file initially - if the user presses
+    * cancel then they can still load a file later.
+    */    
     try {file = loadFile();
         inputFile = new ArrayList();
         if (file != null)
@@ -91,7 +95,12 @@ public class LoadSceneController implements Initializable {
         }
     }  
     
-    public List<Integer> getMax() throws IOException
+    /**
+    * This is used to get the maximum result from a list of integers.
+    * @return 
+    * @throws java.io.IOException
+    */   
+    private List<Integer> getMax() throws IOException
     {
         if (inputFile.isEmpty())
         {
@@ -111,7 +120,12 @@ public class LoadSceneController implements Initializable {
         return result;
     }
     
-    public List<Integer> getMin() throws IOException
+    /**
+    * This is used to get the minimum result from a list of integers.
+    * @return 
+    * @throws java.io.IOException
+    */   
+    private List<Integer> getMin() throws IOException
     {
         if (inputFile.isEmpty())
         {
@@ -131,6 +145,10 @@ public class LoadSceneController implements Initializable {
         return result;
     }
     
+    /**
+    * uses the max function to get the biggest sum.
+    * @throws java.io.IOException
+    */   
     public void sumMax() throws IOException
     {
         List<Integer> result = new ArrayList(); 
@@ -144,6 +162,10 @@ public class LoadSceneController implements Initializable {
         }
     }
     
+    /**
+    * uses the min function to get the smallest sum.
+    * @throws java.io.IOException
+    */ 
     public void sumMin() throws IOException
     {
         List<Integer> result = new ArrayList(); 
@@ -157,7 +179,11 @@ public class LoadSceneController implements Initializable {
         }
     }
     
-    
+    /**
+    * uses the max function to get the matrix with the biggest element
+    * If the user hasn't initially loaded then they will be prompted to.
+    * @throws java.io.IOException
+    */ 
     public void maxEleMax() throws IOException
     {
         List<Integer> result = new ArrayList(); 
@@ -171,7 +197,12 @@ public class LoadSceneController implements Initializable {
         }
     }
     
-    
+    /**
+    * uses the min function to get the matrix who's smallest element is
+    * bigger than any others 
+    * If the user hasn't initially loaded then they will be prompted to.
+    * @throws java.io.IOException
+    */
     public void maxEleMin() throws IOException
     {
         List<Integer> result = new ArrayList(); 
@@ -185,7 +216,12 @@ public class LoadSceneController implements Initializable {
         }
     }
  
-    
+    /**
+    * uses the max function to get the matrix who's biggest element is
+    * smaller than any others 
+    * If the user hasn't initially loaded then they will be prompted to.
+    * @throws java.io.IOException
+    */
     public void minEleMax() throws IOException
     {
         List<Integer> result = new ArrayList(); 
@@ -199,6 +235,12 @@ public class LoadSceneController implements Initializable {
         }
     }
     
+    /**
+    * uses the min function to get the matrix who's smallest element is
+    * smaller than any others 
+    * If the user hasn't initially loaded then they will be prompted to.
+    * @throws java.io.IOException
+    */
     public void minEleMin() throws IOException
     {
         List<Integer> result = new ArrayList(); 
@@ -212,6 +254,10 @@ public class LoadSceneController implements Initializable {
         }
     }
     
+    /**
+    * Changes scene to Add Menu.
+    * @throws java.io.IOException
+    */
     public void loadAndAdd() throws IOException
     {  
         Stage stage = new Stage();
@@ -227,6 +273,11 @@ public class LoadSceneController implements Initializable {
         }
     } 
     
+    /**
+    * Prompts the user for a file and matrix length to
+    * filter on and then create a file to be saved.
+    * @throws java.io.IOException
+    */
     public void filterAndSave() throws IOException
     {
         file = loadFile();
@@ -242,36 +293,37 @@ public class LoadSceneController implements Initializable {
             TextField input = new TextField("1");
             dialogPane.setContent(new VBox(8, input));
             Platform.runLater(input::requestFocus);
-            inputDialog.setResultConverter(new Callback<ButtonType, String>() {
-            
-            @Override
-            public String call(ButtonType button) {
-            if (button == ButtonType.OK) {
-                List<String> filtered = new ArrayList();
+            inputDialog.setResultConverter((ButtonType button) -> {
+                if (button == ButtonType.OK) {
+                    List<String> filtered = new ArrayList();
                     for (int i = 0; i < inputFile.size(); ++i)
-                    {  
-                        long count = Arrays
-                        .stream(inputFile.get(i).split(" "))
-                        .map(s -> s.replaceAll(",", ""))
-                        .map(Integer::parseInt)
-                        .count();                           
-                            
-                    if (count == Integer.parseInt(input.getText()))
                     {
-                        filtered.add(inputFile.get(i));
-                    }
-                    }
+                        long count = Arrays
+                                .stream(inputFile.get(i).split(" "))
+                                .map(s -> s.replaceAll(",", ""))
+                                .map(Integer::parseInt)
+                                .count();
                         
-                saveFile(filtered);
-            }
-        return null;
-            }
-        });
+                        if (count == Integer.parseInt(input.getText()))
+                        {
+                            filtered.add(inputFile.get(i));
+                        }
+                    }
+                    
+                    saveFile(filtered);
+                }
+                return null;
+            });
         inputDialog.showAndWait(); 
         } 
     }
     
-    
+    /**
+    * Prompts the user for a file and number to scale to and 
+    * will create a file where each element has been multiplied
+    * by that number.
+    * @throws java.io.IOException
+    */
     public void scaleAndSave() throws IOException
     {
         
@@ -321,6 +373,10 @@ public class LoadSceneController implements Initializable {
         }        
     } 
     
+    /**
+    * File loading function.
+    * @throws java.io.IOException
+    */
     private File loadFile() throws IOException
     {
         FileChooser load = new FileChooser();
@@ -335,6 +391,10 @@ public class LoadSceneController implements Initializable {
         return file;
     }
     
+    /**
+    * Save file function.
+    * @throws java.io.IOException
+    */
     private void saveFile(List<String> parsed)
     {
         FileChooser save = new FileChooser();
@@ -360,8 +420,12 @@ public class LoadSceneController implements Initializable {
         }
     }
 
-    @FXML
-    private void back(ActionEvent event) throws IOException {
+    /**
+    * Returns to the previous scene.
+    * @param event
+    * @throws java.io.IOException
+    */
+    public void back(ActionEvent event) throws IOException {
     
         Stage stage; 
         Parent root;
