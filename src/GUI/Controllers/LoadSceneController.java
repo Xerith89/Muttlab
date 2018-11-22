@@ -12,8 +12,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import static java.util.stream.Collectors.toList;
 import javafx.application.Platform;
@@ -82,17 +80,6 @@ public class LoadSceneController implements Initializable {
         scaleSave.defaultButtonProperty().bind(scaleSave.focusedProperty());
         filterSave.defaultButtonProperty().bind(filterSave.focusedProperty());
         backButton.defaultButtonProperty().bind(backButton.focusedProperty());
-    /**
-    * Load and cache a file initially - if the user presses
-    * cancel then they can still load a file later.
-    */    
-    try {file = loadFile();
-        inputFile = new ArrayList();
-        if (file != null)
-        {inputFile = Files.lines(file.toPath()).collect(toList());}
-        } catch (IOException ex) {
-        Logger.getLogger(LoadSceneController.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }  
     
     /**
@@ -102,10 +89,6 @@ public class LoadSceneController implements Initializable {
     */   
     private List<Integer> getMax() throws IOException
     {
-        if (inputFile.isEmpty())
-        {
-            file = loadFile();
-        }
         List<Integer> result = new ArrayList();        
         if (!inputFile.isEmpty())
         {
@@ -121,16 +104,30 @@ public class LoadSceneController implements Initializable {
     }
     
     /**
+    * This is used to get the sum from a list of integers.
+    * @return 
+    * @throws java.io.IOException
+    */
+    private List<Integer> getSum() throws IOException
+    {
+        List<Integer> result = new ArrayList();
+        for (int i = 0; i < inputFile.size(); i++)
+        {    
+            result.add(Arrays
+            .stream(inputFile.get(i).split(" ")).map(s -> s.replaceAll(",", ""))  
+            .mapToInt(Integer::parseInt)
+            .sum()); 
+        }
+        return result;
+    }
+    
+    /**
     * This is used to get the minimum result from a list of integers.
     * @return 
     * @throws java.io.IOException
     */   
     private List<Integer> getMin() throws IOException
     {
-        if (inputFile.isEmpty())
-        {
-            file = loadFile();
-        }
         List<Integer> result = new ArrayList();        
         if (!inputFile.isEmpty())
         {
@@ -145,20 +142,36 @@ public class LoadSceneController implements Initializable {
         return result;
     }
     
+    private int minCollection(List<Integer> input)
+    {
+        return input.indexOf(Collections.min(input));
+    }
+    
+    private int maxCollection(List<Integer> input)
+    {
+        return input.indexOf(Collections.max(input));
+    }
+    
+    private void processResult(int indexOne, int indexTwo)
+    {
+        String untrimmed = inputFile.get(indexOne);
+        String trimmed = " " + untrimmed.replaceAll(",", "");
+        Matrix m = new Matrix(trimmed);
+        MuttLab.MuttLab.mats.add(m.getString());
+        display.setText(inputFile.get(indexTwo));
+    }
+    
     /**
     * uses the max function to get the biggest sum.
     * @throws java.io.IOException
     */   
     public void sumMax() throws IOException
     {
+        loadFile();
         List<Integer> result = new ArrayList(); 
-        result = getMax();
+        result = getSum();
         if (!result.isEmpty()){
-        String untrimmed = inputFile.get(result.indexOf(Collections.max(result)));
-        String trimmed = " " + untrimmed.replaceAll(",", "");
-        Matrix m = new Matrix(trimmed);
-        MuttLab.MuttLab.mats.add(m.getString());
-        display.setText(inputFile.get(result.indexOf(Collections.max(result))));
+        processResult(maxCollection(result), maxCollection(result));
         }
     }
     
@@ -168,14 +181,11 @@ public class LoadSceneController implements Initializable {
     */ 
     public void sumMin() throws IOException
     {
+        loadFile();
         List<Integer> result = new ArrayList(); 
-        result = getMin(); 
+        result = getSum();
         if (!result.isEmpty()){
-        String untrimmed = inputFile.get(result.indexOf(Collections.min(result)));
-        String trimmed = " " + untrimmed.replaceAll(",", "");
-        Matrix m = new Matrix(trimmed);
-        MuttLab.MuttLab.mats.add(m.getString());
-        display.setText(inputFile.get(result.indexOf(Collections.min(result))));
+        processResult(minCollection(result), minCollection(result));
         }
     }
     
@@ -186,14 +196,11 @@ public class LoadSceneController implements Initializable {
     */ 
     public void maxEleMax() throws IOException
     {
+        loadFile();
         List<Integer> result = new ArrayList(); 
         result = getMax();  
         if (!result.isEmpty()){
-        String untrimmed = inputFile.get(result.indexOf(Collections.max(result)));
-        String trimmed = " " + untrimmed.replaceAll(",", "");
-        Matrix m = new Matrix(trimmed);
-        MuttLab.MuttLab.mats.add(m.getString());
-        display.setText(inputFile.get(result.indexOf(Collections.max(result))));
+        processResult(maxCollection(result), maxCollection(result));
         }
     }
     
@@ -205,14 +212,11 @@ public class LoadSceneController implements Initializable {
     */
     public void maxEleMin() throws IOException
     {
+        loadFile();
         List<Integer> result = new ArrayList(); 
         result = getMin();
         if (!result.isEmpty()){
-        String untrimmed = inputFile.get(result.indexOf(Collections.max(result)));
-        String trimmed = " " + untrimmed.replaceAll(",", "");
-        Matrix m = new Matrix(trimmed);
-        MuttLab.MuttLab.mats.add(m.getString());
-        display.setText(inputFile.get(result.indexOf(Collections.max(result))));
+        processResult(maxCollection(result), maxCollection(result));
         }
     }
  
@@ -224,14 +228,11 @@ public class LoadSceneController implements Initializable {
     */
     public void minEleMax() throws IOException
     {
+        loadFile();
         List<Integer> result = new ArrayList(); 
         result = getMax();
         if (!result.isEmpty()){
-        String untrimmed = inputFile.get(result.indexOf(Collections.min(result)));
-        String trimmed = " " + untrimmed.replaceAll(",", "");
-        Matrix m = new Matrix(trimmed);
-        MuttLab.MuttLab.mats.add(m.getString());
-        display.setText(inputFile.get(result.indexOf(Collections.min(result))));
+        processResult(minCollection(result), minCollection(result));
         }
     }
     
@@ -243,14 +244,11 @@ public class LoadSceneController implements Initializable {
     */
     public void minEleMin() throws IOException
     {
+        loadFile();
         List<Integer> result = new ArrayList(); 
         result = getMin();
         if (!result.isEmpty()){
-        String untrimmed = inputFile.get(result.indexOf(Collections.min(result)));
-        String trimmed = " " + untrimmed.replaceAll(",", "");
-        Matrix m = new Matrix(trimmed);
-        MuttLab.MuttLab.mats.add(m.getString());
-        display.setText(inputFile.get(result.indexOf(Collections.min(result))));
+        processResult(minCollection(result), minCollection(result));
         }
     }
     
@@ -279,43 +277,47 @@ public class LoadSceneController implements Initializable {
     * @throws java.io.IOException
     */
     public void filterAndSave() throws IOException
-    {
-        file = loadFile();
-                
-        if (file != null)
-        {
-            inputFile = Files.lines(file.toPath()).collect(toList());             
-            Dialog<String> inputDialog = new Dialog<>();
-            inputDialog.setTitle("Filter and Save");
-            inputDialog.setHeaderText("Enter a Length to Filter On");
-            DialogPane dialogPane = inputDialog.getDialogPane();
-            dialogPane.getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
-            TextField input = new TextField("1");
-            dialogPane.setContent(new VBox(8, input));
-            Platform.runLater(input::requestFocus);
-            inputDialog.setResultConverter((ButtonType button) -> {
-                if (button == ButtonType.OK) {
-                    List<String> filtered = new ArrayList();
-                    for (int i = 0; i < inputFile.size(); ++i)
-                    {
-                        long count = Arrays
-                                .stream(inputFile.get(i).split(" "))
-                                .map(s -> s.replaceAll(",", ""))
-                                .map(Integer::parseInt)
-                                .count();
-                        
-                        if (count == Integer.parseInt(input.getText()))
-                        {
-                            filtered.add(inputFile.get(i));
-                        }
-                    }
-                    
-                    saveFile(filtered);
-                }
-                return null;
-            });
+    { 
+       loadFile();         
+                   
+        Dialog<String> inputDialog = new Dialog<>();
+        inputDialog.setTitle("Filter and Save");
+        inputDialog.setHeaderText("Enter a Length to Filter On");
+        DialogPane dialogPane = inputDialog.getDialogPane();
+        dialogPane.getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+        TextField input = new TextField("1");
+        dialogPane.setContent(new VBox(8, input));
+        Platform.runLater(input::requestFocus);
+        inputDialog.setResultConverter(new Callback<ButtonType, String>() {
+           @Override
+           public String call(ButtonType button) {
+               if (button == ButtonType.OK)
+               {
+                   List<String> filtered = new ArrayList();
+                   for (int i = 0; i < inputFile.size(); ++i)
+                   {
+                       long count = Arrays
+                               .stream(inputFile.get(i).split(" "))
+                               .map(s -> s.replaceAll(",", ""))
+                               .map(Integer::parseInt)
+                               .count();
+                       
+                       int newSize = 1;
+                       try { newSize = Integer.parseInt(input.getText());
+                       } catch (NumberFormatException t){System.out.println("Invalid Input");}
+                       
+                       
+                       if (count == newSize)
+                       {
+                           filtered.add(inputFile.get(i));
+                       }
+                   }
+                   saveFile(filtered);
+               }
+               return null;
+           }
+       });
         inputDialog.showAndWait(); 
-        } 
     }
     
     /**
@@ -326,58 +328,51 @@ public class LoadSceneController implements Initializable {
     */
     public void scaleAndSave() throws IOException
     {
-        
-        file = loadFile();
-                
-        if (file != null)
-        {
-            inputFile = Files.lines(file.toPath()).collect(toList());
+        loadFile();
                         
-            Dialog<String> inputDialog = new Dialog<>();
-            inputDialog.setTitle("Scale and Save");
-            inputDialog.setHeaderText("Enter a Number to Scale by");
-            DialogPane dialogPane = inputDialog.getDialogPane();
-            dialogPane.getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
-            TextField input = new TextField("1");
-            dialogPane.setContent(new VBox(8, input));
-            Platform.runLater(input::requestFocus);
-            inputDialog.setResultConverter(new Callback<ButtonType, String>() {   
-            @Override
-            public String call(ButtonType button) {
+        Dialog<String> inputDialog = new Dialog<>();
+        inputDialog.setTitle("Scale and Save");
+        inputDialog.setHeaderText("Enter a Number to Scale by");
+        DialogPane dialogPane = inputDialog.getDialogPane();
+        dialogPane.getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+        TextField input = new TextField("1");
+        dialogPane.setContent(new VBox(8, input));
+        Platform.runLater(input::requestFocus);
+        inputDialog.setResultConverter((ButtonType button) -> {
             if (button == ButtonType.OK) {
-            List<String> parsed = new ArrayList();
-            for (int i = 0; i < inputFile.size(); i++)
-                {   
-                List<Integer> numbers = new ArrayList();
-                List<Integer> scaled = new ArrayList();
-                numbers = Arrays
-                .stream(inputFile.get(i).split(" ")).map(s -> s.replaceAll(",", ""))
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
-                numbers.forEach(e -> {
-                try{scaled.add(e*Integer.parseInt(input.getText()));
-                } catch (NumberFormatException t){System.out.println("Invalid Input");}
-                });
-                                                        
-                StringBuilder builder = new StringBuilder(scaled.toString());
-                builder.deleteCharAt(0);
-                builder.deleteCharAt(builder.length()-1);
-                parsed.add(builder.toString());
+                List<String> parsed = new ArrayList();
+                
+                for (int i = 0; i < inputFile.size(); i++)
+                {
+                    List<Integer> numbers = new ArrayList();
+                    List<Integer> scaled = new ArrayList();
+                    numbers = Arrays
+                            .stream(inputFile.get(i).split(" "))
+                            .map(s -> s.replaceAll(",", ""))
+                            .map(Integer::parseInt)
+                            .collect(Collectors.toList());
+                    numbers.forEach((Integer e) -> {
+                        try{scaled.add(e*Integer.parseInt(input.getText()));
+                        } catch (NumberFormatException t){System.out.println("Invalid Input");
+                        }           });
+                    
+                    StringBuilder builder = new StringBuilder(scaled.toString());
+                    builder.deleteCharAt(0);
+                    builder.deleteCharAt(builder.length()-1);
+                    parsed.add(builder.toString());
                 }
-            saveFile(parsed);
+                saveFile(parsed);
             }
             return null;
-            }
         });
-        inputDialog.showAndWait();   
-        }        
+        inputDialog.showAndWait();          
     } 
     
     /**
     * File loading function.
     * @throws java.io.IOException
     */
-    private File loadFile() throws IOException
+    private void loadFile() throws IOException
     {
         FileChooser load = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
@@ -388,7 +383,6 @@ public class LoadSceneController implements Initializable {
         {
             inputFile = Files.lines(file.toPath()).collect(toList());
         }
-        return file;
     }
     
     /**
@@ -411,7 +405,6 @@ public class LoadSceneController implements Initializable {
             } catch (IOException e) {
             System.err.println(e.getMessage());
             }
-
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("MuttLab");
             alert.setHeaderText("Save File");
