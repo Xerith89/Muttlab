@@ -274,50 +274,54 @@ public class LoadSceneController implements Initializable {
     /**
     * Prompts the user for a file and matrix length to
     * filter on and then create a file to be saved.
+     * @param title
+     * @param headerText
+     * @return 
     * @throws java.io.IOException
     */
-    public void filterAndSave() throws IOException
-    { 
-       loadFile();         
-                   
+    
+    public String dialogBox(String title, String headerText) throws IOException
+    {          
         Dialog<String> inputDialog = new Dialog<>();
-        inputDialog.setTitle("Filter and Save");
-        inputDialog.setHeaderText("Enter a Length to Filter On");
+        inputDialog.setTitle(title);
+        inputDialog.setHeaderText(headerText);
         DialogPane dialogPane = inputDialog.getDialogPane();
         dialogPane.getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
         TextField input = new TextField("1");
         dialogPane.setContent(new VBox(8, input));
         Platform.runLater(input::requestFocus);
-        inputDialog.setResultConverter(new Callback<ButtonType, String>() {
-           @Override
-           public String call(ButtonType button) {
-               if (button == ButtonType.OK)
-               {
-                   List<String> filtered = new ArrayList();
-                   for (int i = 0; i < inputFile.size(); ++i)
-                   {
-                       long count = Arrays
-                               .stream(inputFile.get(i).split(" "))
-                               .map(s -> s.replaceAll(",", ""))
-                               .map(Integer::parseInt)
-                               .count();
+        inputDialog.setResultConverter((ButtonType button) -> {
+            if (button == ButtonType.OK)
+            {
+                return input.getText();
+            }
+            return input.getText();
+        });        
+        inputDialog.showAndWait();
+        return input.getText();
+    }
+    
+    public void filterAndSave() throws IOException
+    { 
+        loadFile();
+        int filter = 1;
+        try{filter = Integer.parseInt(dialogBox("Filter and Save", "Enter a Length to Filter on"));}
+        catch (NumberFormatException e){System.err.println("Invalid number");}
+        List<String> filtered = new ArrayList();
+        for (int i = 0; i < inputFile.size(); ++i)
+        {
+            long count = Arrays
+            .stream(inputFile.get(i).split(" "))
+            .map(s -> s.replaceAll(",", ""))
+            .map(Integer::parseInt)
+            .count();
                        
-                       int newSize = 1;
-                       try { newSize = Integer.parseInt(input.getText());
-                       } catch (NumberFormatException t){System.out.println("Invalid Input");}
-                       
-                       
-                       if (count == newSize)
-                       {
-                           filtered.add(inputFile.get(i));
-                       }
-                   }
-                   saveFile(filtered);
-               }
-               return null;
-           }
-       });
-        inputDialog.showAndWait(); 
+            if (count == filter)
+            {
+                filtered.add(inputFile.get(i));
+            }
+        }
+        saveFile(filtered);       
     }
     
     /**
@@ -329,43 +333,30 @@ public class LoadSceneController implements Initializable {
     public void scaleAndSave() throws IOException
     {
         loadFile();
-                        
-        Dialog<String> inputDialog = new Dialog<>();
-        inputDialog.setTitle("Scale and Save");
-        inputDialog.setHeaderText("Enter a Number to Scale by");
-        DialogPane dialogPane = inputDialog.getDialogPane();
-        dialogPane.getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
-        TextField input = new TextField("1");
-        dialogPane.setContent(new VBox(8, input));
-        Platform.runLater(input::requestFocus);
-        inputDialog.setResultConverter((ButtonType button) -> {
-            if (button == ButtonType.OK) {
-                List<String> parsed = new ArrayList();
-                
-                for (int i = 0; i < inputFile.size(); i++)
-                {
-                    List<Integer> numbers = new ArrayList();
-                    List<Integer> scaled = new ArrayList();
-                    numbers = Arrays
-                            .stream(inputFile.get(i).split(" "))
-                            .map(s -> s.replaceAll(",", ""))
-                            .map(Integer::parseInt)
-                            .collect(Collectors.toList());
-                    numbers.forEach((Integer e) -> {
-                        try{scaled.add(e*Integer.parseInt(input.getText()));
-                        } catch (NumberFormatException t){System.out.println("Invalid Input");
-                        }           });
-                    
-                    StringBuilder builder = new StringBuilder(scaled.toString());
-                    builder.deleteCharAt(0);
-                    builder.deleteCharAt(builder.length()-1);
-                    parsed.add(builder.toString());
-                }
-                saveFile(parsed);
-            }
-            return null;
-        });
-        inputDialog.showAndWait();          
+        List<String> parsed = new ArrayList();
+        int scaler = 1;
+        try{scaler = Integer.parseInt(dialogBox("Scale and Save","Enter a Number to Scale on"));
+        } catch (NumberFormatException t){System.out.println("Invalid Input");}          
+        for (int i = 0; i < inputFile.size(); i++)
+        {
+            List<Integer> numbers = new ArrayList();
+            List<Integer> scaled = new ArrayList();
+            numbers = Arrays
+            .stream(inputFile.get(i).split(" "))
+            .map(s -> s.replaceAll(",", ""))
+            .map(Integer::parseInt)
+            .collect(Collectors.toList());
+            final int s = scaler;
+        
+            numbers.forEach((Integer e) -> {
+            scaled.add(e*s);
+            });
+            StringBuilder builder = new StringBuilder(scaled.toString());
+            builder.deleteCharAt(0);
+            builder.deleteCharAt(builder.length()-1);
+            parsed.add(builder.toString());
+        }
+        saveFile(parsed);            
     } 
     
     /**
