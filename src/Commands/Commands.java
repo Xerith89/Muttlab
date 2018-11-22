@@ -23,6 +23,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
+import javafx.application.Platform;
 
 public class Commands {
     
@@ -245,7 +246,10 @@ public class Commands {
             
             //Either way we will quit by setting running to false
             if (arg.isPresent() || !arg.isPresent())
-            MuttLab.setRunningFalse();
+            {
+                MuttLab.setRunningFalse();
+                Platform.exit();
+            }
         }   
     }
     
