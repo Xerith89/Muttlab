@@ -57,9 +57,9 @@ public class AddMenuController implements Initializable {
     
     /**
     * These functions are triggered by clicking the corresponding buttons
-    * you need to call add and pass in a function that returns a List<String>
+    * you need to call add and pass in a function that returns a List of Strings
     * as a parameter
-     * @throws java.io.IOException
+    * @throws java.io.IOException
     */
     public void handleDiscardButton() throws IOException {
         add(discard());
