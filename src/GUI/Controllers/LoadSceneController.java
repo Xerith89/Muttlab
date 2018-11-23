@@ -152,13 +152,13 @@ public class LoadSceneController implements Initializable {
         return input.indexOf(Collections.max(input));
     }
     
-    private void processResult(int indexOne, int indexTwo)
+    private void processResult(int index)
     {
-        String untrimmed = inputFile.get(indexOne);
+        String untrimmed = inputFile.get(index);
         String trimmed = " " + untrimmed.replaceAll(",", "");
         Matrix m = new Matrix(trimmed);
         MuttLab.MuttLab.mats.add(m.getString());
-        display.setText(inputFile.get(indexTwo));
+        display.setText(inputFile.get(index));
     }
     
     /**
@@ -171,7 +171,7 @@ public class LoadSceneController implements Initializable {
         List<Integer> result = new ArrayList(); 
         result = getSum();
         if (!result.isEmpty()){
-        processResult(maxCollection(result), maxCollection(result));
+        processResult(maxCollection(result));
         }
     }
     
@@ -185,7 +185,7 @@ public class LoadSceneController implements Initializable {
         List<Integer> result = new ArrayList(); 
         result = getSum();
         if (!result.isEmpty()){
-        processResult(minCollection(result), minCollection(result));
+        processResult(minCollection(result));
         }
     }
     
@@ -200,7 +200,7 @@ public class LoadSceneController implements Initializable {
         List<Integer> result = new ArrayList(); 
         result = getMax();  
         if (!result.isEmpty()){
-        processResult(maxCollection(result), maxCollection(result));
+        processResult(maxCollection(result));
         }
     }
     
@@ -216,7 +216,7 @@ public class LoadSceneController implements Initializable {
         List<Integer> result = new ArrayList(); 
         result = getMin();
         if (!result.isEmpty()){
-        processResult(maxCollection(result), maxCollection(result));
+        processResult(maxCollection(result));
         }
     }
  
@@ -232,7 +232,7 @@ public class LoadSceneController implements Initializable {
         List<Integer> result = new ArrayList(); 
         result = getMax();
         if (!result.isEmpty()){
-        processResult(minCollection(result), minCollection(result));
+        processResult(minCollection(result));
         }
     }
     
@@ -248,7 +248,7 @@ public class LoadSceneController implements Initializable {
         List<Integer> result = new ArrayList(); 
         result = getMin();
         if (!result.isEmpty()){
-        processResult(minCollection(result), minCollection(result));
+        processResult(minCollection(result));
         }
     }
     
